@@ -1,0 +1,83 @@
+-- Створення таблиці "roles" для зберігання ролей користувачів
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL
+);
+
+-- Створення таблиці "users" для зберігання інформації про користувачів
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    middle_name VARCHAR(255),
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    role_id INT NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
+
+-- Створення таблиці "proposals" для зберігання пропозицій
+CREATE TABLE proposals (
+    proposal_id SERIAL PRIMARY KEY,
+    proposal_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    creator_user_id INT,
+    contact_phone VARCHAR(20) NOT NULL,
+    contact_email VARCHAR(255) NOT NULL
+);
+
+-- Створення таблиці "orders" для зберігання замовлень
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    order_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    creator_user_id INT,
+    contact_phone VARCHAR(20) NOT NULL,
+    contact_email VARCHAR(255) NOT NULL
+);
+
+-- Створення таблиці "categories" для зберігання категорій
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL
+);
+
+-- Таблиця для зв'язку пропозицій та категорій
+CREATE TABLE proposal_categories (
+    proposal_category_id SERIAL PRIMARY KEY,
+    proposal_id INT,
+    category_id INT,
+    FOREIGN KEY (proposal_id) REFERENCES proposals(proposal_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+-- Таблиця для зв'язку замовлень та категорій
+CREATE TABLE order_categories (
+    order_category_id SERIAL PRIMARY KEY,
+    order_id INT,
+    category_id INT,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+-- Створення таблиці "volunteer_history" для відстеження історії волонтерів
+CREATE TABLE volunteer_history (
+    history_id SERIAL PRIMARY KEY,
+    volunteer_id INT,
+    proposal_id INT,
+    FOREIGN KEY (volunteer_id) REFERENCES users(user_id),
+    FOREIGN KEY (proposal_id) REFERENCES proposals(proposal_id)
+);
+
+-- Створення таблиці "order_history" для відстеження історії замовлень користувачів
+CREATE TABLE order_history (
+    history_id SERIAL PRIMARY KEY,
+    user_id INT,
+    order_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+
