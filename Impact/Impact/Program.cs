@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using Npgsql;
 
 class Program
@@ -12,16 +11,22 @@ class Program
         "ep-empty-recipe-96792924.eu-central-1.aws.neon.tech", 5432,
         "sijanchuk", "nN8hVXe1pILY", "neondb");
 
-        /*string connectionString = "Server=ep-empty-recipe-96792924.eu-central-1.aws.neon.tech;" +
-            "Database=neondb;" +
-            "User Id=sijanchuk;" +
-            "Password=nN8hVXe1pILY;";*/
-
 
         using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
         {
             connection.Open();
 
+            ClearTable(connection, "volunteer_history");
+            ClearTable(connection, "order_history");
+            ClearTable(connection, "proposal_categories");
+            ClearTable(connection, "order_categories");
+            ClearTable(connection, "categories");
+            ClearTable(connection, "orders");
+            ClearTable(connection, "proposals");
+            ClearTable(connection, "users");
+            ClearTable(connection, "roles");
+
+            InsertRandomRolesTable(connection, 50);
             InsertRandomUsers(connection, 50);
             InsertRandomProposals(connection, 50);
             InsertRandomOrders(connection, 50);
@@ -31,6 +36,7 @@ class Program
             InsertRandomVolunteerHistory(connection, 50);
             InsertRandomOrderHistory(connection, 50);
 
+            DisplayRoles(connection);
             DisplayUsers(connection);
             DisplayProposals(connection);
             DisplayOrders(connection);
@@ -39,6 +45,32 @@ class Program
             DisplayOrderCategories(connection);
             DisplayVolunteerHistory(connection);
             DisplayOrderHistory(connection);
+        }
+    }
+    private static void ClearTable(NpgsqlConnection connection, string tableName)
+    {
+        using (NpgsqlCommand cmd = new NpgsqlCommand())
+        {
+            cmd.Connection = connection;
+            cmd.CommandText = $"TRUNCATE TABLE {tableName} CASCADE;";
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    private static void InsertRandomRolesTable(NpgsqlConnection connection, int numberOfRecords)
+    {
+        for (int i = 0; i < numberOfRecords; i++)
+        {
+            string roleName = "RoleName" + i;
+            using (NpgsqlCommand cmd = new NpgsqlCommand())
+            {
+                cmd.Connection = connection;
+
+                cmd.CommandText = "INSERT INTO roles (role_name) VALUES (@RoleName)";
+                cmd.Parameters.AddWithValue("@RoleName", roleName);
+                    
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 
@@ -50,20 +82,21 @@ class Program
         {
             string firstName = "User" + i;
             string lastName = "LastName" + i;
+            string middleName = "MiddleName" + i;
             string email = $"user{i}@example.com";
             string phoneNumber = "+1234567890";
-            string role = "User";
 
-            string query = "INSERT INTO users (first_name, last_name, email, phone_number, role) " +
-                           "VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role)";
+            string query = "INSERT INTO users (first_name, last_name, middle_name, email, phone_number, role_id) " +
+                           "VALUES (@FirstName, @LastName, @MiddleName, @Email, @PhoneNumber, @RoleId)";
 
             using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@FirstName", firstName);
                 command.Parameters.AddWithValue("@LastName", lastName);
+                command.Parameters.AddWithValue("@MiddleName", middleName);
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                command.Parameters.AddWithValue("@Role", role);
+                command.Parameters.AddWithValue("@RoleId", i % 3 + 1);
 
                 command.ExecuteNonQuery();
             }
@@ -239,6 +272,26 @@ class Program
     }
 
     // Methods for displaying data of tables
+    private static void DisplayRoles(NpgsqlConnection connection)
+    {
+        string query = "SELECT * FROM roles";
+
+        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+        using (NpgsqlDataReader reader = command.ExecuteReader())
+        {
+            Console.WriteLine("Roles Table Data:");
+
+            while (reader.Read())
+            {
+                int roleId = reader.GetInt32(reader.GetOrdinal("role_id"));
+                string roleName = reader.GetString(reader.GetOrdinal("role_name"));
+
+                Console.WriteLine($"RoleID: {roleId}, RoleName: {roleName}");
+            }
+        }
+    }
+
+
     private static void DisplayUsers(NpgsqlConnection connection)
     {
         string query = "SELECT * FROM users";
@@ -253,11 +306,12 @@ class Program
                 int userId = reader.GetInt32(reader.GetOrdinal("user_id"));
                 string firstName = reader.GetString(reader.GetOrdinal("first_name"));
                 string lastName = reader.GetString(reader.GetOrdinal("last_name"));
+                string middleName = reader.GetString(reader.GetOrdinal("middle_name"));
                 string email = reader.GetString(reader.GetOrdinal("email"));
                 string phoneNumber = reader.GetString(reader.GetOrdinal("phone_number"));
-                string role = reader.GetString(reader.GetOrdinal("role"));
+                int role = reader.GetInt32(reader.GetOrdinal("role_id"));
 
-                Console.WriteLine($"UserID: {userId}, FirstName: {firstName}, LastName: {lastName}, Email: {email}, Phone: {phoneNumber}, Role: {role}");
+                Console.WriteLine($"UserID: {userId}, FirstName: {firstName}, LastName: {lastName}, MiddleName: {middleName}, Email: {email}, Phone: {phoneNumber}, Role: {role}");
             }
         }
     }

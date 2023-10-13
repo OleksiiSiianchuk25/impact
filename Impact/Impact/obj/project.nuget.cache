@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OHD84bPxuOq/hVKWJHftIxuHv4IgUvBv72p93rwksQOUVVXGaVdNnZk1Vw+5ABLuCUemMxV6exhj8mBoIpyIDA==",
+  "dgSpecHash": "ZLcJ5aQa/KYVRlTt9iMjlSheynHEdFBUuZfe84Xj2/wzuG/4MwkQkaossOI98o1WE9TslRggWPJFRSZhjAoLng==",
   "success": true,
-  "projectFilePath": "D:\\LNU\\Інженерія\\Impact\\Impact\\Impact.csproj",
+  "projectFilePath": "C:\\Users\\WellDone\\Source\\Repos\\impact\\Impact\\Impact\\Impact.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WellDone\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\WellDone\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

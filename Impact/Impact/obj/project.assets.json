@@ -627,11 +627,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LNU\\Інженерія\\Impact\\Impact\\Impact.csproj",
+      "projectUniqueName": "C:\\Users\\WellDone\\Source\\Repos\\impact\\Impact\\Impact\\Impact.csproj",
       "projectName": "Impact",
-      "projectPath": "D:\\LNU\\Інженерія\\Impact\\Impact\\Impact.csproj",
+      "projectPath": "C:\\Users\\WellDone\\Source\\Repos\\impact\\Impact\\Impact\\Impact.csproj",
       "packagesPath": "C:\\Users\\WellDone\\.nuget\\packages\\",
-      "outputPath": "D:\\LNU\\Інженерія\\Impact\\Impact\\obj\\",
+      "outputPath": "C:\\Users\\WellDone\\Source\\Repos\\impact\\Impact\\Impact\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\WellDone\\AppData\\Roaming\\NuGet\\NuGet.Config",
