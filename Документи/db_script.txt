@@ -25,7 +25,7 @@ CREATE TABLE proposals (
     creator_user_id INT,
     contact_phone VARCHAR(20) NOT NULL,
     contact_email VARCHAR(255) NOT NULL,
-    FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
+    FOREIGN KEY (creator_user_id) REFERENCES users(user_id)
 );
 
 -- Створення таблиці "orders" для зберігання замовлень
@@ -37,7 +37,7 @@ CREATE TABLE orders (
     creator_user_id INT,
     contact_phone VARCHAR(20) NOT NULL,
     contact_email VARCHAR(255) NOT NULL,
-    FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
+    FOREIGN KEY (creator_user_id) REFERENCES users(user_id)
 );
 
 -- Створення таблиці "categories" для зберігання категорій
