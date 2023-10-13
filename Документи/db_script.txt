@@ -24,7 +24,8 @@ CREATE TABLE proposals (
     location VARCHAR(255) NOT NULL,
     creator_user_id INT,
     contact_phone VARCHAR(20) NOT NULL,
-    contact_email VARCHAR(255) NOT NULL
+    contact_email VARCHAR(255) NOT NULL,
+    FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
 );
 
 -- Створення таблиці "orders" для зберігання замовлень
@@ -35,7 +36,8 @@ CREATE TABLE orders (
     location VARCHAR(255) NOT NULL,
     creator_user_id INT,
     contact_phone VARCHAR(20) NOT NULL,
-    contact_email VARCHAR(255) NOT NULL
+    contact_email VARCHAR(255) NOT NULL,
+    FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
 );
 
 -- Створення таблиці "categories" для зберігання категорій
@@ -79,12 +81,3 @@ CREATE TABLE order_history (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
-
--- Зміни в таблиці "proposals"
-ALTER TABLE proposals
-ADD FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
-
--- Зміни в таблиці "orders"
-ALTER TABLE orders
-ADD FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
-
