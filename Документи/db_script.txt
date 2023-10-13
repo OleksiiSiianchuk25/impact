@@ -81,3 +81,12 @@ CREATE TABLE order_history (
 );
 
 
+-- Зміни в таблиці "proposals"
+ALTER TABLE proposals
+ADD COLUMN creator_user_id INT,
+ADD FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
+
+-- Зміни в таблиці "orders"
+ALTER TABLE orders
+ADD COLUMN creator_user_id INT,
+ADD FOREIGN KEY (creator_user_id) REFERENCES users(user_id);
