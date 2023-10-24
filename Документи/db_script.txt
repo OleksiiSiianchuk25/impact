@@ -10,8 +10,8 @@ CREATE TABLE users (
     middle_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
     phone_number VARCHAR(20) UNIQUE NOT NULL,
-    role_id INT NOT NULL,
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(role_id)
+    role_ref INT NOT NULL,
+    CONSTRAINT fk_role FOREIGN KEY (role_ref) REFERENCES roles(role_id)
 );
 
 CREATE TABLE request_roles (
@@ -24,12 +24,12 @@ CREATE TABLE requests (
     request_name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     location VARCHAR(255) NOT NULL,
-    creator_user_id INT,
+    creator_user_ref INT,
     contact_phone VARCHAR(20) NOT NULL,
     contact_email VARCHAR(255) NOT NULL,
-    role_id INT NOT NULL,
-    CONSTRAINT fk_creator_user FOREIGN KEY (creator_user_id) REFERENCES users(user_id),
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES request_roles(role_id)
+    role_ref INT NOT NULL,
+    CONSTRAINT fk_creator_user FOREIGN KEY (creator_user_ref) REFERENCES users(user_id),
+    CONSTRAINT fk_role FOREIGN KEY (role_ref) REFERENCES request_roles(role_id)
 );
 
 CREATE TABLE request_categories (
