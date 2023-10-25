@@ -10,6 +10,7 @@ CREATE TABLE users (
     middle_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
     phone_number VARCHAR(20) UNIQUE NOT NULL,
+	password VARCHAR(255) NOT NULL,
     role_ref INT NOT NULL,
     CONSTRAINT fk_role FOREIGN KEY (role_ref) REFERENCES roles(role_id)
 );
