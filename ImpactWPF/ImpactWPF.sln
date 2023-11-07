@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpactWPF", "ImpactWPF\ImpactWPF.csproj", "{96936646-65BA-49AF-BD7A-1F0D8A58F971}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{EF06A2A2-2EB1-460F-8588-3D4FD15BBA57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{224BE046-DEDB-418C-BC3A-FB95FB3127FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5B8BE0F9-FA9A-4A4F-A15D-D0463BB2BC59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCore", "EfCore\EfCore.csproj", "{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A47F3C9D-165F-4114-9025-CE42E01BB8EC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96936646-65BA-49AF-BD7A-1F0D8A58F971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96936646-65BA-49AF-BD7A-1F0D8A58F971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96936646-65BA-49AF-BD7A-1F0D8A58F971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96936646-65BA-49AF-BD7A-1F0D8A58F971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96936646-65BA-49AF-BD7A-1F0D8A58F971} = {5B8BE0F9-FA9A-4A4F-A15D-D0463BB2BC59}
+		{5D9A9D42-15C7-4C92-ADDA-8D962458EFFE} = {224BE046-DEDB-418C-BC3A-FB95FB3127FD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A86158D-5563-498B-8044-3EC4A51A60A4}
+	EndGlobalSection
+EndGlobal
