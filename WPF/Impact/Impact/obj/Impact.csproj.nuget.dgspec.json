@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LNU\\Інженерія\\WPF\\Impact\\Impact\\Impact.csproj": {}
+    "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\Impact\\Impact.csproj": {}
   },
   "projects": {
-    "D:\\LNU\\Інженерія\\WPF\\Impact\\Impact\\Impact.csproj": {
+    "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\Impact\\Impact.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LNU\\Інженерія\\WPF\\Impact\\Impact\\Impact.csproj",
+        "projectUniqueName": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\Impact\\Impact.csproj",
         "projectName": "Impact",
-        "projectPath": "D:\\LNU\\Інженерія\\WPF\\Impact\\Impact\\Impact.csproj",
+        "projectPath": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\Impact\\Impact.csproj",
         "packagesPath": "C:\\Users\\WellDone\\.nuget\\packages\\",
-        "outputPath": "D:\\LNU\\Інженерія\\WPF\\Impact\\Impact\\obj\\",
+        "outputPath": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\Impact\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\WellDone\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,14 +39,6 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.13, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

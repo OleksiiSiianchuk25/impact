@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\LNU\Інженерія\WPF\Impact\Impact\obj\Debug\net6.0-windows\
+D:\LNU\Інженерія\Repository\impact\WPF\Impact\Impact\obj\Debug\net6.0-windows\
 Impact
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\LNU\Інженерія\WPF\Impact\Impact\App.xaml
+D:\LNU\Інженерія\Repository\impact\WPF\Impact\Impact\App.xaml
 2-1376777318
 
 6-1968876464
 1941709816142
 Login.xaml;MainWindow.xaml;
 
-True
+False
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LNU\\Інженерія\\WPF\\Impact\\EFCore\\EFCore.csproj": {}
+    "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\EFCore\\EFCore.csproj": {}
   },
   "projects": {
-    "D:\\LNU\\Інженерія\\WPF\\Impact\\EFCore\\EFCore.csproj": {
+    "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\EFCore\\EFCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LNU\\Інженерія\\WPF\\Impact\\EFCore\\EFCore.csproj",
+        "projectUniqueName": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\EFCore\\EFCore.csproj",
         "projectName": "EFCore",
-        "projectPath": "D:\\LNU\\Інженерія\\WPF\\Impact\\EFCore\\EFCore.csproj",
+        "projectPath": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\EFCore\\EFCore.csproj",
         "packagesPath": "C:\\Users\\WellDone\\.nuget\\packages\\",
-        "outputPath": "D:\\LNU\\Інженерія\\WPF\\Impact\\EFCore\\obj\\",
+        "outputPath": "D:\\LNU\\Інженерія\\Repository\\impact\\WPF\\Impact\\EFCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\WellDone\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,15 +40,13 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.13, )"
+              "version": "[6.0.24, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[6.0.22, )"
             }
           },
           "imports": [
