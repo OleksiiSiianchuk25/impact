@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impact", "Impact\Impact.csproj", "{D2AC2F7C-5412-4974-96F3-5A225B5B493F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{C24B7625-B938-4F62-B151-A1FB09707D66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{B87E5FA9-2DF0-433F-A8E7-1C998DE022D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{369E589B-27FC-4A6B-B67B-0F059A253B23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{125963C6-26BD-44A9-B81E-63E7E8997697}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B07A7010-4DF4-4296-9E9E-14FC71E2AEC2}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\WellDone\Downloads\Telegram Desktop\.gitignore = C:\Users\WellDone\Downloads\Telegram Desktop\.gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2AC2F7C-5412-4974-96F3-5A225B5B493F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AC2F7C-5412-4974-96F3-5A225B5B493F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AC2F7C-5412-4974-96F3-5A225B5B493F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AC2F7C-5412-4974-96F3-5A225B5B493F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{125963C6-26BD-44A9-B81E-63E7E8997697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125963C6-26BD-44A9-B81E-63E7E8997697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{125963C6-26BD-44A9-B81E-63E7E8997697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125963C6-26BD-44A9-B81E-63E7E8997697}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2AC2F7C-5412-4974-96F3-5A225B5B493F} = {369E589B-27FC-4A6B-B67B-0F059A253B23}
+		{125963C6-26BD-44A9-B81E-63E7E8997697} = {C24B7625-B938-4F62-B151-A1FB09707D66}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CE06C0F-7F9E-4377-8BBF-D05897497176}
+	EndGlobalSection
+EndGlobal
