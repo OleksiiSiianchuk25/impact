@@ -19,6 +19,7 @@
     <None Remove="Images\editUser.png" />
     <None Remove="Images\email.png" />
     <None Remove="Images\impact.png" />
+    <None Remove="Images\mainUserIcon.png" />
     <None Remove="Images\passwordBlocked.png" />
     <None Remove="Images\passwordUnlocked.png" />
     <None Remove="Images\phone.png" />
@@ -54,6 +55,9 @@
     <Resource Include="Images\impact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\mainUserIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\passwordBlocked.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -69,6 +73,10 @@
     <Resource Include="Images\userIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>
