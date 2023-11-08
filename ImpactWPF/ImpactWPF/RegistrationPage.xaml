@@ -9,202 +9,280 @@
       Title="RegistrationPage"
       Background="#FEFDFD">
 
+    <Page.Resources>
+        <Style x:Key="MyCheckBoxStyle" TargetType="ComboBox">
+            <Setter Property="Margin" Value="1001,638,479,362"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#E4E4E4"/>
+            <Setter Property="BorderBrush" Value="#E4E4E4"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="319*"/>
+            <RowDefinition Height="445*"/>
+            <RowDefinition Height="316*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
         <TextBlock Text="Реєстрація" 
-                   Margin="0,266,0,0"
+                   Margin="389,250,0,0"
                    Width="184"
-                   Height="43"
+                   Height="50"
                    VerticalAlignment="Top" 
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    FontFamily="Dubai Medium"
                    FontSize="35"
-                   Foreground="#30304F"/>
+                   Foreground="#30304F" Grid.Column="1" Grid.ColumnSpan="2"/>
 
         <Rectangle RadiusX="15"
                    RadiusY="15"
                    Width="440"
                    Height="80"
-                   Margin="478,362,0,0"
+                   Margin="0,43,0,0"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    Fill="#E4E4E4"
-                   Stroke="#E4E4E4" />
+                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
         <TextBlock Text="Електронна адреса"
-                   Margin="526,388,0,0"
+                   Margin="48,69,0,0"
                    Width="245" 
                    Height="28"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    FontSize="22"
                    FontFamily="Dubai"
-                   Foreground="#928A8A"/>
+                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
         <Rectangle RadiusX="15"
                    RadiusY="15"
                    Width="440"
                    Height="80"
-                   Margin="478,454,0,0"
+                   Margin="0,135,0,0"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left" 
                    Fill="#E4E4E4"
-                   Stroke="#E4E4E4" />
+                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
         <TextBlock Text="Прізвище"
-                   Margin="526,480,0,0" Width="118"
+                   Margin="48,161,0,0" Width="118"
                    Height="28"
                    VerticalAlignment="Top"   
                    HorizontalAlignment="Left"
                    FontFamily="Dubai"
                    FontSize="22"
-                   Foreground="#928A8A"/>
+                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
         <Rectangle RadiusX="15"
                    RadiusY="15"
                    Width="440" 
                    Height="80" 
-                   Margin="478,546,0,0"
+                   Margin="0,227,0,0"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    Fill="#E4E4E4" 
-                   Stroke="#E4E4E4" />
+                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
         <TextBlock Text="Ім’я" 
-                   Margin="526,572,0,0" 
+                   Margin="48,253,0,0" 
                    Width="144" 
                    Height="28"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    FontFamily="Dubai"
                    FontSize="22" 
-                   Foreground="#928A8A"/>
+                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
         <Rectangle RadiusX="15" 
                    RadiusY="15"
                    Width="440" 
                    Height="80"
-                   Margin="478,638,0,0"
+                   Margin="0,319,0,0"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    Fill="#E4E4E4" 
-                   Stroke="#E4E4E4" />
-        <TextBlock Text="По-батькові" Margin="526,664,0,0" Width="144" Height="28" VerticalAlignment="Top"
+                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
+        <TextBlock Text="По-батькові" Margin="48,345,0,0" Width="144" Height="28" VerticalAlignment="Top"
                    HorizontalAlignment="Left" Foreground="#928A8A"
-                   FontSize="22" FontFamily="Dubai" />
+                   FontSize="22" FontFamily="Dubai" Grid.Column="1" Grid.Row="1" />
 
-        <Rectangle RadiusX="15" RadiusY="15" Width="440" Height="80" Margin="1001,362,0,0"
-                   VerticalAlignment="Top" HorizontalAlignment="Left" Fill="#E4E4E4" Stroke="#E4E4E4" />
-        <TextBlock Text="Номер телефону" Margin="1060,388,0,0" Width="202" Height="28"
-                   VerticalAlignment="Top" HorizontalAlignment="Left"
-                   FontSize="22" FontFamily="Dubai" Foreground="#928A8A"/>
-        <Rectangle RadiusX="15" RadiusY="15" Width="440" Height="80" Margin="1001,454,0,0"
-                   VerticalAlignment="Top" HorizontalAlignment="Left" Fill="#E4E4E4" Stroke="#E4E4E4" />
-        <TextBlock Text="Пароль" Margin="1060,480,0,0" Width="100" Height="28" VerticalAlignment="Top"
-                   HorizontalAlignment="Left" Foreground="#928A8A"
-                   FontSize="22" FontFamily="Dubai" />
-        <Rectangle RadiusX="15" RadiusY="15" Width="440" Height="80" Margin="1001,546,479,454"
-                   VerticalAlignment="Center" HorizontalAlignment="Center" Fill="#E4E4E4" Stroke="#E4E4E4" />
-        <TextBlock Text="Підтвердіть пароль" Margin="1060,572,627,480" Width="233" Height="28"
-                   VerticalAlignment="Top" HorizontalAlignment="Left"
-                   FontSize="22" FontFamily="Dubai" Foreground="#928A8A"/>
-        <Rectangle RadiusX="15" RadiusY="15" Width="440" Height="80" Margin="1001,638,479,362"
-                   VerticalAlignment="Center" HorizontalAlignment="Center" Fill="#E4E4E4" Stroke="#E4E4E4" />
-        <TextBlock Text="Оберіть роль" Margin="1060,665,627,387" Width="233" Height="28"
-                   VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   FontSize="22" FontFamily="Dubai" Foreground="#928A8A"/>
-        <Line X2="12"
-              Y2="9" 
-              Margin="1401,673,0,0" 
-              VerticalAlignment="Top" 
-              HorizontalAlignment="Left"
-              Width="15"
-              Stroke="#534B4B"/>
-        <Line Y1="9"
-              X2="11" 
-              Margin="1413,673,0,0" 
-              VerticalAlignment="Top"
-              HorizontalAlignment="Left"
-              Width="15" 
-              Stroke="#534B4B"/>
+        <Rectangle RadiusX="15"
+                   RadiusY="15"
+                   Width="440"
+                   Height="80"
+                   Margin="43,43,0,0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Fill="#E4E4E4"
+                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
+        <TextBlock Text="Номер телефону"
+                   Margin="102,69,0,0" 
+                   Width="202"
+                   Height="28"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   FontSize="22"
+                   FontFamily="Dubai"
+                   Foreground="#928A8A" Grid.Column="2" Grid.Row="1"/>
+        <Rectangle RadiusX="15"
+                   RadiusY="15"
+                   Width="440" 
+                   Height="80" 
+                   Margin="43,135,0,0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Fill="#E4E4E4"
+                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
+        <TextBlock Text="Пароль"
+                   Margin="102,161,0,0"
+                   Width="100"
+                   Height="28" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Foreground="#928A8A"
+                   FontSize="22"
+                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
+        <Rectangle RadiusX="15"
+                   RadiusY="15"
+                   Width="440" 
+                   Height="80" 
+                   Margin="43,227,0,0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Fill="#E4E4E4"
+                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
+        <TextBlock Text="Підтвердіть пароль"
+                   Margin="102,253,0,0"
+                   Width="195"
+                   Height="28" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Foreground="#928A8A"
+                   FontSize="22"
+                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
+
+        <ComboBox Margin="43,319,0,0"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Width="440"
+          Height="80"
+          ItemsSource="{Binding PetCollection,
+            RelativeSource={RelativeSource AncestorType=Page,Mode=FindAncestor},
+            Mode=OneWay}"
+          Background="#E4E4E4"
+          BorderBrush="#E4E4E4"
+          BorderThickness="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Foreground" Value="#928A8A"/>
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="FontFamily" Value="Dubai"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+
+        <TextBlock Text="Оберіль роль"
+                   Margin="106,345,0,0"
+                   Width="194"
+                   Height="28" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Foreground="#928A8A"
+                   FontSize="22"
+                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
+        <Image Source="Images/role.png"
+               Stretch="UniformToFill" 
+               Width="43" Height="34"
+               Margin="54,345,0,0" 
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
+
+
+
+
 
         <Rectangle RadiusX="15"
                    RadiusY="15"
                    Width="440"
                    Height="80" 
-                   Margin="740,756,0,0"
+                   Margin="0,23,0,0"
                    VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
+                   HorizontalAlignment="Center" 
                    Fill="#002861"
-                   Stroke="#002861" />
+                   Stroke="#002861" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" />
         <TextBlock Text="Створити обліковий запис" 
-                   Margin="0,776,0,0" 
+                   Margin="0,43,0,0" 
                    Width="292" 
-                   Height="29"
+                   Height="32"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Center" 
                    Foreground="#FFFFFF" 
                    FontSize="24" 
-                   FontFamily="Dubai"/>
+                   FontFamily="Dubai" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
 
 
         <Image Source="Images/email.png" 
                Stretch="UniformToFill" 
                Width="40"
                Height="29"
-               Margin="486,390,0,0"
+               Margin="3,71,0,0"
                VerticalAlignment="Top" 
                HorizontalAlignment="Left" 
-               RenderTransformOrigin="1.054,0.573" />
+               RenderTransformOrigin="1.054,0.573" Grid.Column="1" Grid.Row="1" />
         <Image Source="Images/userIcon.png" 
                Stretch="UniformToFill"
                Width="40"
                Height="37"
-               Margin="486,477,0,0" 
+               Margin="3,158,0,0" 
                VerticalAlignment="Top" 
                HorizontalAlignment="Left"
-               RenderTransformOrigin="0.525,0.189" />
+               RenderTransformOrigin="0.525,0.189" Grid.Column="1" Grid.Row="1" />
         <Image Source="Images/userIcon.png"
                Stretch="UniformToFill"
                Width="40" 
                Height="37"
-               Margin="486,567,0,0" 
+               Margin="3,247,0,0" 
                VerticalAlignment="Top" 
-               HorizontalAlignment="Left" />
+               HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
         <Image Source="Images/userIcon.png"
                Stretch="UniformToFill" 
                Width="40"
                Height="37"
-               Margin="487,661,0,0" 
+               Margin="3,342,0,0" 
                VerticalAlignment="Top" 
-               HorizontalAlignment="Left" />
+               HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
 
         <Image Source="Images/phone.png"
                Stretch="UniformToFill" 
                Width="35" 
                Height="35"
-               Margin="1016,385,0,0"
+               Margin="58,66,0,0"
                VerticalAlignment="Top"
-               HorizontalAlignment="Left" />
+               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
         <Image Source="Images/passwordUnlocked.png"
                Stretch="UniformToFill" 
                Width="38" 
                Height="50"
-               Margin="1015,466,0,0" 
+               Margin="57,147,0,0" 
                VerticalAlignment="Top" 
-               HorizontalAlignment="Left" />
+               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
         <Image Source="Images/passwordBLocked.png"
                Stretch="UniformToFill"
                Width="28"
                Height="42"
-               Margin="1020,565,0,0" 
+               Margin="62,246,0,0" 
                VerticalAlignment="Top"
-               HorizontalAlignment="Left" />
-        <Image Source="Images/role.png"
-               Stretch="UniformToFill" 
-               Width="43" Height="34"
-               Margin="1012,664,0,0" 
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left" />
+               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
+
         <TextBlock Text="Повернутись назад"
-                   Margin="866,867,866,0"
+                   Margin="420,135,414,0"
                    Height="28"
                    VerticalAlignment="Top"
                    FontSize="21" 
                    FontFamily="Dubai" 
-                   Foreground="#2C3035"/>
+                   Foreground="#2C3035" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RenderTransformOrigin="1.159,1.036"/>
     </Grid>
 </Page>

@@ -22,6 +22,8 @@
     <None Remove="Images\passwordBlocked.png" />
     <None Remove="Images\passwordUnlocked.png" />
     <None Remove="Images\phone.png" />
+    <None Remove="Images\role.png" />
+    <None Remove="Images\userIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +61,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\phone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\role.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\userIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
