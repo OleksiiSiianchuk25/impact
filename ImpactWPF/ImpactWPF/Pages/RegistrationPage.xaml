@@ -193,7 +193,7 @@
                    Foreground="#928A8A"
                    FontSize="22"
                    FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
-        <Image Source="Images/role.png"
+        <Image Source="../Images/role.png"
                Stretch="UniformToFill" 
                Width="43" Height="34"
                Margin="54,345,0,0" 
@@ -224,7 +224,7 @@
                    FontFamily="Dubai" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
 
 
-        <Image Source="Images/email.png" 
+        <Image Source="../Images/email.png" 
                Stretch="UniformToFill" 
                Width="40"
                Height="29"
@@ -232,7 +232,7 @@
                VerticalAlignment="Top" 
                HorizontalAlignment="Left" 
                RenderTransformOrigin="1.054,0.573" Grid.Column="1" Grid.Row="1" />
-        <Image Source="Images/userIcon.png" 
+        <Image Source="../Images/userIcon.png" 
                Stretch="UniformToFill"
                Width="40"
                Height="37"
@@ -240,14 +240,14 @@
                VerticalAlignment="Top" 
                HorizontalAlignment="Left"
                RenderTransformOrigin="0.525,0.189" Grid.Column="1" Grid.Row="1" />
-        <Image Source="Images/userIcon.png"
+        <Image Source="../Images/userIcon.png"
                Stretch="UniformToFill"
                Width="40" 
                Height="37"
                Margin="3,247,0,0" 
                VerticalAlignment="Top" 
                HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
-        <Image Source="Images/userIcon.png"
+        <Image Source="../Images/userIcon.png"
                Stretch="UniformToFill" 
                Width="40"
                Height="37"
@@ -255,21 +255,21 @@
                VerticalAlignment="Top" 
                HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
 
-        <Image Source="Images/phone.png"
+        <Image Source="../Images/phone.png"
                Stretch="UniformToFill" 
                Width="35" 
                Height="35"
                Margin="58,66,0,0"
                VerticalAlignment="Top"
                HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
-        <Image Source="Images/passwordUnlocked.png"
+        <Image Source="../Images/passwordUnlocked.png"
                Stretch="UniformToFill" 
                Width="38" 
                Height="50"
                Margin="57,147,0,0" 
                VerticalAlignment="Top" 
                HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
-        <Image Source="Images/passwordBLocked.png"
+        <Image Source="../Images/passwordBLocked.png"
                Stretch="UniformToFill"
                Width="28"
                Height="42"
