@@ -1,0 +1,132 @@
+﻿<Page x:Class="ImpactWPF.CreateOrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ImpactWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="CreateOrderPage"
+      Background="#FEFDFD">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="117*"/>
+            <RowDefinition Height="202*"/>
+            <RowDefinition Height="497*"/>
+            <RowDefinition Height="264*"/>
+        </Grid.RowDefinitions>
+        <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="259" Fill="#FFE4E4E4" Margin="43,163,0,0" Grid.Row="2" Grid.Column="1"/>
+        <TextBlock Text="Напишіть про те, що Вам потрібно" Margin="60,174,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="406" Height="28" Grid.Row="2" Grid.Column="1" FontSize="22" Foreground="#FF928A8A"/>
+        <Rectangle RadiusX="15" RadiusY="15" Margin="56,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="100" Fill="#FFE4E4E4" Grid.Row="2" Grid.Column="2"/>
+        <Grid Margin="56,230,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="59" Grid.Row="2" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="51*"/>
+                <ColumnDefinition Width="127*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center" HorizontalAlignment="Left" Width="540" Height="59" Fill="#FFE4E4E4" Grid.ColumnSpan="3"/>
+            <TextBlock Text="Назва населеного пункту" Margin="23,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="319" Height="34" FontSize="22" Foreground="#FF928A8A" Grid.ColumnSpan="2"/>
+        </Grid>
+        <TextBlock Text="Оберіть категорії" Margin="77,371,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="286" Height="36" Grid.Row="2" Grid.Column="2" FontSize="22" Foreground="#FF928A8A"/>
+        <Grid Margin="56,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="54" Grid.Row="2" Grid.Column="2">
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center" HorizontalAlignment="Center" Width="539.6054" Height="54.08374" Fill="#FFE4E4E4"/>
+            <TextBlock Text="Електронна пошта" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Margin="22,0,0,0" Foreground="#FF928A8A"/>
+        </Grid>
+        <Grid Margin="56,107,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="54" Grid.Row="2" Grid.Column="2">
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center" HorizontalAlignment="Center" Width="539.6054" Height="54.08374" Fill="#FFE4E4E4"/>
+            <TextBlock Text="Номер телефону" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Foreground="#FF928A8A" Margin="22,0,0,0"/>
+        </Grid>
+        <Grid Margin="43,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="80" Grid.Row="2" Grid.Column="1">
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center" HorizontalAlignment="Center" Width="539.6054" Height="80.08374" Fill="#FFE4E4E4"/>
+            <TextBlock Text="Назва замовлення" Margin="22,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="301" Height="30" FontSize="22" Foreground="#FF928A8A"/>
+        </Grid>
+        <Grid Margin="0,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="640" Height="100" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center" HorizontalAlignment="Center" Width="540" Height="100" Grid.ColumnSpan="2" Fill="#FF002861"/>
+            <TextBlock Text="Створити нове замовлення" Grid.ColumnSpan="2" FontSize="28" FontFamily="Dubai" Foreground="White" Margin="142,26,142,34"/>
+        </Grid>
+        <Line X2="14.717" Y2="11.261" Margin="524,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B"/>
+        <Line Y1="11.261" X2="13.49" Margin="538,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B" RenderTransformOrigin="0.475,-0.424"/>
+        <TextBlock Text="Створити замовлення" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="434" Height="55" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920" Height="116" Grid.ColumnSpan="4" Background="#FFD8E0FF">
+            <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
+            <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"/>
+            <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+            <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+            <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+        </Grid>
+
+        <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,433,0" Grid.Row="2" TextWrapping="Wrap" Text="Вкажіть назву*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,133,522,0" Grid.Row="2" TextWrapping="Wrap" Text="Опис*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,426,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Напишіть ще 40 символів                                                                                                        0/8000" VerticalAlignment="Top" Width="524"/>
+
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,306,0" Grid.Row="2" TextWrapping="Wrap" Text="Ваші контактні дані*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,195,306,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,303,306,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+
+        <ComboBox  xmlns:sys="clr-namespace:System;assembly=mscorlib" Grid.Column="2" Margin="56,334,44,63" Grid.Row="2" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox.Resources>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <CheckBox>
+                                    <ContentPresenter />
+                                </CheckBox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="FontSize" Value="20"/>
+                </Style>
+            </ComboBox.Resources>
+            <ComboBox.Template>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Border x:Name="Border" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Margin="10,0,0,0"/>
+                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Top" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" >
+                            <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder" CornerRadius="5" Background="#FFD8E0FF"/>
+                                <ScrollViewer Height="200" Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </ComboBox.Template>
+            <ComboBoxItem>item 1</ComboBoxItem>
+            <ComboBoxItem>item 2</ComboBoxItem>
+            <ComboBoxItem>item 3</ComboBoxItem>
+            <ComboBoxItem>item 4</ComboBoxItem>
+            <ComboBoxItem>item 5</ComboBoxItem>
+            <ComboBoxItem>item 6</ComboBoxItem>
+            <ComboBoxItem>item 7</ComboBoxItem>
+            <ComboBoxItem>item 8</ComboBoxItem>
+            <ComboBoxItem>item 9</ComboBoxItem>
+            <ComboBoxItem>item 10</ComboBoxItem>
+        </ComboBox>
+
+
+
+    </Grid>
+</Page>
