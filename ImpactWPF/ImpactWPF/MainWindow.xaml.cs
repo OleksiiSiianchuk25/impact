@@ -23,7 +23,7 @@ namespace ImpactWPF
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new LoginPage());
+            mainFrame.Navigate(new RegistrationPage());
         }
     }
 }

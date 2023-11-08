@@ -88,7 +88,7 @@
                        Width="308" 
                        Foreground="White" 
                        FontSize="25" />
-            <Image Source="/Images/impact.png"
+            <Image Source="../Images/impact.png"
                    Stretch="UniformToFill" 
                    Margin="784,178,0,0"
                    VerticalAlignment="Top" 
@@ -96,7 +96,7 @@
                    Height="190"
                    HorizontalAlignment="Left"
                    Visibility="Visible"/>
-            <Image Source="/Images/email.png" 
+            <Image Source="../Images/email.png" 
                    Stretch="UniformToFill"
                    Margin="752,403,0,0"
                    VerticalAlignment="Top"
@@ -104,7 +104,7 @@
                    Width="40"
                    Height="29"
                    Visibility="Visible"/>
-            <Image Source="/Images/passwordUnlocked.png"
+            <Image Source="../Images/passwordUnlocked.png"
                    Stretch="UniformToFill" 
                    Margin="756,485,0,0"
                    VerticalAlignment="Top" 
