@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ImpactWPF"
+      xmlns:userControls="clr-namespace:ImpactWPF.View.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="RegistrationPage"
@@ -25,144 +26,122 @@
             <RowDefinition Height="445*"/>
             <RowDefinition Height="316*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Text="Реєстрація" 
-                   Margin="389,250,0,0"
+                   Margin="10,260,0,0"
                    Width="184"
                    Height="50"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    FontFamily="Dubai Medium"
                    FontSize="35"
-                   Foreground="#30304F" Grid.Column="1" Grid.ColumnSpan="2"/>
+                   Foreground="#30304F" Grid.Column="1"/>
 
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440"
-                   Height="80"
-                   Margin="0,43,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4"
-                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
-        <TextBlock Text="Електронна адреса"
-                   Margin="48,69,0,0"
-                   Width="245" 
-                   Height="28"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   FontSize="22"
-                   FontFamily="Dubai"
-                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440"
-                   Height="80"
-                   Margin="0,135,0,0"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
-                   Fill="#E4E4E4"
-                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
-        <TextBlock Text="Прізвище"
-                   Margin="48,161,0,0" Width="118"
-                   Height="28"
-                   VerticalAlignment="Top"   
-                   HorizontalAlignment="Left"
-                   FontFamily="Dubai"
-                   FontSize="22"
-                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440" 
-                   Height="80" 
-                   Margin="0,227,0,0"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4" 
-                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
-        <TextBlock Text="Ім’я" 
-                   Margin="48,253,0,0" 
-                   Width="144" 
-                   Height="28"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   FontFamily="Dubai"
-                   FontSize="22" 
-                   Foreground="#928A8A" Grid.Column="1" Grid.Row="1"/>
-        <Rectangle RadiusX="15" 
-                   RadiusY="15"
-                   Width="440" 
-                   Height="80"
-                   Margin="0,319,0,0"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4" 
-                   Stroke="#E4E4E4" Grid.Column="1" Grid.Row="1" />
-        <TextBlock Text="По-батькові" Margin="48,345,0,0" Width="144" Height="28" VerticalAlignment="Top"
-                   HorizontalAlignment="Left" Foreground="#928A8A"
-                   FontSize="22" FontFamily="Dubai" Grid.Column="1" Grid.Row="1" />
+        <userControls:CustomTextBox 
+            ImageSource="../Images/email.png"
+            Width="440"
+            Height="80"
+            Margin="0,43,40,322" 
+            Loaded="CustomTextBox_Loaded"
+            Grid.Column="1" Grid.Row="1"
+            Placeholder="Електронна адреса"
+            ImageWidth="38"
+            ImageHeight="24"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="6,25"/>
+        <userControls:CustomTextBox 
+            ImageSource="../Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,135,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="Прізвище" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
+        <userControls:CustomTextBox 
+            ImageSource="/Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,227,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="Ім'я" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
+        <userControls:CustomTextBox 
+            ImageSource="/Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,319,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="По-батькові" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
 
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440"
-                   Height="80"
-                   Margin="43,43,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4"
-                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
-        <TextBlock Text="Номер телефону"
-                   Margin="102,69,0,0" 
-                   Width="202"
-                   Height="28"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   FontSize="22"
-                   FontFamily="Dubai"
-                   Foreground="#928A8A" Grid.Column="2" Grid.Row="1"/>
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440" 
-                   Height="80" 
-                   Margin="43,135,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4"
-                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
-        <TextBlock Text="Пароль"
-                   Margin="102,161,0,0"
-                   Width="100"
-                   Height="28" 
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Foreground="#928A8A"
-                   FontSize="22"
-                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440" 
-                   Height="80" 
-                   Margin="43,227,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Fill="#E4E4E4"
-                   Stroke="#E4E4E4" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
-        <TextBlock Text="Підтвердіть пароль"
-                   Margin="102,253,0,0"
-                   Width="195"
-                   Height="28" 
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Foreground="#928A8A"
-                   FontSize="22"
-                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
+        <userControls:CustomTextBox 
+            ImageSource="../Images/phone.png"
+            Width="440"
+            Height="80"
+            Margin="43,43,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="Номер телефону" Grid.Column="2"
+            ImageWidth="35"
+            ImageHeight="35"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="6, 19" Grid.ColumnSpan="2"/>
+        <userControls:CustomTextBox 
+            ImageSource="../Images/passwordUnlocked.png"
+            Width="440"
+            Height="80"
+            Margin="43,135,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="По-батькові" Grid.Column="2"
+            ImageWidth="40"
+            ImageHeight="46"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,8" Grid.ColumnSpan="2"/>
+        <userControls:CustomTextBox 
+            ImageSource="../Images/passwordBLocked.png"
+            Width="440"
+            Height="80"
+            Margin="43,227,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Placeholder="Підтвердіть пароль" Grid.Column="2"
+            ImageWidth="30"
+            ImageHeight="42"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="9.5,12" Grid.ColumnSpan="2"/>
 
         <ComboBox Margin="43,319,0,0"
           HorizontalAlignment="Left"
@@ -203,86 +182,52 @@
 
 
 
+        <Button Grid.Column="2" Content="Створити обліковий запис"
+                FontSize="24" HorizontalAlignment="Left" 
+                Margin="43,10,0,0" VerticalAlignment="Top"
+                Width="440" Height="80" 
+                Background="#002861" Grid.Row="2" Grid.ColumnSpan="2">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7FB3FF" />
+                    <Setter Property="Foreground" Value="#FFFFFF" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+       
+        <Button Content="Повернутись назад"
+            Margin="165,123,119,0"
+            Height="35"
+            VerticalAlignment="Top"
+            FontSize="21" 
+            FontFamily="Dubai" 
+            Foreground="#2C3035"
+            Background="#FFFFFFFF"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            Grid.Column="2" 
+            Grid.Row="2" 
+            RenderTransformOrigin="1.159,1.036"/>
 
-        <Rectangle RadiusX="15"
-                   RadiusY="15"
-                   Width="440"
-                   Height="80" 
-                   Margin="0,23,0,0"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Center" 
-                   Fill="#002861"
-                   Stroke="#002861" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" />
-        <TextBlock Text="Створити обліковий запис" 
-                   Margin="0,43,0,0" 
-                   Width="292" 
-                   Height="32"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Center" 
-                   Foreground="#FFFFFF" 
-                   FontSize="24" 
-                   FontFamily="Dubai" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
 
-
-        <Image Source="../Images/email.png" 
-               Stretch="UniformToFill" 
-               Width="40"
-               Height="29"
-               Margin="3,71,0,0"
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left" 
-               RenderTransformOrigin="1.054,0.573" Grid.Column="1" Grid.Row="1" />
-        <Image Source="../Images/userIcon.png" 
-               Stretch="UniformToFill"
-               Width="40"
-               Height="37"
-               Margin="3,158,0,0" 
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left"
-               RenderTransformOrigin="0.525,0.189" Grid.Column="1" Grid.Row="1" />
-        <Image Source="../Images/userIcon.png"
-               Stretch="UniformToFill"
-               Width="40" 
-               Height="37"
-               Margin="3,247,0,0" 
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
-        <Image Source="../Images/userIcon.png"
-               Stretch="UniformToFill" 
-               Width="40"
-               Height="37"
-               Margin="3,342,0,0" 
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" />
-
-        <Image Source="../Images/phone.png"
-               Stretch="UniformToFill" 
-               Width="35" 
-               Height="35"
-               Margin="58,66,0,0"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
-        <Image Source="../Images/passwordUnlocked.png"
-               Stretch="UniformToFill" 
-               Width="38" 
-               Height="50"
-               Margin="57,147,0,0" 
-               VerticalAlignment="Top" 
-               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
-        <Image Source="../Images/passwordBLocked.png"
-               Stretch="UniformToFill"
-               Width="28"
-               Height="42"
-               Margin="62,246,0,0" 
-               VerticalAlignment="Top"
-               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
-
-        <TextBlock Text="Повернутись назад"
-                   Margin="420,135,414,0"
-                   Height="28"
-                   VerticalAlignment="Top"
-                   FontSize="21" 
-                   FontFamily="Dubai" 
-                   Foreground="#2C3035" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RenderTransformOrigin="1.159,1.036"/>
     </Grid>
 </Page>
