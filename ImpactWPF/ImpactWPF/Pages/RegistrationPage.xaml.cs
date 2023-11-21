@@ -52,5 +52,14 @@ namespace ImpactWPF
             }
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void CustomTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

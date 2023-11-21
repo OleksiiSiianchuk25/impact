@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ImpactWPF
+namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for ForgotPasswordPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class ForgotPasswordPage : Page
     {
-        public LoginPage()
+        public ForgotPasswordPage()
         {
             InitializeComponent();
         }
-
     }
 }

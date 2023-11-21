@@ -13,17 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ImpactWPF
+namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for EnterEmailPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class EnterEmailPage : Page
     {
-        public LoginPage()
+        public EnterEmailPage()
         {
             InitializeComponent();
         }
 
+
+        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
