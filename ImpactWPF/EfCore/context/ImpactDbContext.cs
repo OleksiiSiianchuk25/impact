@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using EfCore.entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace EfCore;
+namespace EfCore.context;
 
 public partial class ImpactDbContext : DbContext
 {
@@ -20,6 +21,8 @@ public partial class ImpactDbContext : DbContext
     public virtual DbSet<RequestCategory> RequestCategories { get; set; }
 
     public virtual DbSet<RequestRole> RequestRoles { get; set; }
+
+    public virtual DbSet<RequestStatus> RequestStatuses { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -52,11 +55,16 @@ public partial class ImpactDbContext : DbContext
             entity.Property(e => e.RequestName)
                 .HasMaxLength(255)
                 .HasColumnName("request_name");
+            entity.Property(e => e.RequestStatusId).HasColumnName("request_status_id");
             entity.Property(e => e.RoleRef).HasColumnName("role_ref");
 
             entity.HasOne(d => d.CreatorUserRefNavigation).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.CreatorUserRef)
                 .HasConstraintName("fk_creator_user");
+
+            entity.HasOne(d => d.RequestStatus).WithMany(p => p.Requests)
+                .HasForeignKey(d => d.RequestStatusId)
+                .HasConstraintName("fk_request_status");
 
             entity.HasOne(d => d.RoleRefNavigation).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.RoleRef)
@@ -105,6 +113,18 @@ public partial class ImpactDbContext : DbContext
             entity.Property(e => e.RoleName)
                 .HasMaxLength(50)
                 .HasColumnName("role_name");
+        });
+
+        modelBuilder.Entity<RequestStatus>(entity =>
+        {
+            entity.HasKey(e => e.StatusId).HasName("request_status_pkey");
+
+            entity.ToTable("request_status");
+
+            entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.StatusName)
+                .HasMaxLength(50)
+                .HasColumnName("status_name");
         });
 
         modelBuilder.Entity<Role>(entity =>

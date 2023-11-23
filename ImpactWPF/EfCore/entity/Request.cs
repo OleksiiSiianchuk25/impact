@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EfCore;
+namespace EfCore.entity;
 
 public partial class Request
 {
@@ -21,7 +21,11 @@ public partial class Request
 
     public int RoleRef { get; set; }
 
+    public int? RequestStatusId { get; set; }
+
     public virtual User? CreatorUserRefNavigation { get; set; }
+
+    public virtual RequestStatus? RequestStatus { get; set; }
 
     public virtual RequestRole RoleRefNavigation { get; set; } = null!;
 

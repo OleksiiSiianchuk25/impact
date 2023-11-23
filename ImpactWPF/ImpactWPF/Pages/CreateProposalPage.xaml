@@ -109,7 +109,7 @@
             <Button Grid.Column="1" Content="Створити нову пропозицію"
                 FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="540" Height="100" 
-                Background="#002861" Click="Button_Click">
+                Background="#002861">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#7FB3FF" />
