@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ImpactWPF"
+      xmlns:userControls="clr-namespace:ImpactWPF.View.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="LoginPage"
@@ -11,78 +12,114 @@
     <Grid Background="White">
 
         <Grid>
-            <Rectangle VerticalAlignment="Top"
-                       Width="1919" 
-                       Height="1182"
-                       Margin="0,-28,0,0"
-                       HorizontalAlignment="Center" />
-            <Rectangle RadiusX="15"
-                       RadiusY="15"
-                       Margin="740,376,740,0"
-                       VerticalAlignment="Top"
-                       Height="80"
-                       Width="440"
-                       Fill="#FFE4E4E4" />
-            <Rectangle RadiusX="15" 
-                       RadiusY="15" 
-                       Margin="740,468,740,0"
-                       VerticalAlignment="Top"
-                       Height="80"
-                       Width="440"
-                       Fill="#FFE4E4E4" />
-            <TextBlock Text="Електронна адреса"
-                       Margin="792,402,0,0" 
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Height="28" FontSize="22"
-                       Foreground="#FF928A8A" />
-            <TextBlock Text="Пароль"   
-                       Margin="792,494,0,0" 
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left" 
-                       Height="28" FontSize="22" 
-                       Foreground="#FF928A8A" />
+            <userControls:CustomTextBox 
+            ImageSource="../Images/passwordUnlocked.png"
+            Width="440"
+            Height="80"
+            Margin="0,468,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center" 
+            Loaded="CustomTextBox_Loaded"
+            Placeholder="Пароль"
+            ImageWidth="38"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="6,8"/>
+
+            <userControls:CustomTextBox 
+            ImageSource="../Images/email.png"
+            Width="440"
+            Height="80"
+            Margin="0,376,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center" 
+            Loaded="CustomTextBox_Loaded"
+            Placeholder="Електронна адреса"
+            ImageWidth="40"
+            ImageHeight="29"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="5,22"/>
+
             <TextBlock Text="Забули пароль?" 
-                       Margin="884,676,884,0"
+                       Margin="0,791,0,0"
                        VerticalAlignment="Top"
-                       Height="28" 
-                       FontSize="21" 
-                       Foreground="#2C3035"/>
-            <Rectangle RadiusX="15" 
-                       RadiusY="15"
-                       Margin="740,575,740,0"
-                       VerticalAlignment="Top"
-                       Height="80"
-                       Fill="#FF002861"   />
-            <TextBlock Text="Увійти"
-                       Margin="900,588,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Height="48" Width="111" 
-                       Foreground="White"
-                       FontSize="34" 
-                       FontFamily="Dubai"  />
+                       HorizontalAlignment="Center"
+                       Height="28" Width="168" 
+                       FontSize="21" />
+
+            <Button Content="Увійти"
+                FontSize="32" HorizontalAlignment="Center" 
+                Margin="0,567,0,0" VerticalAlignment="Top"
+                Width="440" Height="80" 
+                Background="#002861">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#7FB3FF" />
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Line X2="440"
                   Y2="1" 
-                  Margin="740,725,740,0" 
+                  Margin="737,776,0,0" 
+
                   VerticalAlignment="Top" 
                   StrokeThickness="1" 
                   X1="4"
-                  Stroke="#3D000000" />
-            <Rectangle RadiusX="15"
-                       RadiusY="15" 
-                       Margin="740,766,0,234" 
-                       HorizontalAlignment="Left"
-                       Width="436"
-                       Fill="#FF002861" />
-            <TextBlock Text="Створити обліковий запис"
-                       Margin="0,789,0,0" 
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       Height="32"
-                       Width="308" 
-                       Foreground="White" 
-                       FontSize="25" />
+                  Stroke="#3D000000" Width="440" />
+
+            <Button Content="Створити обліковий запис"
+                FontSize="28" HorizontalAlignment="Left" 
+                Margin="737,669,0,0" VerticalAlignment="Top"
+                Width="440" Height="80" 
+                Background="#002861">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#7FB3FF" />
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Image Source="../Images/impact.png"
                    Stretch="UniformToFill" 
                    Margin="784,178,0,0"
@@ -90,22 +127,6 @@
                    Width="323" 
                    Height="190"
                    HorizontalAlignment="Left"
-                   Visibility="Visible"/>
-            <Image Source="../Images/email.png" 
-                   Stretch="UniformToFill"
-                   Margin="752,403,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left" 
-                   Width="40"
-                   Height="29"
-                   Visibility="Visible"/>
-            <Image Source="../Images/passwordUnlocked.png"
-                   Stretch="UniformToFill" 
-                   Margin="756,485,0,0"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left"
-                   Width="30"
-                   Height="46"
                    Visibility="Visible"/>
         </Grid>
     </Grid>

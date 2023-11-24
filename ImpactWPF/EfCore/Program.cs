@@ -1,4 +1,6 @@
-﻿namespace EfCore
+﻿using EfCore.context;
+
+namespace EfCore
 {
     internal class Program
     {
@@ -9,7 +11,6 @@
             using (ImpactDbContext impact = new ImpactDbContext())
             {
                 Console.WriteLine(impact.Roles.Find(1).RoleName); 
-
             } 
         }
     }

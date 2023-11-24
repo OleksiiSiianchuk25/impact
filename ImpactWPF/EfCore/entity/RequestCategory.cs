@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EfCore;
+namespace EfCore.entity;
 
 public partial class RequestCategory
 {

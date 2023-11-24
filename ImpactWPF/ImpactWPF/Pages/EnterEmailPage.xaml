@@ -1,0 +1,116 @@
+﻿<Page x:Class="ImpactWPF.Pages.EnterEmailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ImpactWPF.Pages"
+      xmlns:userControls="clr-namespace:ImpactWPF.View.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="EnterEmailPage"
+      Background="#D8E0FF">
+
+    <Grid>
+
+
+
+        <Rectangle RadiusX="15"
+                   RadiusY="15" 
+                   Margin="670,318,0,0"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left"
+                   Width="580" 
+                   Height="402" 
+                   Fill="#FEFDFD"/>
+
+        <Button Click="CloseButtonClick"
+        Margin="1196,336,0,0"
+        VerticalAlignment="Top" 
+        HorizontalAlignment="Left"
+        BorderThickness="0" 
+            Background="Transparent">
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Image Source="../Images/close.png"
+           Stretch="UniformToFill"
+           Width="32"
+           Height="35" />
+        </Button>
+
+        <userControls:CustomTextBox 
+            ImageSource="../Images/confirmationСode.png"
+            Width="440"
+            Height="80"
+            Margin="742,474,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Loaded="CustomTextBox_Loaded"
+            Placeholder="Код підтвердження"
+            ImageWidth="38"
+            ImageHeight="42"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4, 13"/>
+
+        <Button Content="Надіслати"
+                FontSize="24" HorizontalAlignment="Center" 
+                Margin="0,578,0,0" VerticalAlignment="Top"
+                Width="440" Height="80" 
+                Background="#002861">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7FB3FF" />
+                    <Setter Property="Foreground" Value="#FFFFFF" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
+        <TextBlock Text="Введіть код підтвердження"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left" 
+                   Width="460" 
+                   Height="49" 
+                   Margin="732,378,0,0"
+                   Foreground="#30304F" 
+                   FontSize="36"
+                   FontFamily="Dubai Medium"/>
+
+    </Grid>
+</Page>

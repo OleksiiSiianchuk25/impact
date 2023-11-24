@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EfCore;
+namespace EfCore.entity;
 
-public partial class Role
+public partial class RequestRole
 {
     public int RoleId { get; set; }
 
     public string RoleName { get; set; } = null!;
 
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
 }
