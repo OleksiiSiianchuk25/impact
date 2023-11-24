@@ -1,5 +1,4 @@
-﻿using ImpactWPF.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ImpactWPF
+namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ResetPasswordPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ResetPasswordPage : Page
     {
-        public MainWindow()
+        public ResetPasswordPage()
         {
             InitializeComponent();
-            mainFrame.Navigate(new HomePage());
         }
     }
 }

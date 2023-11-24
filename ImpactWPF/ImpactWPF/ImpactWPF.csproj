@@ -11,19 +11,26 @@
     <None Remove="Images\activate.png" />
     <None Remove="Images\archive.png" />
     <None Remove="Images\close.png" />
+    <None Remove="Images\closeButton.png" />
     <None Remove="Images\confirmationСode.png" />
     <None Remove="Images\date.png" />
     <None Remove="Images\deactivate.png" />
     <None Remove="Images\deleteUser.png" />
+    <None Remove="Images\dowload.png" />
+    <None Remove="Images\dowload2.png" />
     <None Remove="Images\edit.png" />
     <None Remove="Images\editUser.png" />
     <None Remove="Images\email.png" />
+    <None Remove="Images\filter.png" />
     <None Remove="Images\impact.png" />
     <None Remove="Images\mainUserIcon.png" />
+    <None Remove="Images\medicamenty.png" />
     <None Remove="Images\passwordBlocked.png" />
     <None Remove="Images\passwordUnlocked.png" />
     <None Remove="Images\phone.png" />
+    <None Remove="Images\plus.png" />
     <None Remove="Images\role.png" />
+    <None Remove="Images\search.png" />
     <None Remove="Images\userIcon.png" />
   </ItemGroup>
 
@@ -38,6 +45,7 @@
     <Resource Include="Images\archive.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+
     <Resource Include="Images\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -53,6 +61,12 @@
     <Resource Include="Images\deleteUser.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\dowload.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dowload2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -62,10 +76,16 @@
     <Resource Include="Images\email.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\filter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\impact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\mainUserIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\medicamenty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\passwordBlocked.png">
@@ -77,7 +97,13 @@
     <Resource Include="Images\phone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\role.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\userIcon.png">
