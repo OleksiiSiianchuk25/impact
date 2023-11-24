@@ -83,8 +83,8 @@
             <Line X2="440"
                   Y2="1" 
                   Margin="737,776,0,0" 
+
                   VerticalAlignment="Top" 
-                  HorizontalAlignment="Left" 
                   StrokeThickness="1" 
                   X1="4"
                   Stroke="#3D000000" Width="440" />
