@@ -30,7 +30,6 @@
             Margin="43,165,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Напишіть про те, що Вам потрібно" 
             PlaceholderMargin="18, 0, 0, 195"
             Grid.Column="1" Grid.Row="2"/>

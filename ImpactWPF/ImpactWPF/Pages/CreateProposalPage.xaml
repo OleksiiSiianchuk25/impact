@@ -30,7 +30,6 @@
             Margin="43,165,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Опишіть те, що пропонуєте" 
             PlaceholderMargin="18, 0, 0, 195"
             Grid.Column="1" Grid.Row="2"/>
@@ -43,7 +42,6 @@
             Height="54"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Номер телефону" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,106,0,0"/>
@@ -68,7 +66,6 @@
             Height="54"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Електронна пошта" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,37,0,0"/>
@@ -78,7 +75,6 @@
             Height="54"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Назва населеного пункту" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,227,0,0"/>
@@ -95,7 +91,6 @@
             Margin="43,37,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" 
             Placeholder="Назва пропозиції" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="1" Grid.Row="2"/>
