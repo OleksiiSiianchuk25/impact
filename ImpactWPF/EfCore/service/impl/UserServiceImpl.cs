@@ -15,10 +15,10 @@ namespace EfCore.service.impl
         private readonly ImpactDbContext context;
         private readonly RoleServiceImpl roleService;
 
-        public UserServiceImpl(ImpactDbContext context, RoleServiceImpl roleService)
+        public UserServiceImpl(ImpactDbContext context)
         {
             this.context = context;
-            this.roleService = roleService;
+            this.roleService = new RoleServiceImpl(context);
         }
 
         public List<User> GetAllUsers()
@@ -29,10 +29,6 @@ namespace EfCore.service.impl
         public User GetUserByEmail(string userEmail)
         {
             User user = context.Users.FirstOrDefault(u => u.Email == userEmail);
-            if (user == null)
-            {
-                throw new ApplicationException("User with email: " + userEmail + " does not exist!");
-            }
             return user;
         }
 
@@ -41,7 +37,7 @@ namespace EfCore.service.impl
             User user = context.Users.Find(userId);
             if (user == null)
             {
-                throw new ApplicationException("User with id: " + userId + " does not exist!");
+                throw new ApplicationException("Користувач з id: " + userId + " не існує!");
             }
             return user;
         }

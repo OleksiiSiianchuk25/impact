@@ -13,13 +13,28 @@
 
         <Grid>
             <userControls:CustomTextBox 
+            x:Name="userEmailLogin"
+            ImageSource="../Images/email.png"
+            Width="440"
+            Height="80"
+            Margin="0,376,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center" 
+            Placeholder="Електронна адреса"
+            ImageWidth="40"
+            ImageHeight="29"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="5,22"/>
+
+            <userControls:CustomPasswordBox 
+            x:Name="userPasswordLogin"
             ImageSource="../Images/passwordUnlocked.png"
             Width="440"
             Height="80"
             Margin="0,468,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Center" 
-            Loaded="CustomTextBox_Loaded"
             Placeholder="Пароль"
             ImageWidth="38"
             ImageHeight="44"
@@ -27,20 +42,6 @@
             ImageVerticalAlignment="Top"
             ImageMargin="6,8"/>
 
-            <userControls:CustomTextBox 
-            ImageSource="../Images/email.png"
-            Width="440"
-            Height="80"
-            Margin="0,376,0,0"
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Center" 
-            Loaded="CustomTextBox_Loaded"
-            Placeholder="Електронна адреса"
-            ImageWidth="40"
-            ImageHeight="29"
-            ImageHorizontalAlignment="Left"
-            ImageVerticalAlignment="Top"
-            ImageMargin="5,22"/>
 
             <TextBlock Text="Забули пароль?" 
                        Margin="0,791,0,0"
@@ -53,7 +54,8 @@
                 FontSize="32" HorizontalAlignment="Center" 
                 Margin="0,567,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861">
+                Background="#002861"
+                Click="LoginButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#7FB3FF" />
@@ -82,7 +84,7 @@
             </Button>
             <Line X2="440"
                   Y2="1" 
-                  Margin="737,776,0,0" 
+                  Margin="740,776,740,0" 
 
                   VerticalAlignment="Top" 
                   StrokeThickness="1" 
@@ -93,7 +95,8 @@
                 FontSize="28" HorizontalAlignment="Left" 
                 Margin="737,669,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861">
+                Background="#002861"
+                Click="CreateAccountButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#7FB3FF" />
