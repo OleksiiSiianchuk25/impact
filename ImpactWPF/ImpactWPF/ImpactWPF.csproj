@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EfCore\EfCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\activate.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

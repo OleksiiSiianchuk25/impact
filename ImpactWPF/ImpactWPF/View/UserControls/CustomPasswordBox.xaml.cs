@@ -5,24 +5,19 @@ using System.Windows.Media;
 namespace ImpactWPF.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for CustomTextBox.xaml
+    /// Interaction logic for CustomPasswordBox.xaml
     /// </summary>
-    public partial class CustomTextBox : UserControl
+    public partial class CustomPasswordBox : UserControl
     {
-        public CustomTextBox()
+        public CustomPasswordBox()
         {
             InitializeComponent();
-            tbInput.TextChanged += TbInput_TextChanged;
+            pbInput.PasswordChanged += OnPasswordBoxChanged;
         }
 
-        private void TbInput_TextChanged(object sender, TextChangedEventArgs e)
+        private void OnPasswordBoxChanged(object sender, RoutedEventArgs e)
         {
-            tbPlaceHolder.Visibility = string.IsNullOrEmpty(tbInput.Text) ? Visibility.Visible : Visibility.Hidden;
-        }
-
-        private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
-        {
-            tbPlaceHolder.Visibility = Visibility.Collapsed;
+            tbPlaceHolder.Visibility = string.IsNullOrEmpty(pbInput.Password) ? Visibility.Visible : Visibility.Hidden;
         }
 
         private string placeholder;

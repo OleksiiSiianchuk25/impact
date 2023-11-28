@@ -45,26 +45,27 @@
                    Foreground="#30304F" Grid.Column="1"/>
 
         <userControls:CustomTextBox 
+            x:Name="emailRegistration"
             ImageSource="../Images/email.png"
             Width="440"
             Height="80"
             Margin="0,43,40,322" 
-            Loaded="CustomTextBox_Loaded"
             Grid.Column="1" Grid.Row="1"
             Placeholder="Електронна адреса"
             ImageWidth="38"
             ImageHeight="24"
             ImageHorizontalAlignment="Left"
             ImageVerticalAlignment="Top"
-            ImageMargin="6,25"/>
+            ImageMargin="6,25" HorizontalAlignment="Right"/>
         <userControls:CustomTextBox 
+            x:Name="lastnameRegistration"
             ImageSource="../Images/userIcon.png"
             Width="440"
             Height="80"
             Margin="0,135,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Grid.Row="1"
             Placeholder="Прізвище" Grid.Column="1"
             ImageWidth="40"
             ImageHeight="44"
@@ -72,13 +73,14 @@
             ImageVerticalAlignment="Top"
             ImageMargin="4,15"/>
         <userControls:CustomTextBox 
+            x:Name="firstnameRegistration"
             ImageSource="/Images/userIcon.png"
             Width="440"
             Height="80"
             Margin="0,227,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Grid.Row="1"
             Placeholder="Ім'я" Grid.Column="1"
             ImageWidth="40"
             ImageHeight="44"
@@ -86,13 +88,14 @@
             ImageVerticalAlignment="Top"
             ImageMargin="4,15"/>
         <userControls:CustomTextBox 
+            x:Name="middlenameRegistration"
             ImageSource="/Images/userIcon.png"
             Width="440"
             Height="80"
             Margin="0,319,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Grid.Row="1"
             Placeholder="По-батькові" Grid.Column="1"
             ImageWidth="40"
             ImageHeight="44"
@@ -101,13 +104,14 @@
             ImageMargin="4,15"/>
 
         <userControls:CustomTextBox 
+            x:Name="phoneNumberRegistration"
             ImageSource="../Images/phone.png"
             Width="440"
             Height="80"
             Margin="43,43,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
+            Grid.Row="1"
             Placeholder="Номер телефону" Grid.Column="2"
             ImageWidth="35"
             ImageHeight="35"
@@ -115,28 +119,31 @@
             ImageVerticalAlignment="Top"
             ImageMargin="6, 19" Grid.ColumnSpan="2"/>
         <userControls:CustomTextBox 
+            x:Name="passwordRegistration"
             ImageSource="../Images/passwordUnlocked.png"
             Width="440"
             Height="80"
             Margin="43,135,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
-            Placeholder="По-батькові" Grid.Column="2"
+            Grid.Row="1"
+            Placeholder="Пароль" Grid.Column="2"
             ImageWidth="40"
             ImageHeight="46"
             ImageHorizontalAlignment="Left"
             ImageVerticalAlignment="Top"
             ImageMargin="4,8" Grid.ColumnSpan="2"/>
         <userControls:CustomTextBox 
+            x:Name="confirmPasswordRegistration"
             ImageSource="../Images/passwordBLocked.png"
             Width="440"
             Height="80"
             Margin="43,227,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded" Grid.Row="1"
-            Placeholder="Підтвердіть пароль" Grid.Column="2"
+            Grid.Row="1"
+            Placeholder="Підтвердіть пароль" 
+            Grid.Column="2"
             ImageWidth="30"
             ImageHeight="42"
             ImageHorizontalAlignment="Left"
@@ -144,6 +151,7 @@
             ImageMargin="9.5,12" Grid.ColumnSpan="2"/>
 
         <ComboBox Margin="43,319,0,0"
+          x:Name="roleRegistation"
           HorizontalAlignment="Left"
           VerticalAlignment="Top"
           Width="440"
@@ -186,7 +194,7 @@
                 FontSize="24" HorizontalAlignment="Left" 
                 Margin="43,10,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861" Grid.Row="2" Grid.ColumnSpan="2">
+                Background="#002861" Grid.Row="2" Grid.ColumnSpan="2" Click="Registration_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#7FB3FF" />
@@ -226,7 +234,8 @@
             BorderThickness="0"
             Grid.Column="2" 
             Grid.Row="2" 
-            RenderTransformOrigin="1.159,1.036"/>
+            RenderTransformOrigin="1.159,1.036" Click="GetBackToLoginPage_Click"
+            />
 
 
     </Grid>
