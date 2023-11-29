@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EfCore.service
 {
-    internal interface IUserService
+    public interface IUserService
     {
         List<User> GetAllUsers();
 
@@ -20,8 +20,10 @@ namespace EfCore.service
 
         void DeleteUserById(int userId);
 
-        public List<User> GetOrderers();
+        List<User> GetOrderers();
 
-        public List<User> GetVolunteers();
+        List<User> GetVolunteers();
+
+        void ChangePassword(string email, string newPassword);
     }
 }

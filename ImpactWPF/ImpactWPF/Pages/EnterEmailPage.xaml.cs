@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EfCore.service.impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,49 @@ namespace ImpactWPF.Pages
     /// </summary>
     public partial class EnterEmailPage : Page
     {
-        public EnterEmailPage()
+        private readonly string email;
+
+        public EnterEmailPage(string email)
         {
             InitializeComponent();
+            this.email = email;
         }
 
 
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
+            NavigationService?.Navigate(new ForgotPasswordPage());
+        }
 
+        private void VerifyCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            string enteredCode = codeTextBox.tbInput.Text;
+
+            if (VerificationCodeManager.VerifyCode(email, enteredCode))
+            {
+                NavigationService?.Navigate(new ResetPasswordPage(email));
+            }
+            else
+            {
+                MessageBox.Show("Неправильний код підтвердження. Спробуйте ще раз.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ResendCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Згенерувати новий код підтвердження
+            string newVerificationCode = VerificationCodeManager.GenerateVerificationCode();
+
+            // Зберегти новий код підтвердження в тимчасовому сховищі
+            VerificationCodeManager.StoreVerificationCode(email, newVerificationCode);
+
+            // Відправити новий код на введену електронну адресу
+            string subject = "Новий код підтвердження";
+            string body = $"Ваш новий код підтвердження: {newVerificationCode}";
+
+            VerificationCodeManager.SendEmail(email, subject, body);
+
+            // Можна вивести повідомлення, що код відправлено знову
         }
     }
 }

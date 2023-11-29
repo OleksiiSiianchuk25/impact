@@ -28,7 +28,7 @@
         VerticalAlignment="Top" 
         HorizontalAlignment="Left"
         BorderThickness="0" 
-            Background="Transparent">
+        Background="Transparent">
 
             <Button.Style>
                 <Style TargetType="Button">
@@ -55,13 +55,13 @@
         </Button>
 
         <userControls:CustomTextBox 
+            x:Name="codeTextBox"
             ImageSource="../Images/confirmationСode.png"
             Width="440"
             Height="80"
             Margin="742,474,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Left" 
-            Loaded="CustomTextBox_Loaded"
             Placeholder="Код підтвердження"
             ImageWidth="38"
             ImageHeight="42"
@@ -70,10 +70,11 @@
             ImageMargin="4, 13"/>
 
         <Button Content="Надіслати"
-                FontSize="24" HorizontalAlignment="Center" 
-                Margin="0,578,0,0" VerticalAlignment="Top"
+                FontSize="28" HorizontalAlignment="Left" 
+                Margin="742,578,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861">
+                Background="#002861"
+                Click="VerifyCodeButton_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#7FB3FF" />
@@ -104,12 +105,12 @@
 
         <TextBlock Text="Введіть код підтвердження"
                    VerticalAlignment="Top"
-                   HorizontalAlignment="Left" 
-                   Width="460" 
-                   Height="49" 
-                   Margin="732,378,0,0"
+                   HorizontalAlignment="Center" 
+                   Width="448" 
+                   Height="48" 
+                   Margin="0,380,0,0"
                    Foreground="#30304F" 
-                   FontSize="36"
+                   FontSize="35"
                    FontFamily="Dubai Medium"/>
 
     </Grid>
