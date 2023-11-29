@@ -43,13 +43,6 @@
             ImageMargin="6,8"/>
 
 
-            <TextBlock Text="Забули пароль?" 
-                       Margin="0,791,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       Height="28" Width="168" 
-                       FontSize="21" />
-
             <Button Content="Увійти"
                 FontSize="32" HorizontalAlignment="Center" 
                 Margin="0,567,0,0" VerticalAlignment="Top"
@@ -85,7 +78,6 @@
             <Line X2="440"
                   Y2="1" 
                   Margin="740,776,740,0" 
-
                   VerticalAlignment="Top" 
                   StrokeThickness="1" 
                   X1="4"
@@ -131,6 +123,46 @@
                    Height="190"
                    HorizontalAlignment="Left"
                    Visibility="Visible"/>
+
+
+            <Button Content="Забули пароль?"
+            Margin="882,784,882,0"
+            Height="35"
+            VerticalAlignment="Top"
+            FontSize="21" 
+            FontFamily="Dubai" 
+            Foreground="#2C3035"
+            Background="#FFFFFFFF"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            RenderTransformOrigin="1.159,1.036" Click="ForgotPasswordButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFFFFFF" />
+                        <Setter Property="Foreground" Value="#2C3035" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FontSize" Value="21" />
+                        <Setter Property="FontFamily" Value="Dubai" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFFFFFFF" />
+                                <Setter Property="Foreground" Value="#2C3035" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
 

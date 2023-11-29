@@ -62,7 +62,7 @@ namespace ImpactWPF
             }
         }
 
-        private void GetBackToLoginPage_Click(object sender, RoutedEventArgs e)
+        private void TurnBackToLoginPage_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new LoginPage());
         }

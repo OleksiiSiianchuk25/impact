@@ -25,6 +25,7 @@ namespace ImpactWPF
         {
             InitializeComponent();
             mainFrame.Navigate(new LoginPage());
+            WindowState = WindowState.Maximized;
         }
     }
 }

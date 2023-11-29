@@ -48,5 +48,10 @@ namespace ImpactWPF
         {
             NavigationService?.Navigate(new RegistrationPage());
         }
+
+        private void ForgotPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new ForgotPasswordPage());
+        }
     }
 }

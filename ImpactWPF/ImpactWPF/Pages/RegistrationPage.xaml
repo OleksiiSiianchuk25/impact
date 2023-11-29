@@ -221,21 +221,49 @@
                 </Style>
             </Button.Style>
         </Button>
-       
+
         <Button Content="Повернутись назад"
-            Margin="165,123,119,0"
-            Height="35"
-            VerticalAlignment="Top"
-            FontSize="21" 
-            FontFamily="Dubai" 
-            Foreground="#2C3035"
-            Background="#FFFFFFFF"
-            BorderBrush="Transparent"
-            BorderThickness="0"
-            Grid.Column="2" 
-            Grid.Row="2" 
-            RenderTransformOrigin="1.159,1.036" Click="GetBackToLoginPage_Click"
-            />
+        Margin="165,123,119,0"
+        Height="35"
+        VerticalAlignment="Top"
+        FontSize="21" 
+        FontFamily="Dubai" 
+        Foreground="#2C3035"
+        Background="#FFFFFFFF"
+        BorderBrush="Transparent"
+        BorderThickness="0"
+        Grid.Column="2" 
+        Grid.Row="2"
+        RenderTransformOrigin="1.159,1.036" 
+        Click="TurnBackToLoginPage_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FFFFFFFF" />
+                    <Setter Property="Foreground" Value="#2C3035" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="FontSize" Value="21" />
+                    <Setter Property="FontFamily" Value="Dubai" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFFFFFFF" />
+                            <Setter Property="Foreground" Value="#2C3035" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
 
 
     </Grid>
