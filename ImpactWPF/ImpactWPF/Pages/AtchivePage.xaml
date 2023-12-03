@@ -718,7 +718,7 @@
 
 
 
-        <Grid x:Name="myArchiveFilterGrid"  >
+        <Grid x:Name="myArchiveFilterGrid" Visibility="Collapsed" >
             <Rectangle Width="1920" Height="1080" Fill="#B2D8E0FF"/>
 
             <Grid  Width="546" Margin="687,244,687,218">
