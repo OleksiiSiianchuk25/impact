@@ -13,28 +13,13 @@
 
         <Grid>
             <userControls:CustomTextBox 
-            ImageSource="../Images/passwordUnlocked.png"
-            Width="440"
-            Height="80"
-            Margin="0,468,0,0"
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Center" 
-            Loaded="CustomTextBox_Loaded"
-            Placeholder="Пароль"
-            ImageWidth="38"
-            ImageHeight="44"
-            ImageHorizontalAlignment="Left"
-            ImageVerticalAlignment="Top"
-            ImageMargin="6,8"/>
-
-            <userControls:CustomTextBox 
+            x:Name="userEmailLogin"
             ImageSource="../Images/email.png"
             Width="440"
             Height="80"
             Margin="0,376,0,0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Center" 
-            Loaded="CustomTextBox_Loaded"
             Placeholder="Електронна адреса"
             ImageWidth="40"
             ImageHeight="29"
@@ -42,18 +27,28 @@
             ImageVerticalAlignment="Top"
             ImageMargin="5,22"/>
 
-            <TextBlock Text="Забули пароль?" 
-                       Margin="0,791,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       Height="28" Width="168" 
-                       FontSize="21" />
+            <userControls:CustomPasswordBox 
+            x:Name="userPasswordLogin"
+            ImageSource="../Images/passwordUnlocked.png"
+            Width="440"
+            Height="80"
+            Margin="0,468,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center" 
+            Placeholder="Пароль"
+            ImageWidth="38"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="6,8"/>
+
 
             <Button Content="Увійти"
                 FontSize="32" HorizontalAlignment="Center" 
                 Margin="0,567,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861">
+                Background="#002861"
+                Click="LoginButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#7FB3FF" />
@@ -82,8 +77,7 @@
             </Button>
             <Line X2="440"
                   Y2="1" 
-                  Margin="737,776,0,0" 
-
+                  Margin="740,776,740,0" 
                   VerticalAlignment="Top" 
                   StrokeThickness="1" 
                   X1="4"
@@ -93,7 +87,8 @@
                 FontSize="28" HorizontalAlignment="Left" 
                 Margin="737,669,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861">
+                Background="#002861"
+                Click="CreateAccountButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#7FB3FF" />
@@ -128,6 +123,46 @@
                    Height="190"
                    HorizontalAlignment="Left"
                    Visibility="Visible"/>
+
+
+            <Button Content="Забули пароль?"
+            Margin="882,784,882,0"
+            Height="35"
+            VerticalAlignment="Top"
+            FontSize="21" 
+            FontFamily="Dubai" 
+            Foreground="#2C3035"
+            Background="#FFFFFFFF"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            RenderTransformOrigin="1.159,1.036" Click="ForgotPasswordButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFFFFFF" />
+                        <Setter Property="Foreground" Value="#2C3035" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FontSize" Value="21" />
+                        <Setter Property="FontFamily" Value="Dubai" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFFFFFFF" />
+                                <Setter Property="Foreground" Value="#2C3035" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
 

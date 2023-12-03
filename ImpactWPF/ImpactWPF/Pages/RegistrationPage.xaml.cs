@@ -15,6 +15,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EfCore;
+using EfCore.context;
+using EfCore.dto;
+using EfCore.entity;
+using EfCore.service.impl;
+using Microsoft.EntityFrameworkCore;
 
 namespace ImpactWPF
 {
@@ -24,12 +30,16 @@ namespace ImpactWPF
     public partial class RegistrationPage : Page, INotifyPropertyChanged
     {
         private ObservableCollection<String> petCollection = new ObservableCollection<String>();
+        private readonly UserServiceImpl userService;
 
         public RegistrationPage()
         {
             InitializeComponent();
+
             PetCollection.Add("Волонтер");
             PetCollection.Add("Замовник");
+
+            userService = new UserServiceImpl(new ImpactDbContext());
         }
 
         public ObservableCollection<string> PetCollection 
@@ -52,14 +62,54 @@ namespace ImpactWPF
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TurnBackToLoginPage_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService?.Navigate(new LoginPage());
         }
 
-        private void CustomTextBox_Loaded(object sender, RoutedEventArgs e)
+        private void Registration_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string userEmail = emailRegistration.tbInput.Text; 
 
+                if (userService.GetUserByEmail(userEmail) != null)
+                {
+                    MessageBox.Show("Користувач з такою електронною поштою вже існує! " + userEmail);
+                    return;
+                }
+
+                string selectedRole = roleRegistation.SelectedItem as string;
+
+                string userFirstname = firstnameRegistration.tbInput.Text;
+                string userLastname = lastnameRegistration.tbInput.Text;
+                string userMiddlename = middlenameRegistration.tbInput.Text;
+                string userPhonenumber = phoneNumberRegistration.tbInput.Text;
+                string userPassword = passwordRegistration.tbInput.Text;
+                string userPasswordConfirm = confirmPasswordRegistration.tbInput.Text;
+                int userRoleId = GetRoleIdFromRoleName(selectedRole);
+
+                UserDTO userDTO = new UserDTO(userFirstname, userLastname, userMiddlename, 
+                    userEmail, userPhonenumber, userPassword, userPasswordConfirm, userRoleId);
+
+                userService.RegisterUser(userDTO);
+
+                MessageBox.Show("Ви успішно зареєструвалися!");
+                NavigationService?.Navigate(new LoginPage());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Виникла помилка: {ex.Message}");
+            }
+        }
+
+        private int GetRoleIdFromRoleName(string roleName)
+        {
+            if (roleName == "Волонтер")
+            {
+                return 2;
+            }
+            return 1;
         }
     }
 }
