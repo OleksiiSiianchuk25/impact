@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImpactWPF.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -131,6 +132,16 @@ namespace ImpactWPF.Pages
 
 
 
-
+        private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (UserMenuGrid.Visibility == Visibility.Collapsed)
+            {
+                UserMenuGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UserMenuGrid.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

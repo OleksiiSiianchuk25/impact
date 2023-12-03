@@ -1,6 +1,4 @@
-﻿using ImpactWPF.Controls;
-using ImpactWPF.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ImpactWPF
+namespace ImpactWPF.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserMenuControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserMenuControl : UserControl
     {
-        public MainWindow()
+        public UserMenuControl()
         {
             InitializeComponent();
-            mainFrame.Navigate(new AtchivePage());
         }
     }
 }

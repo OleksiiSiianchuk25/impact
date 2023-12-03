@@ -9,29 +9,99 @@
 
   <ItemGroup>
     <None Remove="Images\activate.png" />
+    <None Remove="Images\animal.png" />
     <None Remove="Images\archive.png" />
+    <None Remove="Images\car.png" />
     <None Remove="Images\close.png" />
     <None Remove="Images\closeButton.png" />
+    <None Remove="Images\clothes.png" />
     <None Remove="Images\confirmationСode.png" />
     <None Remove="Images\date.png" />
     <None Remove="Images\deactivate.png" />
     <None Remove="Images\deleteUser.png" />
+    <None Remove="Images\donor.png" />
     <None Remove="Images\dowload.png" />
     <None Remove="Images\dowload2.png" />
     <None Remove="Images\edit.png" />
     <None Remove="Images\editUser.png" />
     <None Remove="Images\email.png" />
     <None Remove="Images\filter.png" />
+    <None Remove="Images\food.png" />
+    <None Remove="Images\home.png" />
+    <None Remove="Images\humanitarka.png" />
     <None Remove="Images\impact.png" />
+    <None Remove="Images\laywer.png" />
+    <None Remove="Images\line.png" />
+    <None Remove="Images\location.png" />
+    <None Remove="Images\logout.png" />
     <None Remove="Images\mainUserIcon.png" />
+    <None Remove="Images\medhelp.png" />
+    <None Remove="Images\medicament.png" />
     <None Remove="Images\medicamenty.png" />
+    <None Remove="Images\menu.png" />
+    <None Remove="Images\military.png" />
+    <None Remove="Images\money.png" />
+    <None Remove="Images\myAccount.png" />
+    <None Remove="Images\other.png" />
     <None Remove="Images\passwordBlocked.png" />
     <None Remove="Images\passwordUnlocked.png" />
     <None Remove="Images\phone.png" />
     <None Remove="Images\plus.png" />
+    <None Remove="Images\psych.png" />
     <None Remove="Images\role.png" />
     <None Remove="Images\search.png" />
+    <None Remove="Images\support.png" />
+    <None Remove="Images\tool.png" />
+    <None Remove="Images\tools.png" />
+    <None Remove="Images\translate.png" />
+    <None Remove="Images\truck.png" />
     <None Remove="Images\userIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\clothes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\food.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\humanitarka.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\line.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\money.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\medicament.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\myAccount.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\other.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\support.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\tool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\translate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +112,13 @@
     <Resource Include="Images\activate.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\animal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\archive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\car.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
 
@@ -59,6 +135,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\deleteUser.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\donor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\dowload.png">
@@ -82,10 +161,19 @@
     <Resource Include="Images\impact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\laywer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\mainUserIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\medhelp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\medicamenty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\military.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\passwordBlocked.png">
@@ -100,10 +188,19 @@
     <Resource Include="Images\plus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\psych.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\role.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\tools.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\truck.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\userIcon.png">

@@ -11,20 +11,21 @@
       Background="#FEFDFD">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="117*"/>
-            <RowDefinition Height="202*"/>
-            <RowDefinition Height="497*"/>
-            <RowDefinition Height="264*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="117*"/>
+                <RowDefinition Height="202*"/>
+                <RowDefinition Height="497*"/>
+                <RowDefinition Height="264*"/>
+            </Grid.RowDefinitions>
 
-        <userControls:CustomTextBox 
+            <userControls:CustomTextBox 
             Width="540"
             Height="259"
             Margin="43,165,0,0"
@@ -34,10 +35,10 @@
             PlaceholderMargin="18, 0, 0, 195"
             Grid.Column="1" Grid.Row="2"/>
 
-        <Rectangle RadiusX="15" RadiusY="15" Margin="56,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="100" Fill="#FFE4E4E4" Grid.Row="2" Grid.Column="2"/>
+            <Rectangle RadiusX="15" RadiusY="15" Margin="56,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="100" Fill="#FFE4E4E4" Grid.Row="2" Grid.Column="2"/>
 
 
-        <userControls:CustomTextBox 
+            <userControls:CustomTextBox 
             Width="540"
             Height="54"
             VerticalAlignment="Top" 
@@ -46,23 +47,23 @@
             Placeholder="Номер телефону" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,106,0,0"/>
-        <Rectangle RadiusX="15" 
+            <Rectangle RadiusX="15" 
                        RadiusY="15"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Width="540" Height="59"
                         Margin="56,230,0,0"
                        Fill="#FFE4E4E4" Grid.ColumnSpan="3"/>
-        <TextBlock Text="Назва населеного пункту" Margin="23,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="319" Height="34" FontSize="22" Foreground="#FF928A8A" Grid.ColumnSpan="2"/>
-        <TextBlock Text="Оберіть категорії" Margin="77,371,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="286" Height="36" Grid.Row="2" Grid.Column="2" FontSize="22" Foreground="#FF928A8A"/>
-        <Rectangle RadiusX="15" RadiusY="15"
+            <TextBlock Text="Назва населеного пункту" Margin="23,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="319" Height="34" FontSize="22" Foreground="#FF928A8A" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Оберіть категорії" Margin="77,371,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="286" Height="36" Grid.Row="2" Grid.Column="2" FontSize="22" Foreground="#FF928A8A"/>
+            <Rectangle RadiusX="15" RadiusY="15"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Width="539.6054" Height="54.08374"
                        Fill="#FFE4E4E4"/>
-        <TextBlock Text="Електронна пошта" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Margin="22,0,0,0" Foreground="#FF928A8A"/>
+            <TextBlock Text="Електронна пошта" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Margin="22,0,0,0" Foreground="#FF928A8A"/>
 
-        <userControls:CustomTextBox 
+            <userControls:CustomTextBox 
             Width="540"
             Height="54"
             VerticalAlignment="Top" 
@@ -72,7 +73,7 @@
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,37,0,0"/>
 
-        <userControls:CustomTextBox 
+            <userControls:CustomTextBox 
             Width="540"
             Height="54"
             VerticalAlignment="Top" 
@@ -82,13 +83,13 @@
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="2" Grid.Row="2" Margin="56,227,0,0"/>
 
-        <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center"
+            <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Width="539.6054" Height="54.08374" Fill="#FFE4E4E4"/>
-        <TextBlock Text="Номер телефону" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Foreground="#FF928A8A" Margin="22,0,0,0"/>
+            <TextBlock Text="Номер телефону" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248" Height="34" FontSize="22" Foreground="#FF928A8A" Margin="22,0,0,0"/>
 
 
-        <userControls:CustomTextBox 
+            <userControls:CustomTextBox 
             Width="540"
             Height="80"
             Margin="43,37,0,0"
@@ -98,116 +99,117 @@
             Placeholder="Назва замовлення" 
             PlaceholderMargin="18, 0, 0, 0"
             Grid.Column="1" Grid.Row="2"/>
-        <Grid Margin="51,10,39,0" VerticalAlignment="Top" Height="100" Grid.Row="3" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Створити нове замовлення" Grid.ColumnSpan="2" FontSize="28" FontFamily="Dubai" Foreground="White" Margin="142,26,142,34"/>
+            <Grid Margin="51,10,39,0" VerticalAlignment="Top" Height="100" Grid.Row="3" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Створити нове замовлення" Grid.ColumnSpan="2" FontSize="28" FontFamily="Dubai" Foreground="White" Margin="142,26,142,34"/>
 
-            <Button Grid.Column="1" Content="Створити нове замовлення"
+                <Button Grid.Column="1" Content="Створити нове замовлення"
                 FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="540" Height="100" 
                 Background="#002861">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#7FB3FF" />
-                        <Setter Property="Foreground" Value="#FFFFFF" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#7FB3FF" />
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <Line X2="14.717" Y2="11.261" Margin="524,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B"/>
+            <Line Y1="11.261" X2="13.49" Margin="538,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B" RenderTransformOrigin="0.475,-0.424"/>
+            <TextBlock Text="Створити замовлення" Margin="43,124,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" Height="55" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
+
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920" Height="116" Grid.ColumnSpan="4" Background="#FFD8E0FF">
+                <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
+                <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"/>
+                <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+                <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+                <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+            </Grid>
+
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,450,0" Grid.Row="2" TextWrapping="Wrap" Text="Вкажіть назву*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,138,538,0" Grid.Row="2" TextWrapping="Wrap" Text="Опис*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,426,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Напишіть ще 40 символів                                                                                                        0/8000" VerticalAlignment="Top" Width="524"/>
+
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Ваші контактні дані*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,195,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,302,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+
+            <ComboBox  xmlns:sys="clr-namespace:System;assembly=mscorlib" Grid.Column="2" Margin="56,334,44,63" Grid.Row="2" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.Resources>
+                    <Style TargetType="ComboBoxItem">
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid>
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        </Border>
-                                    </Grid>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <CheckBox>
+                                        <ContentPresenter />
+                                    </CheckBox>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="FontSize" Value="20"/>
                     </Style>
-                </Button.Style>
-            </Button>
+                </ComboBox.Resources>
+                <ComboBox.Template>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Border x:Name="Border" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Margin="10,0,0,0"/>
+                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Top" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" >
+                                <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" CornerRadius="5" Background="#FFD8E0FF"/>
+                                    <ScrollViewer Height="200" Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </ComboBox.Template>
+                <ComboBoxItem>item 1</ComboBoxItem>
+                <ComboBoxItem>item 2</ComboBoxItem>
+                <ComboBoxItem>item 3</ComboBoxItem>
+                <ComboBoxItem>item 4</ComboBoxItem>
+                <ComboBoxItem>item 5</ComboBoxItem>
+                <ComboBoxItem>item 6</ComboBoxItem>
+                <ComboBoxItem>item 7</ComboBoxItem>
+                <ComboBoxItem>item 8</ComboBoxItem>
+                <ComboBoxItem>item 9</ComboBoxItem>
+                <ComboBoxItem>item 10</ComboBoxItem>
+            </ComboBox>
         </Grid>
-        <Line X2="14.717" Y2="11.261" Margin="524,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B"/>
-        <Line Y1="11.261" X2="13.49" Margin="538,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B" RenderTransformOrigin="0.475,-0.424"/>
-        <TextBlock Text="Створити замовлення" Margin="43,124,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" Height="55" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
-
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920" Height="116" Grid.ColumnSpan="4" Background="#FFD8E0FF">
-            <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
-            <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"/>
-            <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
-            <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
-            <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
-        </Grid>
-
-        <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,450,0" Grid.Row="2" TextWrapping="Wrap" Text="Вкажіть назву*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,138,538,0" Grid.Row="2" TextWrapping="Wrap" Text="Опис*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,426,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Напишіть ще 40 символів                                                                                                        0/8000" VerticalAlignment="Top" Width="524"/>
-
-        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Ваші контактні дані*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,195,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,302,320,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
-
-        <ComboBox  xmlns:sys="clr-namespace:System;assembly=mscorlib" Grid.Column="2" Margin="56,334,44,63" Grid.Row="2" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBox.Resources>
-                <Style TargetType="ComboBoxItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ComboBoxItem">
-                                <CheckBox>
-                                    <ContentPresenter />
-                                </CheckBox>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="FontSize" Value="20"/>
-                </Style>
-            </ComboBox.Resources>
-            <ComboBox.Template>
-                <ControlTemplate TargetType="ComboBox">
-                    <Grid>
-                        <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
-                            <ToggleButton.Template>
-                                <ControlTemplate>
-                                    <Grid>
-                                        <Border x:Name="Border" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </ToggleButton.Template>
-                        </ToggleButton>
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Margin="10,0,0,0"/>
-                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Top" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" >
-                            <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder" CornerRadius="5" Background="#FFD8E0FF"/>
-                                <ScrollViewer Height="200" Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                </ScrollViewer>
-                            </Grid>
-                        </Popup>
-                    </Grid>
-                </ControlTemplate>
-            </ComboBox.Template>
-            <ComboBoxItem>item 1</ComboBoxItem>
-            <ComboBoxItem>item 2</ComboBoxItem>
-            <ComboBoxItem>item 3</ComboBoxItem>
-            <ComboBoxItem>item 4</ComboBoxItem>
-            <ComboBoxItem>item 5</ComboBoxItem>
-            <ComboBoxItem>item 6</ComboBoxItem>
-            <ComboBoxItem>item 7</ComboBoxItem>
-            <ComboBoxItem>item 8</ComboBoxItem>
-            <ComboBoxItem>item 9</ComboBoxItem>
-            <ComboBoxItem>item 10</ComboBoxItem>
-        </ComboBox>
-
 
 
     </Grid>
+
 </Page>
