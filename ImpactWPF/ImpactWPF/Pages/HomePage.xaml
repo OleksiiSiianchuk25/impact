@@ -106,7 +106,7 @@
             </Grid.RowDefinitions>
             <Grid Height="116"  Background="#FFD8E0FF" VerticalAlignment="Top" Grid.ColumnSpan="4" >
                 <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
-                <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"/>
+                <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69" MouseLeftButtonDown="UserMenu_MouseLeftButtonDown" />
                 <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
                 <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
                 <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
@@ -448,24 +448,24 @@
 
                 </Border>
 
-                <userControls:FilterControl Grid.Row="0" Width="272" Height="51" Placeholder="медикаменти" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="1" Width="272" Height="51" Placeholder="одяг"        ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="2" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="3" Width="272" Height="51" Placeholder="їжа" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="4" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="5" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="6" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="7" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="0" Grid.Column="1" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="1" Grid.Column="2" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="2" Grid.Column="3" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="3" Grid.Column="4" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="4" Grid.Column="5" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="5" Grid.Column="6" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="6" Grid.Column="7" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
-                <userControls:FilterControl Grid.Row="7" Grid.Column="8" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/medicamenty.png"/>
+                <userControls:FilterControl Grid.Row="0" Width="272" Height="51" Placeholder="медикаменти" ButtonImageSource="/images/medicament.png" />
+                <userControls:FilterControl Grid.Row="1" Width="272" Height="51" Placeholder="одяг"        ButtonImageSource="/images/clothes.png"/>
+                <userControls:FilterControl Grid.Row="2" Width="272" Height="51" Placeholder="збір коштів" ButtonImageSource="/images/money.png"/>
+                <userControls:FilterControl Grid.Row="3" Width="272" Height="51" Placeholder="продукти харчування" ButtonImageSource="/images/food.png"/>
+                <userControls:FilterControl Grid.Row="4" Width="272" Height="51" Placeholder="техніка" ButtonImageSource="/images/tool.png"/>
+                <userControls:FilterControl Grid.Row="5" Width="272" Height="51" Placeholder="донорство крові" ButtonImageSource="/images/donor.png"/>
+                <userControls:FilterControl Grid.Row="6" Width="272" Height="51" Placeholder="переклади" ButtonImageSource="/images/translate.png"/>
+                <userControls:FilterControl Grid.Row="7" Width="272" Height="51" Placeholder="психологічна допомога" ButtonImageSource="/images/psych.png"  FontSize="  11"/>
+                <userControls:FilterControl Grid.Row="0" Grid.Column="1" Width="272" Height="51" Placeholder="медична допомога" ButtonImageSource="/images/medhelp.png"/>
+                <userControls:FilterControl Grid.Row="1" Grid.Column="2" Width="272" Height="51" Placeholder="юридична допомога" ButtonImageSource="/images/laywer.png"/>
+                <userControls:FilterControl Grid.Row="2" Grid.Column="3" Width="272" Height="51" Placeholder="вантажні перевезення" ButtonImageSource="/images/truck.png"/>
+                <userControls:FilterControl Grid.Row="3" Grid.Column="4" Width="272" Height="51" Placeholder="військові потреби" ButtonImageSource="/images/military.png"/>
+                <userControls:FilterControl Grid.Row="4" Grid.Column="5" Width="272" Height="51" Placeholder="допомога тваринам" ButtonImageSource="/images/animal.png"/>
+                <userControls:FilterControl Grid.Row="5" Grid.Column="6" Width="272" Height="51" Placeholder="житло" ButtonImageSource="/images/home.png"/>
+                <userControls:FilterControl Grid.Row="6" Grid.Column="7" Width="272" Height="51" Placeholder="гуманітарна допомога" ButtonImageSource="/images/humanitarka.png"/>
+                <userControls:FilterControl Grid.Row="7" Grid.Column="8" Width="272" Height="51" Placeholder="інше" ButtonImageSource="/images/other.png"/>
 
-                <Button x:Name="clearButton"  Width="272" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Очистити" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Row="8"  >
+                <Button x:Name="clearButton"  Width="275" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Очистити" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Row="8"  >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#002861" />
@@ -500,7 +500,7 @@
                     </Button.Style>
                 </Button>
 
-                <Button  Width="272" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Застосувати" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Column="1" Grid.Row="8">
+                <Button  Width="275" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Застосувати" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Column="1" Grid.Row="8">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#002861" />
@@ -534,15 +534,21 @@
                         </Style>
                     </Button.Style>
                 </Button>
-
-
-
             </Grid>
         </Viewbox>
 
-
-
-
+        <Grid x:Name="UserMenuGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="167*"/>
+                <RowDefinition Height="331*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <userControls:UserMenuControl Grid.Row="1" Grid.Column="1" Margin="2,0,-2,0"/>
+        </Grid>
     </Grid>
 
 

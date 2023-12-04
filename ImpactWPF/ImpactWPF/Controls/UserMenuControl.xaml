@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ImpactWPF.Controls.UserMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImpactWPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="320" d:DesignWidth="250" Background="Transparent">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="11*"/>
+        </Grid.RowDefinitions>
+        <Image Source="/images/menu.png" Grid.RowSpan="10" Grid.ColumnSpan="3"/>
+        <TextBlock  Text="Ім'я" x:Name="UserName"  FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" Margin="20,8,119,1"/>
+        <TextBlock  Text="Роль" x:Name="UserRole"  FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,20,1" />
+        <TextBlock  Text="test@gmail.com" x:Name="UserMail" FontSize="15" Foreground="#99FFFFFF"  Grid.Row="1" Grid.Column="1" Margin="20,32,0,9" Grid.RowSpan="3"  />
+        <TextBlock  Text="Мій профіль" x:Name="UserProfile"  FontSize="20" Foreground="#FFFFFF"  Grid.Row="4" Grid.Column="1" Margin="45,7.5,0,7.5"/>
+        <TextBlock  Text="Мій архів"  x:Name="UserArchive" FontSize="20" Foreground="#FFFFFF" Grid.Row="5" Grid.Column="1" Margin="45,7.5,0,7.5"/>
+        <TextBlock  Text="Підтримка" x:Name="Support" FontSize="20" Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Margin="45,7.5,0,7.5" />
+        <TextBlock  Text="Вийти" x:Name="Logout" FontSize="20" Foreground="#FFFFFF" Grid.Row="8" Grid.Column="1" Margin="45,7.5,0,7.5" />
+
+        <Image Source="/images/myaccount.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="4" Grid.Column="1" Margin="14,7,173,10"/>
+        <Image Source="/images/archive.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="5" Grid.Column="1" Margin="13,7,173,10"/>
+        <Image Source="/images/support.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="6" Grid.Column="1" Margin="15,6,175,8"/>
+        <Image Source="/images/logout.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="8" Grid.Column="1" Margin="14,3,173,13"/>
+        <Image  Source="/Images/line.png" Stretch="Fill" Grid.Row="3" Grid.Column="1" Margin="15,2,15,2"/>
+        <Image  Source="/Images/line.png" Stretch="Fill" Grid.Row="7" Grid.Column="1" Margin="15,2,15,2"/>
+
+    </Grid>
+</UserControl>
