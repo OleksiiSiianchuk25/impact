@@ -1,4 +1,5 @@
 ﻿using EfCore.context;
+using EfCore.entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,17 @@ namespace EfCore.service.impl
     public class AuthServiceImpl
     {
         private readonly ImpactDbContext dbContext;
+        private readonly UserServiceImpl userService;
 
         public AuthServiceImpl(ImpactDbContext dbContext)
         {
             this.dbContext = dbContext;
+            this.userService = new UserServiceImpl(dbContext);
         }
 
         public bool AuthenticateUser(string email, string password)
         {
-            var user = dbContext.Users
-                .FirstOrDefault(u => u.Email == email);
+            var user = userService.GetUserByEmail(email);
 
             if (user == null)
             {
@@ -29,6 +31,10 @@ namespace EfCore.service.impl
             bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(password, user.Password);
 
             return isPasswordCorrect;
+        }
+        public Role GetUserRoleByEmail(string userEmail)
+        {
+            return userService.GetUserRoleByEmail(userEmail);
         }
     }
 }

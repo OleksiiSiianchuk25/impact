@@ -1,4 +1,5 @@
-﻿using EfCore.service.impl;
+﻿using EfCore.entity;
+using EfCore.service.impl;
 using ImpactWPF.Pages;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,9 @@ namespace ImpactWPF
             if (authService.AuthenticateUser(email, password))
             {
                 MessageBox.Show("Авторизація успішна!");
+                string role = authService.GetUserRoleByEmail(email).RoleName; 
+                UserSession.Instance.Login(email, role);
+                MessageBox.Show(role);
                 NavigationService?.Navigate(new HomePage());
             }
             else
