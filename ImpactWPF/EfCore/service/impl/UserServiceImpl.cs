@@ -33,6 +33,16 @@ namespace EfCore.service.impl
             return user;
         }
 
+        public Role GetUserRoleByEmail(string userEmail)
+        {
+            User user = GetUserByEmail(userEmail);
+            if (user == null)
+            {
+                throw new ApplicationException("Користувач з електронною поштою: " + userEmail + " не існує!");
+            }
+            return context.Roles.Find(user.RoleRef);
+        }
+
         public User GetUserById(int userId)
         {
             User user = context.Users.Find(userId);
