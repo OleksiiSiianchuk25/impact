@@ -45,6 +45,13 @@ namespace ImpactWPF.Pages
 
             userService = new UserServiceImpl(new ImpactDbContext());
             Loaded += ProfilePage_Loaded;
+            roleUpdate.SelectionChanged += RoleRegistation_SelectionChanged;
+        }
+        private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedRole = roleUpdate.SelectedItem as string;
+            UpdatedRoleTextBlock.Text = selectedRole;
+            UpdatedRoleTextBlock.Foreground = Brushes.Black;
         }
 
         private void ProfilePage_Loaded(object sender, RoutedEventArgs e)
@@ -60,6 +67,7 @@ namespace ImpactWPF.Pages
             if (currentUserRole == "ROLE_VOLUNTEER")
             {
                 roleUpdate.SelectedItem = "Волонтер";
+                
             }   
             else if (currentUserRole == "ROLE_ADMIN")
             {
