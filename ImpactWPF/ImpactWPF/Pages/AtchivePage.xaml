@@ -434,8 +434,10 @@
 
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1920" Height="116" Grid.ColumnSpan="4" Background="#FFD8E0FF">
-            <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
-            <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69" MouseLeftButtonDown="UserMenu_MouseLeftButtonDown"/>
+            <Image Source="/Images/impact.png" Stretch="UniformToFill" MouseLeftButtonDown="HomePage_MouseLeftButtonDown"
+                   Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
+            <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" 
+                   Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69" MouseLeftButtonDown="UserMenu_MouseLeftButtonDown"/>
             <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
             <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
             <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>

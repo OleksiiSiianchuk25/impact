@@ -143,5 +143,25 @@ namespace ImpactWPF.Pages
                 UserMenuGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new HomePage());
+        }
+
+        private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new CreateProposalPage());
+        }
+
+        private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new CreateOrderPage());
+        }
+
+        private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new HomePage());
+        }
     }
 }

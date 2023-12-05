@@ -33,6 +33,11 @@ namespace EfCore.entity
             UserRole = role;
         }
 
+        public void UpdateRole(string role)
+        {
+            UserRole = role; 
+        }
+
         public void Logout()
         {
             UserEmail = null;

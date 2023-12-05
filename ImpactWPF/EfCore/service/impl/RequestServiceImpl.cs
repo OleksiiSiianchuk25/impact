@@ -15,12 +15,11 @@ namespace EfCore.service.impl
         private readonly RequestRoleServiceImpl requestRoleService;
         private readonly RequestStatusServiceImpl requestStatusService;
 
-        public RequestServiceImpl(ImpactDbContext context, RequestRoleServiceImpl requestRoleService,
-            RequestStatusServiceImpl requestStatusService)
+        public RequestServiceImpl(ImpactDbContext context)
         {
             this.context = context;
-            this.requestRoleService = requestRoleService;
-            this.requestStatusService = requestStatusService;
+            this.requestRoleService = new RequestRoleServiceImpl(context);
+            this.requestStatusService = new RequestStatusServiceImpl(context);
         }
 
         public void CreateRequest(RequestDTO newRequest)

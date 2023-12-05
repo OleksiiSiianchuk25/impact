@@ -1,0 +1,257 @@
+﻿<Page x:Class="ImpactWPF.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ImpactWPF.Pages"
+      xmlns:userControls="clr-namespace:ImpactWPF.Controls"
+      xmlns:controls="clr-namespace:ImpactWPF.View.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="ProfilePage"
+      Background="#FEFDFD">
+
+
+
+    <Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1920" Height="116" Background="#FFD8E0FF" Grid.ColumnSpan="4" Margin="0,4,0,0" Grid.RowSpan="2">
+            <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" 
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"
+                   MouseLeftButtonDown="HomePage_MouseLeftButtonDown"/>
+            <Image Source="/Images/mainUserIcon.png"
+                   Stretch="UniformToFill" Margin="1831,23,0,0" 
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"
+                   MouseLeftButtonDown="UserMenu_MouseLeftButtonDown"/>
+            <TextBlock Text="Нове замовлення" 
+                       Margin="1329,43,0,0" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown"/>
+            <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown"/>
+
+            <TextBlock Text="Напишіть нам" Margin="1601,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
+        </Grid> 
+
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="319*"/>
+                <RowDefinition Height="445*"/>
+                <RowDefinition Height="316*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Ваш профіль" 
+                   Margin="0,261,0,0"
+                   Width="215"
+                   Height="63"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left"
+                   FontFamily="Dubai Medium"
+                   FontSize="35"
+                   Foreground="#30304F" Grid.Column="1" Grid.RowSpan="2"/>
+
+            <controls:CustomTextBox 
+            x:Name="emailUpdate"
+            ImageSource="../Images/email.png"
+            Width="440"
+            Height="80"
+            Margin="0,43,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Електронна адреса" Grid.Column="1"
+            ImageWidth="36"
+            ImageHeight="29"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="5,22"/>
+            <controls:CustomTextBox 
+            x:Name="lastnameUpdate"
+            ImageSource="../Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,135,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Прізвище" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
+            <controls:CustomTextBox 
+            x:Name="firstnameUpdate"
+            ImageSource="/Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,227,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Ім'я" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
+            <controls:CustomTextBox 
+            x:Name="middlenameUpdate"
+            ImageSource="/Images/userIcon.png"
+            Width="440"
+            Height="80"
+            Margin="0,319,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="По-батькові" Grid.Column="1"
+            ImageWidth="40"
+            ImageHeight="44"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,15"/>
+
+            <controls:CustomTextBox 
+            x:Name="phoneNumberUpdate"
+            ImageSource="../Images/phone.png"
+            Width="440"
+            Height="80"
+            Margin="43,43,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Номер телефону" Grid.Column="2"
+            ImageWidth="35"
+            ImageHeight="35"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="6, 19" Grid.ColumnSpan="2"/>
+            <controls:CustomPasswordBox 
+            x:Name="passwordUpdate"
+            ImageSource="../Images/passwordUnlocked.png"
+            Width="440"
+            Height="80"
+            Margin="43,135,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Пароль" Grid.Column="2"
+            ImageWidth="40"
+            ImageHeight="46"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="4,8" Grid.ColumnSpan="2"/>
+            <controls:CustomPasswordBox 
+            x:Name="confirmPasswordUpdate"
+            ImageSource="../Images/passwordBLocked.png"
+            Width="440"
+            Height="80"
+            Margin="43,227,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Підтвердіть пароль" 
+            Grid.Column="2"
+            ImageWidth="30"
+            ImageHeight="42"
+            ImageHorizontalAlignment="Left"
+            ImageVerticalAlignment="Top"
+            ImageMargin="9.5,12" Grid.ColumnSpan="2"/>
+
+            <ComboBox Margin="43,319,0,0"
+          x:Name="roleUpdate"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Width="440"
+          Height="80"
+          ItemsSource="{Binding PetCollection,
+            RelativeSource={RelativeSource AncestorType=Page,Mode=FindAncestor},
+            Mode=OneWay}"
+          Background="#E4E4E4"
+          BorderBrush="#E4E4E4"
+          BorderThickness="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Foreground" Value="#928A8A"/>
+                        <Setter Property="FontSize" Value="22"/>
+                        <Setter Property="FontFamily" Value="Dubai"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+
+            <TextBlock Text="Оберіль роль"
+                   Margin="106,345,0,0"
+                   Width="194"
+                   Height="28" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Foreground="#928A8A"
+                   FontSize="22"
+                   FontFamily="Dubai" Grid.Column="2" Grid.Row="1" />
+            <Image Source="../Images/role.png"
+               Stretch="UniformToFill" 
+               Width="43" Height="34"
+               Margin="54,345,0,0" 
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" />
+
+            <Button Grid.Column="2" Content="Редагувати профіль "
+                FontSize="24" HorizontalAlignment="Left" 
+                Margin="43,10,0,0" VerticalAlignment="Top"
+                Width="440" Height="80" 
+                Background="#002861" Grid.Row="2" Grid.ColumnSpan="2" Click="UpdateUserButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#7FB3FF" />
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="UserMenuGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="167*"/>
+                <RowDefinition Height="331*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <userControls:UserMenuControl Grid.Row="1" Grid.Column="1" Margin="2,0,-2,0"/>
+        </Grid>
+    </Grid>
+</Page>

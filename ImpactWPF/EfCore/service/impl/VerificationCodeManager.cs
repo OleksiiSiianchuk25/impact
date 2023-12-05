@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System.Net.Mail;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
+using EfCore.entity;
 
 namespace EfCore.service.impl
 {
@@ -26,20 +27,17 @@ namespace EfCore.service.impl
 
         public static void StoreVerificationCode(string email, string code)
         {
-            // Додати код в тимчасове сховище з ключем, який асоціюється з електронною адресою
-            _cache.Set(email, code, DateTimeOffset.Now.AddMinutes(30)); // Наприклад, тут код діє 30 хвилин
+            _cache.Set(email, code, DateTimeOffset.Now.AddMinutes(30));
         }
 
         public static bool VerifyCode(string email, string enteredCode)
         {
-            // Отримати код з тимчасового сховища за електронною адресою
             if (_cache.TryGetValue(email, out string storedCode))
             {
-                // Порівняти введений код із збереженим
                 return string.Equals(storedCode, enteredCode, StringComparison.OrdinalIgnoreCase);
             }
 
-            return false; // Код не знайдено або прострочено
+            return false; 
         }
 
         public static string GenerateVerificationCode()
@@ -50,28 +48,40 @@ namespace EfCore.service.impl
 
         public static void SendEmail(string to, string subject, string body)
         {
-            /*var smtpClient = new SmtpClient("smtp.google.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential("impact.project.lnu@gmail.com", "dreamteamlegends"),
-                EnableSsl = true,
-            };
-
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress("impact.project.lnu@gmail.com"),
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true,
-            };
-
-            mailMessage.To.Add(to);
-
-            smtpClient.Send(mailMessage);*/
-
             MimeMessage mailMessage = new MimeMessage();
             mailMessage.From.Add(MailboxAddress.Parse("impact.project.lnu@gmail.com"));
             mailMessage.To.Add(MailboxAddress.Parse(to));
+
+
+            mailMessage.Subject = subject;
+            mailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = body };
+
+
+            SmtpClient smtpClient = new SmtpClient();
+            try
+            {
+                smtpClient.Connect("smtp.gmail.com", 465, true);
+                smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtpClient.Authenticate("impact.project.lnu@gmail.com", "babv hjjc uqom newk");
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                smtpClient.Disconnect(true);
+                smtpClient.Dispose();
+
+            }
+        }
+
+        public static void SendSupportEmail(string subject, string body)
+        {
+            MimeMessage mailMessage = new MimeMessage();
+            mailMessage.From.Add(MailboxAddress.Parse(UserSession.Instance.UserEmail));
+            mailMessage.To.Add(MailboxAddress.Parse("impact.project.lnu@gmail.com"));
 
 
             mailMessage.Subject = subject;
