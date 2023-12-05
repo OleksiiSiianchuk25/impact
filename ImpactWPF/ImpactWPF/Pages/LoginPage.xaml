@@ -83,38 +83,46 @@
                   X1="4"
                   Stroke="#3D000000" Width="440" />
 
-            <Button Content="Створити обліковий запис"
-                FontSize="28" HorizontalAlignment="Left" 
-                Margin="737,669,0,0" VerticalAlignment="Top"
-                Width="440" Height="80" 
-                Background="#002861"
-                Click="CreateAccountButton_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#7FB3FF" />
-                        <Setter Property="Foreground" Value="#FFFFFF" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
+<Button Content="Створити обліковий запис"
+    FontSize="28" HorizontalAlignment="Left" 
+    Margin="737,669,0,0" VerticalAlignment="Top"
+    Width="440" Height="80" 
+    
+    Click="CreateAccountButton_Click">
+    <Button.Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Background" Value="#D8E0FF"/>
                         <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid>
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        </Border>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-            </Button>
+                
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#002861" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Button.Style>
+</Button>
+
             <Image Source="../Images/impact.png"
                    Stretch="UniformToFill" 
                    Margin="784,178,0,0"
@@ -124,45 +132,24 @@
                    HorizontalAlignment="Left"
                    Visibility="Visible"/>
 
-
-            <Button Content="Забули пароль?"
-            Margin="882,784,882,0"
-            Height="35"
-            VerticalAlignment="Top"
-            FontSize="21" 
-            FontFamily="Dubai" 
-            Foreground="#2C3035"
-            Background="#FFFFFFFF"
-            BorderBrush="Transparent"
-            BorderThickness="0"
-            RenderTransformOrigin="1.159,1.036" Click="ForgotPasswordButton_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FFFFFFFF" />
-                        <Setter Property="Foreground" Value="#2C3035" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="FontSize" Value="21" />
-                        <Setter Property="FontFamily" Value="Dubai" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid>
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        </Border>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
+            <TextBlock  Text="Забули пароль?" 
+                   FontSize="21"  
+                   Foreground="#FF2C3035" 
+                   VerticalAlignment="Top" 
+                   Margin="884,786,884,0" 
+                   MouseLeftButtonDown="ForgotPasswordButton_Click">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFFFFFFF" />
-                                <Setter Property="Foreground" Value="#2C3035" />
+                                <Setter Property="TextDecorations" Value="Underline" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                </Button.Style>
-            </Button>
+                </TextBlock.Style>
+            </TextBlock>
+
+           
         </Grid>
     </Grid>
 
