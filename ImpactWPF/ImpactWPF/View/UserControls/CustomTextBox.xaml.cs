@@ -78,5 +78,11 @@ namespace ImpactWPF.View.UserControls
             get { return tbPlaceHolder.Margin; }
             set { tbPlaceHolder.Margin = value; }
         }
+
+        public Thickness InputMargin
+        {
+            get { return tbInput.Margin; }
+            set { tbInput.Margin = value; }
+        }
     }
 }

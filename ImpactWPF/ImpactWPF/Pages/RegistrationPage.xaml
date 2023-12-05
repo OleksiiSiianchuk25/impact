@@ -35,28 +35,30 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Реєстрація" 
-                   Margin="10,260,0,0"
+                   Margin="10,262,0,0"
                    Width="184"
-                   Height="50"
+                   Height="63"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    FontFamily="Dubai Medium"
                    FontSize="35"
-                   Foreground="#30304F" Grid.Column="1"/>
+                   Foreground="#30304F" Grid.Column="1" Grid.RowSpan="2"/>
 
         <userControls:CustomTextBox 
             x:Name="emailRegistration"
             ImageSource="../Images/email.png"
             Width="440"
             Height="80"
-            Margin="0,43,40,322" 
-            Grid.Column="1" Grid.Row="1"
-            Placeholder="Електронна адреса"
-            ImageWidth="38"
-            ImageHeight="24"
+            Margin="0,43,0,0"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Grid.Row="1"
+            Placeholder="Електронна адреса" Grid.Column="1"
+            ImageWidth="36"
+            ImageHeight="29"
             ImageHorizontalAlignment="Left"
             ImageVerticalAlignment="Top"
-            ImageMargin="6,25" HorizontalAlignment="Right"/>
+            ImageMargin="5,22"/>
         <userControls:CustomTextBox 
             x:Name="lastnameRegistration"
             ImageSource="../Images/userIcon.png"
@@ -118,7 +120,7 @@
             ImageHorizontalAlignment="Left"
             ImageVerticalAlignment="Top"
             ImageMargin="6, 19" Grid.ColumnSpan="2"/>
-        <userControls:CustomTextBox 
+        <userControls:CustomPasswordBox 
             x:Name="passwordRegistration"
             ImageSource="../Images/passwordUnlocked.png"
             Width="440"
@@ -133,7 +135,7 @@
             ImageHorizontalAlignment="Left"
             ImageVerticalAlignment="Top"
             ImageMargin="4,8" Grid.ColumnSpan="2"/>
-        <userControls:CustomTextBox 
+        <userControls:CustomPasswordBox 
             x:Name="confirmPasswordRegistration"
             ImageSource="../Images/passwordBLocked.png"
             Width="440"

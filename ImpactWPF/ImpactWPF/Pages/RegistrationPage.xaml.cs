@@ -85,8 +85,8 @@ namespace ImpactWPF
                 string userLastname = lastnameRegistration.tbInput.Text;
                 string userMiddlename = middlenameRegistration.tbInput.Text;
                 string userPhonenumber = phoneNumberRegistration.tbInput.Text;
-                string userPassword = passwordRegistration.tbInput.Text;
-                string userPasswordConfirm = confirmPasswordRegistration.tbInput.Text;
+                string userPassword = passwordRegistration.pbInput.Password;
+                string userPasswordConfirm = confirmPasswordRegistration.pbInput.Password;
                 int userRoleId = GetRoleIdFromRoleName(selectedRole);
 
                 UserDTO userDTO = new UserDTO(userFirstname, userLastname, userMiddlename, 

@@ -209,9 +209,9 @@ namespace ImpactWPF.Pages
            
         }
 
-        
-
+        private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new HomePage());
+        }
     }
-
-
 }

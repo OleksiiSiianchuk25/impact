@@ -25,5 +25,9 @@ namespace EfCore.service
         List<User> GetVolunteers();
 
         void ChangePassword(string email, string newPassword);
+
+        void UpdateUserPassword(User currentUser, string userPassword);
+
+        public void UpdateUserData(User currentUser, string userEmail, string userLastName, string userFirstName, string userMiddleName, string userPhoneNumber, string userRole);
     }
 }

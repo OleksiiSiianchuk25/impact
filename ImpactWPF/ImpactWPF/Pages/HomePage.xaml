@@ -105,11 +105,29 @@
 
             </Grid.RowDefinitions>
             <Grid Height="116"  Background="#FFD8E0FF" VerticalAlignment="Top" Grid.ColumnSpan="4" >
-                <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
+                <Image Source="/Images/impact.png" MouseLeftButtonDown="HomePage_MouseLeftButtonDown"
+                       Stretch="UniformToFill" Margin="14,2,0,0" 
+                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>
                 <Image Source="/Images/mainUserIcon.png" Stretch="UniformToFill" Margin="1831,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69" MouseLeftButtonDown="UserMenu_MouseLeftButtonDown" />
-                <TextBlock Text="Нове замовлення" Margin="1329,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
-                <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
-                <TextBlock Text="Напишіть нам" Margin="1601,43,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"/>
+                <TextBlock Text="Нове замовлення"
+                           Margin="1329,43,0,0"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left" 
+                           FontSize="26" FontWeight="Bold"
+                           MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown"/>
+                <TextBlock Text="Нова пропозиція" 
+                           Margin="1065,43,0,0"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           FontSize="26" FontWeight="Bold"
+                           MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown"/>
+                <TextBlock Text="Напишіть нам"
+                           Margin="1601,43,0,0" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           FontSize="26" 
+                           FontWeight="Bold"
+                           MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
             </Grid>
 
 

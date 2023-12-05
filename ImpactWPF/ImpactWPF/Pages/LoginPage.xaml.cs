@@ -39,12 +39,11 @@ namespace ImpactWPF
                 MessageBox.Show("Авторизація успішна!");
                 string role = authService.GetUserRoleByEmail(email).RoleName; 
                 UserSession.Instance.Login(email, role);
-                MessageBox.Show(role);
                 NavigationService?.Navigate(new HomePage());
             }
             else
             {
-                MessageBox.Show("Невірна адреса електронної пошти або пароль.");
+                MessageBox.Show("Неправильна адреса електронної пошти або пароль.");
             }
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EfCore.entity;
+using ImpactWPF.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,43 @@ namespace ImpactWPF.Controls
         public UserMenuControl()
         {
             InitializeComponent();
+        }
+
+        private void UserProfile_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.NavigateToPage(new ProfilePage());
+            }
+        }
+
+        private void UserArchive_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.NavigateToPage(new AtchivePage());
+            }
+        }
+
+        private void Support_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.NavigateToPage(new SupportPage());
+            }
+        }
+
+        private void Logout_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                UserSession.Instance.Logout();
+                mainWindow.NavigateToPage(new LoginPage());
+            }
         }
     }
 }

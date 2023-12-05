@@ -25,7 +25,13 @@ namespace ImpactWPF
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new AtchivePage());
+            mainFrame.Navigate(new LoginPage());
+            WindowState = WindowState.Maximized;
+        }
+
+        public void NavigateToPage(Page page)
+        {
+            mainFrame.Navigate(page);
         }
     }
 }
