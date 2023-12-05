@@ -83,12 +83,12 @@
                   X1="4"
                   Stroke="#3D000000" Width="440" />
 
-<Button Content="Створити обліковий запис"
-    FontSize="28" HorizontalAlignment="Left" 
-    Margin="737,669,0,0" VerticalAlignment="Top"
-    Width="440" Height="80" 
+                 <Button Content="Створити обліковий запис"
+                         FontSize="28" HorizontalAlignment="Left" 
+                         Margin="737,669,0,0" VerticalAlignment="Top"
+                         Width="440" Height="80" 
     
-    Click="CreateAccountButton_Click">
+                    Click="CreateAccountButton_Click">
     <Button.Style>
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="Black" />
