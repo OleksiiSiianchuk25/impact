@@ -40,7 +40,19 @@ namespace ImpactWPF
             PetCollection.Add("Замовник");
 
             userService = new UserServiceImpl(new ImpactDbContext());
+
+            // Додайте цей рядок, щоб підписатися на подію SelectionChanged
+            roleRegistation.SelectionChanged += RoleRegistation_SelectionChanged;
         }
+
+        // Цей метод буде викликаний, коли користувач змінить вибір в ComboBox
+        private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedRole = roleRegistation.SelectedItem as string;
+            RoleTextBlock.Text = selectedRole;
+            RoleTextBlock.Foreground = Brushes.Black;
+        }
+
 
         public ObservableCollection<string> PetCollection 
         { 
