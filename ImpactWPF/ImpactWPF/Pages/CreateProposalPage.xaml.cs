@@ -128,7 +128,7 @@ namespace ImpactWPF.Pages
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            /*NavigationService?.Navigate(new HomePage());*/
+            NavigationService?.Navigate(new SupportPage());
         }
 
         private void CreateProposalButton_Click(object sender, RoutedEventArgs e)

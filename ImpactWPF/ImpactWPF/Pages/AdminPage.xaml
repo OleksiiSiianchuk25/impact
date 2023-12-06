@@ -1,0 +1,344 @@
+﻿<Page x:Class="ImpactWPF.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ImpactWPF.Pages"
+      xmlns:userControls="clr-namespace:ImpactWPF.Controls" 
+      xmlns:controls="clr-namespace:ImpactWPF.View.UserControls"   
+      xmlns:efcore="clr-namespace:EfCore.entity;assembly=EfCore"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="AdminPage"
+      Background="#FEFDFD">
+
+    <Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Width="1920" Height="116" Background="#FFD8E0FF">
+            <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" 
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"
+                   MouseLeftButtonDown="HomePage_MouseLeftButtonDown"/>
+            <Image Source="/Images/mainUserIcon.png"
+                   Stretch="UniformToFill" Margin="1831,23,0,0" 
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"
+                   MouseLeftButtonDown="UserMenu_MouseLeftButtonDown"/>
+            <TextBlock Text="Нове замовлення" 
+                       Margin="1329,43,0,0" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ORDERER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBlock Text="Користувачі" Margin="1407,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="AdminPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ADMIN">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBlock Text="Напишіть нам" Margin="1601,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
+        </Grid>
+
+        <Grid>
+            <Button Content="Запити"
+                FontSize="31" HorizontalAlignment="Left" 
+                Margin="178,179,0,0" VerticalAlignment="Top"
+                Width="485" Height="80" 
+                Background="#002861"
+                    Click="AdminButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#7FB3FF" />
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="Волонтери"
+                FontSize="31" HorizontalAlignment="Left" 
+                Margin="716,179,0,0" VerticalAlignment="Top"
+                Width="485" Height="80" 
+                Background="#D8E0FF"
+                    Click="AdminVolunteersButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#D8E0FF" />
+                        <Setter Property="Foreground" Value="#000000" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="Замовники"
+                FontSize="31" HorizontalAlignment="Left" 
+                Margin="1254,179,0,0" VerticalAlignment="Top"
+                Width="485" Height="80" 
+                Background="#D8E0FF      " 
+                    Click="AdminOrderersButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#7FB3FF" />
+                        <Setter Property="Foreground" Value="#000000" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+
+        <Grid>
+            <DataGrid x:Name="requestDataGrid"
+                      d:ItemsSource="{d:SampleData ItemCount=6}"
+                      MinHeight="656"
+                      Margin="180,284,179,136"
+                      Width="1561"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False" ColumnHeaderHeight="80"
+                      HeadersVisibility="Column"
+                      AlternatingRowBackground="#FFFFE883"
+                      GridLinesVisibility="None" RowHeight="96"
+                      Background="White"
+                      RowBackground="#FFFDFAC4"
+                      CanUserResizeRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserAddRows="False" 
+                      BorderBrush="White" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      HorizontalContentAlignment="Center">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#002861"/>
+                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                        <Setter Property="FontFamily" Value="Dubai"/>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Назва запитів"
+                                        Width="324.5" 
+                                        CanUserResize="False"
+                                        Binding="{Binding Name}"
+                                        FontFamily="Dubai"
+                                        FontSize="25">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="15,0,0,0"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Електронна пошта" 
+                                        Width="393.5"
+                                        CanUserResize="False"
+                                        Binding="{Binding Email}"
+                                        FontFamily="Dubai"
+                                        FontSize="25">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="15,0,0,0"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Тип запиту"
+                                        Width="438"
+                                        CanUserResize="False"
+                                        Binding="{Binding Type}"
+                                        FontSize="25"
+                                        FontFamily="Dubai">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="15,0,0,0"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTemplateColumn Header="Змінити" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource TransparentButtonStyle}">
+                                        <Image Source="/Images/editUser.png">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Видалити" Width="204">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource TransparentButtonStyle}">
+                                        <Image Source="/Images/deleteUser.png">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+
+
+        <Grid x:Name="UserMenuGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="167*"/>
+                <RowDefinition Height="331*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <userControls:UserMenuControl Grid.Row="1" Grid.Column="1" Margin="2,0,-2,0"/>
+        </Grid>
+    </Grid>
+</Page>

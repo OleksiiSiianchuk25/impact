@@ -71,7 +71,7 @@ namespace ImpactWPF.Pages
                     return;
                 }
 
-                body = body + "ВІДПРАВНИК: " + UserSession.Instance.UserEmail;
+                body = body + "    ВІДПРАВНИК: " + UserSession.Instance.UserEmail;
 
                 VerificationCodeManager.SendSupportEmail(subject, body);
 

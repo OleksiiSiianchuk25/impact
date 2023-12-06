@@ -159,9 +159,14 @@ namespace ImpactWPF.Pages
             NavigationService?.Navigate(new CreateOrderPage());
         }
 
+        private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AdminPage());
+        }
+
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new HomePage());
+            NavigationService?.Navigate(new SupportPage());
         }
     }
 }

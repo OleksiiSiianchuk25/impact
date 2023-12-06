@@ -41,6 +41,6 @@
                          Margin="49,0,0,0" 
                          Width="370"
                          Focusable="True"
-                         GotFocus="OnTextBoxGotFocus"/>
+                         TextChanged="TbInput_TextChanged"/>
     </Grid>
 </UserControl>
