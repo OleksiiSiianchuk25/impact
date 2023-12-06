@@ -95,16 +95,16 @@
 
                 <Button Grid.Column="1" Content="Створити нове замовлення"
                 FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="540" Height="100" 
-                Background="#002861">
+                Width="540" Height="100">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#7FB3FF" />
-                            <Setter Property="Foreground" Value="#FFFFFF" />
+                            <Setter Property="Foreground" Value="Black" />
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Background" Value="#D8E0FF"/>
                             <Setter Property="Template">
+
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
                                         <Grid>
@@ -120,13 +120,19 @@
                                     <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
                                 </Setter.Value>
                             </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#002861" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
             </Grid>
             <Line X2="14.717" Y2="11.261" Margin="524,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B"/>
             <Line Y1="11.261" X2="13.49" Margin="538,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B" RenderTransformOrigin="0.475,-0.424"/>
-            <TextBlock Text="Створити замовлення" Margin="43,124,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" Height="55" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
+            <TextBlock Text="Створити замовлення" Margin="43,114,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" Height="55" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
 
             <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920" Height="116" Grid.ColumnSpan="4" Background="#FFD8E0FF">
                 <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"/>

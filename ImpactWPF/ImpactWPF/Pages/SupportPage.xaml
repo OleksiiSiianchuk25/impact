@@ -56,7 +56,7 @@
                    HorizontalAlignment="Left"
                    FontFamily="Dubai Medium"
                    FontSize="35"
-                   Foreground="#30304F" Grid.Column="1"/>
+                   Foreground="#002861" Grid.Column="1"/>
 
             <TextBlock Text="Вкажіть тему*"
                    Margin="10,6,0,0"
@@ -100,15 +100,16 @@
                 FontSize="24" HorizontalAlignment="Left" 
                 Margin="539,10,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861"  Grid.Column="1" Grid.Row="2" Click="SendButton_Click">
+                Grid.Column="1" Grid.Row="2" Click="SendButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="#7FB3FF" />
-                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="Foreground" Value="Black" />
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Background" Value="#D8E0FF"/>
                         <Setter Property="Template">
+
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -124,6 +125,12 @@
                                 <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#002861" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>

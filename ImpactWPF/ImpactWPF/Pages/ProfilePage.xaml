@@ -304,7 +304,7 @@
 
 
     <Grid>
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1920" Height="116" Background="#FFD8E0FF" Grid.ColumnSpan="4" Margin="0,4,0,0" Grid.RowSpan="2">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Width="1920" Height="116" Background="#FFD8E0FF">
             <Image Source="/Images/impact.png" Stretch="UniformToFill" Margin="14,2,0,0" 
                    VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" Height="114"
                    MouseLeftButtonDown="HomePage_MouseLeftButtonDown"/>
@@ -325,7 +325,7 @@
                        VerticalAlignment="Top" HorizontalAlignment="Left"
                        FontSize="26" FontWeight="Bold"
                        MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
-        </Grid> 
+        </Grid>
 
 
 
@@ -523,15 +523,16 @@
                 FontSize="24" HorizontalAlignment="Left" 
                 Margin="43,10,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861" Grid.Row="2" Grid.ColumnSpan="2" Click="UpdateUserButton_Click">
+                Grid.Row="2" Grid.ColumnSpan="2" Click="UpdateUserButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="#7FB3FF" />
-                        <Setter Property="Foreground" Value="#FFFFFF" />
+                        <Setter Property="Foreground" Value="Black" />
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Background" Value="#D8E0FF"/>
                         <Setter Property="Template">
+
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -547,6 +548,12 @@
                                 <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#002861" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
