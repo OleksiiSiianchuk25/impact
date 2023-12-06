@@ -51,7 +51,27 @@
             <Image Source="../Images/close.png"
            Stretch="UniformToFill"
            Width="32"
-           Height="35" />
+           Height="35" >
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+
+            </Image>
         </Button>
 
         <userControls:CustomTextBox 
@@ -73,16 +93,16 @@
                 FontSize="28" HorizontalAlignment="Left" 
                 Margin="742,578,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Background="#002861"
                 Click="VerifyCodeButton_Click">
             <Button.Style>
                 <Style TargetType="Button">
-                    <Setter Property="Background" Value="#7FB3FF" />
-                    <Setter Property="Foreground" Value="#FFFFFF" />
+                    <Setter Property="Foreground" Value="Black" />
                     <Setter Property="BorderThickness" Value="0" />
                     <Setter Property="Padding" Value="10" />
                     <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Background" Value="#D8E0FF"/>
                     <Setter Property="Template">
+
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
                                 <Grid>
@@ -98,6 +118,12 @@
                             <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
                         </Setter.Value>
                     </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#002861" />
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Style>
         </Button>
@@ -106,11 +132,11 @@
         <TextBlock Text="Введіть код підтвердження"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center" 
-                   Width="448" 
+                   Width="436" 
                    Height="48" 
                    Margin="0,380,0,0"
-                   Foreground="#30304F" 
-                   FontSize="35"
+                   Foreground="#002861" 
+                   FontSize="34"
                    FontFamily="Dubai Medium"/>
 
     </Grid>
