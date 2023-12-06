@@ -19,17 +19,17 @@ namespace EfCore.service.impl
 
         public Role GetOrdererRole()
         {
-            return context.Roles.Find(1L);
+            return context.Roles.Find(1);
         }
 
         public Role GetVolunteerRole()
         {
-            return context.Roles.Find(2L);
+            return context.Roles.Find(2);
         }
 
         public Role GetAdminRole()
         {
-            return context.Roles.Find(3L);
+            return context.Roles.Find(3);
         }
     }
 }

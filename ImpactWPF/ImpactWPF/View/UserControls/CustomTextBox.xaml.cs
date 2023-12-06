@@ -20,10 +20,8 @@ namespace ImpactWPF.View.UserControls
             tbPlaceHolder.Visibility = string.IsNullOrEmpty(tbInput.Text) ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
-        {
-            tbPlaceHolder.Visibility = Visibility.Collapsed;
-        }
+
+
 
         private string placeholder;
 

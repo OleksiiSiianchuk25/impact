@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ImpactWPF.Controls"
+             xmlns:efcore="clr-namespace:EfCore.entity;assembly=EfCore"
              mc:Ignorable="d" 
              d:DesignHeight="320" d:DesignWidth="250" Background="Transparent">
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="21*"/>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="48*"/>
-            <RowDefinition Height="48*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="48*"/>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="54*"/>
@@ -32,15 +33,50 @@
         <TextBlock  Text="Мій профіль" x:Name="UserProfile" MouseLeftButtonUp="UserProfile_MouseLeftButtonUp"
                     FontSize="20" Foreground="#FFFFFF" 
                     Grid.Row="4" Grid.Column="1" Margin="45,7.5,0,7.5"/>
-        <TextBlock  Text="Мій архів"  x:Name="UserArchive" MouseLeftButtonUp="UserArchive_MouseLeftButtonUp"
-                    FontSize="20" Foreground="#FFFFFF" Grid.Row="5" Grid.Column="1" Margin="45,7.5,0,7.5"/>
+        <TextBlock  Text="Мій архів" x:Name="UserArchive" 
+                    MouseLeftButtonUp="UserArchive_MouseLeftButtonUp"
+                    FontSize="20" Foreground="#FFFFFF"
+                    Grid.Row="5" Grid.Column="1" Margin="45,7.5,0,7.5">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ORDERER">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <TextBlock  Text="Підтримка" x:Name="Support" MouseLeftButtonUp="Support_MouseLeftButtonUp"
                     FontSize="20" Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Margin="45,7.5,0,7.5" />
         <TextBlock  Text="Вийти" x:Name="Logout" MouseLeftButtonUp="Logout_MouseLeftButtonUp"
                     FontSize="20" Foreground="#FFFFFF" Grid.Row="8" Grid.Column="1" Margin="45,7.5,0,7.5" />
 
         <Image Source="/images/myaccount.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="4" Grid.Column="1" Margin="14,7,173,10"/>
-        <Image Source="/images/archive.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="5" Grid.Column="1" Margin="13,7,173,10"/>
+        <Image Source="/images/archive.png"
+               RenderTransformOrigin="0.027,0.528"
+               Grid.Row="5" Grid.Column="1"
+               Margin="13,7,173,10">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" Value="ROLE_ORDERER">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" Value="ROLE_VOLUNTEER">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Image Source="/images/support.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="6" Grid.Column="1" Margin="15,6,175,8"/>
         <Image Source="/images/logout.png"  RenderTransformOrigin="0.027,0.528" Grid.Row="8" Grid.Column="1" Margin="14,3,173,13"/>
         <Image  Source="/Images/line.png" Stretch="Fill" Grid.Row="3" Grid.Column="1" Margin="15,2,15,2"/>

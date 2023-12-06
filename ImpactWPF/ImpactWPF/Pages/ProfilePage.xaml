@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ImpactWPF.Pages"
       xmlns:userControls="clr-namespace:ImpactWPF.Controls"
       xmlns:controls="clr-namespace:ImpactWPF.View.UserControls"
+      xmlns:efcore="clr-namespace:EfCore.entity;assembly=EfCore"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ProfilePage"
@@ -312,14 +313,61 @@
                    Stretch="UniformToFill" Margin="1831,23,0,0" 
                    VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" Height="69"
                    MouseLeftButtonDown="UserMenu_MouseLeftButtonDown"/>
+
             <TextBlock Text="Нове замовлення" 
                        Margin="1329,43,0,0" VerticalAlignment="Top"
                        HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"
-                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown"/>
+                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ORDERER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
             <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0"
                        VerticalAlignment="Top" HorizontalAlignment="Left"
                        FontSize="26" FontWeight="Bold"
-                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown"/>
+                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBlock Text="Користувачі" Margin="1407,43,0,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="26" FontWeight="Bold"
+                       MouseLeftButtonDown="AdminPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ADMIN">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBlock Text="Напишіть нам" Margin="1601,43,0,0"
                        VerticalAlignment="Top" HorizontalAlignment="Left"

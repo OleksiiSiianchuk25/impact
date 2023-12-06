@@ -19,12 +19,12 @@ namespace EfCore.service.impl
 
         public RequestRole GetOrderRequestRole()
         {
-            return context.RequestRoles.Find(1L);
+            return context.RequestRoles.Find(1);
         }
 
         public RequestRole GetPropositionRequestRole()
         {
-            return context.RequestRoles.Find(2L);
+            return context.RequestRoles.Find(2);
         }
     }
 }

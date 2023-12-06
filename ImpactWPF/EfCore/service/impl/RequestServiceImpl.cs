@@ -49,6 +49,16 @@ namespace EfCore.service.impl
             return request;
         }
 
+        public RequestRole GetRequestRoleById(int id)
+        {
+            Request request = GetRequestById(id);
+            if (request == null)
+            {
+                throw new ApplicationException("Запит з таким id: " + request + " не існує!");
+            }
+            return context.RequestRoles.Find(request.RoleRef);
+        }
+
         public List<Request> GetActiveRequests()
         {
             return context.Requests
