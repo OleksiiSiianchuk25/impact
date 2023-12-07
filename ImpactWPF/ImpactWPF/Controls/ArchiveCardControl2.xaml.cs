@@ -1,7 +1,6 @@
 ﻿using ImpactWPF.Pages;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +17,14 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Controls
 {
     /// <summary>
-    /// Interaction logic for ArchiveCardControl1.xaml
+    /// Interaction logic for ArchiveCardControl2.xaml
     /// </summary>
-    public partial class ArchiveCardControl1 : UserControl
+    public partial class ArchiveCardControl2 : UserControl
     {
-        public ArchiveCardControl1()
+        public ArchiveCardControl2()
         {
             InitializeComponent();
-            deactivateImage.MouseLeftButtonDown += DeactivateImage_MouseLeftButtonDown;     
         }
-
-
         public event EventHandler DeactivateButtonClicked;
 
         protected virtual void OnDeactivateButtonClicked(EventArgs e)
@@ -48,13 +44,11 @@ namespace ImpactWPF.Controls
 
             if (parent is AtchivePage archivePage)
             {
-                archivePage.ShowDeactivateGrid();
+                archivePage.ShowActivateGrid();
 
             }
         }
 
-
-
-
     }
+
 }

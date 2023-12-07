@@ -695,7 +695,9 @@
 
         </Grid>
 
-        <Grid x:Name="DeactivateGrid" Height="1080" VerticalAlignment="Bottom" Visibility="Collapsed">
+
+
+        <Grid x:Name="DeactivateGrid" Height="1080" VerticalAlignment="Bottom" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="201*"/>
                 <RowDefinition Height="142*"/>
@@ -709,13 +711,11 @@
             </Grid.ColumnDefinitions>
             <Rectangle Fill="#B2D8E0FF" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
 
-            <Border CornerRadius="15" Background="White"  BorderThickness="1" BorderBrush="#FF002861"  Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="4,398,4,2" >
-                <TextBlock Text="Деактивувати замовлення" FontSize="38" Margin="77,30,77,171" FontWeight="Bold"/>
+            <Border CornerRadius="15" Background="White"  BorderThickness="1" BorderBrush="#FF002861"  Grid.Column="1" Grid.ColumnSpan="2" Margin="82,28,82,10" Grid.Row="1" >
+                <TextBlock Text="Деактивувати запит" FontSize="40" Margin="48,37,48,150" FontWeight="Bold"/>
             </Border>
-            <TextBlock Text=" назва замовлення" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="30" Width="600" VerticalAlignment="Center" TextAlignment="Center" Grid.ColumnSpan="2" Margin="26,0,0,0" Height="40"/>
 
-
-            <Button  x:Name="YesButton" Content="Так"  Grid.Row="1" Grid.Column="1"  FontSize="30" Margin="77,200,25,30"    >
+            <Button  x:Name="YesButton" Content="Так"  Grid.Row="1" Grid.Column="1"  FontSize="30" Margin="145,164,15,66"    >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#002861" />
@@ -744,7 +744,86 @@
             </Button>
 
 
-            <Button Content="Ні" Grid.Row="1" Grid.Column="2" Margin="24,200,77,30" FontSize="30">
+            <Button Content="Ні" Grid.Row="1" Grid.Column="2" Margin="15,164,145,66" FontSize="30" Width="169">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#D8E0FF" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+
+
+
+        <Grid x:Name="ActivateGrid" Height="1080" VerticalAlignment="Bottom" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="201*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="197*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="634*"/>
+                <ColumnDefinition Width="331*"/>
+                <ColumnDefinition Width="331*"/>
+                <ColumnDefinition Width="634*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="#B2D8E0FF" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+
+            <Border CornerRadius="15" Background="White"  BorderThickness="1" BorderBrush="#FF002861"  Grid.Column="1" Grid.ColumnSpan="2" Margin="82,28,82,10" Grid.Row="1" >
+                <TextBlock Text="Активувати запит" FontSize="40" Margin="72,37,72,150" FontWeight="Bold"/>
+            </Border>
+
+            <Button  x:Name="YesButtonA" Content="Так"  Grid.Row="1" Grid.Column="1"  FontSize="30" Margin="145,164,15,66"    >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#002861" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Height="51" />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+            <Button Content="Ні" Grid.Row="1" Grid.Column="2" Margin="15,164,145,66" FontSize="30" Width="169">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#D8E0FF" />
