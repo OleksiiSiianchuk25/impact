@@ -208,6 +208,11 @@ namespace ImpactWPF.Pages
             DeactivateGrid.Visibility = Visibility.Visible;
            
         }
+        public void ShowActivateGrid()
+        {
+            ActivateGrid.Visibility = Visibility.Visible;
+
+        }
 
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {

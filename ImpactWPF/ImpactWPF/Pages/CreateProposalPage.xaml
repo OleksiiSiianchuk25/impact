@@ -10,6 +10,158 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="CreateOrderPage"
       Background="#FEFDFD">
+    <Page.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="Transparent" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="14,0,0,0" StrokeDashArray="1 2" Stroke="Transparent" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="Transparent"/>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid x:Name="markGrid">
+                                    <Path x:Name="optionMark" Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " Fill="{StaticResource OptionMark.Static.Glyph}" Margin="1" Opacity="0" Stretch="None"/>
+                                    <Rectangle x:Name="indeterminateMark" Fill="{StaticResource OptionMark.Static.Glyph}" Margin="2" Opacity="0"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasContent" Value="true">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
+                                <Setter Property="Padding" Value="4,-1,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Border}"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Disabled.Border}"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Pressed.Border}"/>
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                                <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="Transparent"/>
+        <Style x:Key="ListBoxItemStyle1" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
 
@@ -164,47 +316,6 @@
             <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,200,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,307,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
 
-            <ComboBox x:Name="comboBox" xmlns:sys="clr-namespace:System;assembly=mscorlib" Grid.Column="2" Margin="56,334,44,63" Grid.Row="2"
-                      SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBox.Resources>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ComboBoxItem">
-                                    <CheckBox>
-                                        <ContentPresenter />
-                                    </CheckBox>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="FontSize" Value="20"/>
-                    </Style>
-                </ComboBox.Resources>
-                <ComboBox.Template>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Grid>
-                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
-                                <ToggleButton.Template>
-                                    <ControlTemplate>
-                                        <Grid>
-                                            <Border x:Name="Border" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
-                                        </Grid>
-                                    </ControlTemplate>
-                                </ToggleButton.Template>
-                            </ToggleButton>
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Margin="10,0,0,0"/>
-                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Top" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" Margin="-5,0,5,0" >
-                                <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border x:Name="DropDownBorder" CornerRadius="5" Background="#FFD8E0FF"/>
-                                    <ScrollViewer Height="200" Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
-                                </Grid>
-                            </Popup>
-                        </Grid>
-                    </ControlTemplate>
-                </ComboBox.Template>
-            </ComboBox>
         </Grid>
 
 
@@ -220,5 +331,676 @@
             </Grid.ColumnDefinitions>
             <userControls:UserMenuControl Grid.Row="1" Grid.Column="1" Margin="2,0,-2,0"/>
         </Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="219*"/>
+                <RowDefinition Height="436*"/>
+                <RowDefinition Height="425*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="506*"/>
+                <ColumnDefinition Width="270*"/>
+                <ColumnDefinition Width="181*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="#FFE5E5E5" BorderThickness="1" CornerRadius="10" Grid.Column="1" Grid.Row="1" Background="#FFE5E5E5" Margin="0,0,0,10" >
+                <ListBox Background="Transparent"  Grid.Column="1" Grid.Row="1" BorderBrush="Transparent" Height="425" VerticalAlignment="Center">
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="ListBox">
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>
+
+                   
+
+
+                        <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="22,20,22,0" Height="60"  Width="490" Grid.ColumnSpan="2"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                           
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1" Height="55"  Width="480" Background="White" Grid.ColumnSpan="2" Margin="0,0,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="CoffieCheckBox"  Width="480" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="медикаменти" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/medicament.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+
+                    </ListBoxItem>
+
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1" Height="55"  Width="480" Background="White"  Grid.ColumnSpan="2" Margin="0,0,54,0">
+                            <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="CofffieCheckBox"  Width="480" Margin="-5,-1,3,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                    <TextBlock Text="одяг" Height="25" Width="350" FontSize="22" Margin="65,0,0,0"/>
+                                    <Image Source="/images/plus.png" Height="35" Width="35">
+                                        <Image.RenderTransform>
+                                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                        </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                </StackPanel>
+                            </CheckBox>
+                            </Border>
+                            <Image Source="/images/clothes.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="fieChedckBsfox"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="збір коштів" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                    <Image Source="/images/plus.png" Height="35" Width="35">
+                                        <Image.RenderTransform>
+                                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                        </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                </StackPanel>
+                            </CheckBox>
+                        </Border>
+                            <Image Source="/images/money.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="fieCheddfckBsfox"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+
+                                        <TextBlock Text="продукти харчування" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/food.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="tools"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+
+                                        <TextBlock Text="техніка" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/tool.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="donor"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+
+                                        <TextBlock Text="донорство" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/donor.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="translate"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+
+                                        <TextBlock Text="переклади" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/translate.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="psych_help"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="психологічна допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/psych.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="medicalHelp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="медична допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/medhelp.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="laywerHelp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="юридична допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/laywer.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="vp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="вантажні перевезення" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/truck.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="millitary"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="військові потреби" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/military.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="animal"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="допомога тваринам" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/animal.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="home"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="житло" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/home.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="0,10,0,0" Height="60"  Width="490"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="hd"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="гуманітарна допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/money.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Height="60"  Width="490" Margin="0,0,0,10"  >
+                        <Grid Width="534" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="other"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="інше" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
+                            <Image Source="/images/other.png" Grid.Column="0" Width="40" Height="40"/>
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+            </Border>
+
+        </Grid>
+
+
     </Grid>
 </Page>

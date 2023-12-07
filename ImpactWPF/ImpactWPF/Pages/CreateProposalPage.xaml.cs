@@ -25,6 +25,7 @@ namespace ImpactWPF.Pages
     /// </summary>
     public partial class CreateProposalPage : Page
     {
+
         private readonly ImpactDbContext dbContext;
         private readonly RequestServiceImpl requestService;
         List<RequestCategory> selectedCategories = new List<RequestCategory>();
@@ -36,46 +37,11 @@ namespace ImpactWPF.Pages
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
 
-            LoadCategories();
+            
         }
 
-        private void LoadCategories()
-        {
-            try
-            {
-                var categories = dbContext.RequestCategories.ToList();
-                comboBox.ItemsSource = categories;
-                comboBox.DisplayMemberPath = "CategoryName";
-                comboBox.SelectedValuePath = "CategoryId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Помилка при завантаженні категорій: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+   
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Create a list to hold the selected categories
-
-            // Loop through all items in the ComboBox
-            foreach (var item in comboBox.Items)
-            {
-                // Get the ComboBoxItem that represents the current item
-                ComboBoxItem comboBoxItem = (ComboBoxItem)comboBox.ItemContainerGenerator.ContainerFromItem(item);
-
-                // Get the CheckBox from the ComboBoxItem
-                CheckBox checkBox = FindVisualChildren<CheckBox>(comboBoxItem).FirstOrDefault();
-
-                // If the CheckBox is checked, add the item to the list of selected categories
-                if (checkBox != null && checkBox.IsChecked == true)
-                {
-                    selectedCategories.Add((RequestCategory)item);
-                }
-            }
-
-            // Now selectedCategories contains all selected categories
-        }
 
         // Helper method to find visual children of a certain type
         private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -165,6 +131,75 @@ namespace ImpactWPF.Pages
             {
                 MessageBox.Show($"Помилка при створенні пропозиції: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }*/
+
         }
+
+
+
+
+
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                Border border = checkBox.Parent as Border;
+                if (border != null)
+                {
+                    // Set the background color to #FFE883 using System.Windows.Media.Color
+                    border.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFE, 0xE8, 0x83));
+                }
+
+                StackPanel stackPanel = checkBox.Content as StackPanel;
+                if (stackPanel != null)
+                {
+                    Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
+                    if (image != null)
+                    {
+                        RotateTransform rotateTransform = image.RenderTransform as RotateTransform;
+                        if (rotateTransform != null)
+                        {
+                            double centerX = image.ActualWidth / 2;
+                            double centerY = image.ActualHeight / 2;
+
+                            // Rotate the image by 45 degrees around its center
+                            rotateTransform.CenterX = centerX;
+                            rotateTransform.CenterY = centerY;
+                            rotateTransform.Angle = 45;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                Border border = checkBox.Parent as Border;
+                if (border != null)
+                {
+                    border.Background = new SolidColorBrush(Colors.White);
+                }
+
+                StackPanel stackPanel = checkBox.Content as StackPanel;
+                if (stackPanel != null)
+                {
+                    Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
+                    if (image != null)
+                    {
+                        RotateTransform rotateTransform = image.RenderTransform as RotateTransform;
+                        if (rotateTransform != null)
+                        {
+                            rotateTransform.Angle = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
