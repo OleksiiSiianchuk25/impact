@@ -382,7 +382,7 @@
                                 <Setter Property="BorderBrush" Value="Transparent" />
                                 <Setter Property="Template">
                                     <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
+                                            <ControlTemplate TargetType="Button">
                                             <Grid>
                                                 <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="15">
                                                     <Grid>

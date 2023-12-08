@@ -200,6 +200,18 @@ namespace ImpactWPF.Pages
             }
         }
 
+        private void Categories_Click(object sender, RoutedEventArgs e)
+        {
+            if (Categories.Visibility == Visibility.Collapsed)
+            {
+                Categories.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Categories.Visibility = Visibility.Collapsed;
+            }
+        }
+
 
     }
 }
