@@ -214,7 +214,6 @@
             PlaceholderMargin="18, 0, 0, 195"
             Grid.Column="1" Grid.Row="2"/>
 
-            <Rectangle RadiusX="15" RadiusY="15" Margin="56,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="540" Height="100" Fill="#FFE4E4E4" Grid.Row="2" Grid.Column="2"/>
 
 
             <controls:CustomTextBox 
@@ -247,7 +246,7 @@
             HorizontalAlignment="Left" 
             Placeholder="Назва населеного пункту" 
             PlaceholderMargin="18, 0, 0, 0"
-            Grid.Column="2" Grid.Row="2" Margin="56,227,0,0"/>
+            Grid.Column="2" Grid.Row="2" Margin="56,212,0,0"/>
 
             <controls:CustomTextBox 
             x:Name="proposalNameRequest"
@@ -264,7 +263,6 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Створити нове замовлення" Grid.ColumnSpan="2" FontSize="28" FontFamily="Dubai" Foreground="White" Margin="142,26,142,34"/>
 
                 <Button Grid.Column="1" Content="Створити нову пропозицію"
                 FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -304,8 +302,6 @@
                     </Button.Style>
                 </Button>
             </Grid>
-            <Line X2="14.717" Y2="11.261" Margin="524,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B"/>
-            <Line Y1="11.261" X2="13.49" Margin="538,385,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Grid.Row="2" Height="11" Grid.Column="2" Stroke="#534B4B" RenderTransformOrigin="0.475,-0.424"/>
             <TextBlock Text="Створити пропозицію" Margin="43,114,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="434" Height="55" Grid.Column="1" Grid.Row="1" FontSize="40" FontFamily="Dubai" FontWeight="Bold" Foreground="#FF002861"/>
 
             <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,449,0" Grid.Row="2" TextWrapping="Wrap" Text="Вкажіть назву*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
@@ -313,8 +309,8 @@
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="54,426,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Напишіть ще 40 символів                                                                                                        0/8000" VerticalAlignment="Top" Width="524"/>
 
             <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,374,0" Grid.Row="2" TextWrapping="Wrap" Text="Ваші контактні дані*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="210"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,200,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,307,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,180,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Місцезнаходження*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Margin="0,304,321,0" Grid.Row="2" TextWrapping="Wrap" Text="Категорії*" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="263"/>
 
         </Grid>
 
@@ -344,8 +340,8 @@
                 <ColumnDefinition Width="181*"/>
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="#FFE5E5E5" BorderThickness="1" CornerRadius="10" Grid.Column="1" Grid.Row="1" Background="#FFE5E5E5" Margin="0,0,0,10" >
-                <ListBox Background="Transparent"  Grid.Column="1" Grid.Row="1" BorderBrush="Transparent" Height="425" VerticalAlignment="Center">
+            <Border x:Name="Categories" BorderBrush="#FFE5E5E5" BorderThickness="1" CornerRadius="10" Grid.Column="1" Grid.Row="1" Background="#FFE5E5E5" Margin="0,0,0,413" Grid.RowSpan="2">
+                <ListBox Background="Transparent"  Grid.Column="1" Grid.Row="1" BorderBrush="Transparent" Height="428" VerticalAlignment="Center">
                     <ListBox.Template>
                         <ControlTemplate TargetType="ListBox">
                             <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -354,17 +350,17 @@
                         </ControlTemplate>
                     </ListBox.Template>
 
-                   
 
 
-                        <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="22,20,22,0" Height="60"  Width="490" Grid.ColumnSpan="2"  >
+
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Margin="22,30,22,0" Height="60"  Width="490" Grid.ColumnSpan="2"  >
                         <Grid Width="534" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                           
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1" Height="55"  Width="480" Background="White" Grid.ColumnSpan="2" Margin="0,0,54,0">
+
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2" Height="55"  Width="480" Background="White" Grid.ColumnSpan="2" Margin="0,0,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="CoffieCheckBox"  Width="480" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="медикаменти" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -406,14 +402,14 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1" Height="55"  Width="480" Background="White"  Grid.ColumnSpan="2" Margin="0,0,54,0">
-                            <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="CofffieCheckBox"  Width="480" Margin="-5,-1,3,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
-                                <StackPanel Orientation="Horizontal" Height="55" Width="463" >
-                                    <TextBlock Text="одяг" Height="25" Width="350" FontSize="22" Margin="65,0,0,0"/>
-                                    <Image Source="/images/plus.png" Height="35" Width="35">
-                                        <Image.RenderTransform>
-                                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
-                                        </Image.RenderTransform>
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2" Height="55"  Width="480" Background="White"  Grid.ColumnSpan="2" Margin="0,0,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="CofffieCheckBox"  Width="480" Margin="-5,-1,3,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                    <StackPanel Orientation="Horizontal" Height="55" Width="463" >
+                                        <TextBlock Text="одяг" Height="25" Width="350" FontSize="22" Margin="65,0,0,0"/>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
                                             <Image.Style>
                                                 <Style TargetType="Image">
                                                     <Setter Property="Effect">
@@ -433,8 +429,8 @@
                                                 </Style>
                                             </Image.Style>
                                         </Image>
-                                </StackPanel>
-                            </CheckBox>
+                                    </StackPanel>
+                                </CheckBox>
                             </Border>
                             <Image Source="/images/clothes.png" Grid.Column="0" Width="40" Height="40"/>
                         </Grid>
@@ -446,14 +442,14 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
-                            <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="fieChedckBsfox"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="fieChedckBsfox"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="збір коштів" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
-                                    <Image Source="/images/plus.png" Height="35" Width="35">
-                                        <Image.RenderTransform>
-                                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
-                                        </Image.RenderTransform>
+                                        <Image Source="/images/plus.png" Height="35" Width="35">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                            </Image.RenderTransform>
                                             <Image.Style>
                                                 <Style TargetType="Image">
                                                     <Setter Property="Effect">
@@ -473,9 +469,9 @@
                                                 </Style>
                                             </Image.Style>
                                         </Image>
-                                </StackPanel>
-                            </CheckBox>
-                        </Border>
+                                    </StackPanel>
+                                </CheckBox>
+                            </Border>
                             <Image Source="/images/money.png" Grid.Column="0" Width="40" Height="40"/>
                         </Grid>
                     </ListBoxItem>
@@ -486,7 +482,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="fieCheddfckBsfox"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
 
@@ -527,7 +523,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="tools"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
 
@@ -568,7 +564,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="donor"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
 
@@ -609,7 +605,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="translate"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
 
@@ -649,7 +645,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="psych_help"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="психологічна допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -688,7 +684,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="medicalHelp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="медична допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -728,7 +724,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="laywerHelp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="юридична допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -767,7 +763,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="vp"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="вантажні перевезення" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -806,7 +802,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="millitary"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="військові потреби" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -845,7 +841,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="animal"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="допомога тваринам" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -884,7 +880,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="home"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="житло" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -923,7 +919,7 @@
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="hd"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="гуманітарна допомога" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -953,17 +949,17 @@
                                     </StackPanel>
                                 </CheckBox>
                             </Border>
-                            <Image Source="/images/money.png" Grid.Column="0" Width="40" Height="40"/>
+                            <Image Source="/images/humanitarka.png" Grid.Column="0" Width="40" Height="40"/>
                         </Grid>
                     </ListBoxItem>
 
-                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Height="60"  Width="490" Margin="0,0,0,10"  >
+                    <ListBoxItem Style="{DynamicResource ListBoxItemStyle1}"  FontFamily="Verdana" FontSize="12" FontWeight="Bold" BorderBrush="Transparent" Height="60"  Width="490" Margin="0,10,0,10"  >
                         <Grid Width="534" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50*"/>
                                 <ColumnDefinition Width="217*"/>
                             </Grid.ColumnDefinitions>
-                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="1"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
+                            <Border  CornerRadius="15" BorderBrush="#FFFFE883" BorderThickness="2"   Grid.ColumnSpan="2" Height="55"  Width="480" Background="White" Margin="0,1,54,0">
                                 <CheckBox Style="{DynamicResource CheckBoxStyle1}" Name="other"  Width="480" Margin="0,-1,-2,-1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                     <StackPanel Orientation="Horizontal" Height="55" Width="463" >
                                         <TextBlock Text="інше" Height="25" Width="350" FontSize="22" Margin="60,0,0,0"/>
@@ -998,6 +994,48 @@
                     </ListBoxItem>
                 </ListBox>
             </Border>
+
+
+
+            <Button Grid.Column="1" Grid.Row="2"  Content="Додати категорії" FontSize="25"  VerticalAlignment="Top" Width="540" Height="84"  Click="Categories_Click" Background="#FFE4E4E4" Margin="1,26,1,0" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="15">
+                                            <Grid>
+                                                <TextBlock Text="Оберіть категорії" Margin="40,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="196" FontSize="22" Foreground="#FF928A8A"/>
+                                                <Image x:Name="ButtonImage" Source="/Images/dropdownbuttonb.png" Margin="476,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="21" Width="40"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="15">
+                                                    <Grid>
+                                                        <TextBlock Text="Оберіть категорії" Margin="40,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="196" FontSize="22" Foreground="#FF928A8A"/>
+                                                        <Image x:Name="ButtonImage" Source="/Images/dropdownbuttonc.png" Margin="476,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="21" Width="40"/>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
         </Grid>
 

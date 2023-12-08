@@ -22,6 +22,8 @@
     <None Remove="Images\donor.png" />
     <None Remove="Images\dowload.png" />
     <None Remove="Images\dowload2.png" />
+    <None Remove="Images\dropdownbuttonb.png" />
+    <None Remove="Images\dropdownbuttonc.png" />
     <None Remove="Images\edit.png" />
     <None Remove="Images\editUser.png" />
     <None Remove="Images\email.png" />
@@ -67,6 +69,12 @@
     </Resource>
     <Resource Include="Images\home.png" />
     <Resource Include="Images\humanitarka.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dropdownbuttonb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dropdownbuttonc.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\line.png">
