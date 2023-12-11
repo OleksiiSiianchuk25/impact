@@ -2,7 +2,6 @@
 using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,45 +21,40 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for CreateProposalPage.xaml
+    /// Interaction logic for EditRequest.xaml
     /// </summary>
-    public partial class CreateProposalPage : Page
+    public partial class EditRequest : Page
     {
-
         private readonly ImpactDbContext dbContext;
         private readonly RequestServiceImpl requestService;
         private readonly UserServiceImpl userService;
+        private Request currentRequest;
         List<string> selectedCategoriesList = new List<string>();
 
-        public CreateProposalPage()
+        public EditRequest(AdminPage.RequestT request)
         {
             InitializeComponent();
 
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
             userService = new UserServiceImpl(dbContext);
+
+            currentRequest = requestService.SearchRequestByName(request.Name);
+
+            Loaded += EditRequest_Loaded;
         }
 
-        private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        private void EditRequest_Loaded(object sender, RoutedEventArgs e)
         {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
+            nameRequest.tbInput.Text = currentRequest.RequestName;
+            descriptionRequest.tbInput.Text = currentRequest.Description;
+            locationRequest.tbInput.Text = currentRequest.Location;
+            contactEmailRequest.tbInput.Text = currentRequest.ContactEmail;
+            contactPhoneRequest.tbInput.Text = currentRequest.ContactPhone;
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
+            List<string> associatedCategories = requestService.GetRequestCategoriesNames(currentRequest.RequestId);
+
         }
-
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -108,7 +102,7 @@ namespace ImpactWPF.Pages
                     return;
                 }
 
-                string proposalName = proposalNameRequest.tbInput.Text;
+                string requestName = nameRequest.tbInput.Text;
                 string description = descriptionRequest.tbInput.Text;
                 string contactPhone = contactPhoneRequest.tbInput.Text;
                 string contactEmail = contactEmailRequest.tbInput.Text;
@@ -116,26 +110,13 @@ namespace ImpactWPF.Pages
 
                 List<int> selectedCategoryIds = GetCategoryIds(selectedCategoriesList);
 
-                RequestDTO requestDTO = new RequestDTO
-                {
-                    RequestName = proposalName,
-                    Description = description,
-                    ContactPhone = contactPhone,
-                    ContactEmail = contactEmail,
-                    Location = location,
-                    CreatorUserRef = userService.GetUserByEmail(UserSession.Instance.UserEmail).UserId,
-                    RoleRef = 2,
-                    Categories = selectedCategoryIds
-                };
+                requestService.UpdateRequest(currentRequest, requestName, description, contactPhone, contactEmail, location, selectedCategoryIds);
 
-
-                requestService.CreateRequest(requestDTO);
-
-                NavigationService?.Navigate(new CreateProposalPage());
+                NavigationService?.Navigate(new AdminPage());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка при створенні пропозиції: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Помилка при редагуванні запиту: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -274,7 +255,7 @@ namespace ImpactWPF.Pages
                 return false;
             }
 
-            if (proposalNameRequest.tbInput.Text.Length <= 1)
+            if (nameRequest.tbInput.Text.Length <= 1)
             {
                 MessageBox.Show("Ім'я запиту повинно містити більше 1 символа!");
                 return false;

@@ -19,12 +19,12 @@ namespace EfCore.service.impl
 
         public RequestStatus GetActiveRequestStatus()
         {
-            return context.RequestStatuses.Find(1L);
+            return context.RequestStatuses.Find(1);
         }
 
         public RequestStatus GetInactiveRequestStatus()
         {
-            return context.RequestStatuses.Find(2L);
+            return context.RequestStatuses.Find(2);
         }
     }
 }

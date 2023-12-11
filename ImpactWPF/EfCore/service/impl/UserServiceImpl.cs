@@ -1,4 +1,4 @@
-﻿using EfCore.context;
+﻿    using EfCore.context;
 using EfCore.dto;
 using EfCore.entity;
 using System;
@@ -108,7 +108,6 @@ namespace EfCore.service.impl
         {
             try
             {
-                // Отримати роль користувача за назвою
 
                 if (userRole == "Волонтер")
                 {
@@ -125,8 +124,8 @@ namespace EfCore.service.impl
 
                 Role newRole = context.Roles.FirstOrDefault(r => r.RoleName == userRole);
                 UserSession.Instance.UpdateRole(userRole);
+                UserSession.Instance.UpdateUserEmail(userEmail);
 
-                // Оновити дані користувача
                 currentUser.Email = userEmail;
                 currentUser.LastName = userLastName;
                 currentUser.FirstName = userFirstName;
@@ -136,12 +135,10 @@ namespace EfCore.service.impl
                 currentUser.RoleRef = newRole.RoleId;
                 currentUser.RoleRefNavigation = newRole;
 
-                // Зберегти зміни в базі даних
                 context.SaveChanges();
             }
             catch (Exception ex)
             {
-                // Обробити помилку
                 throw new ApplicationException($"Помилка при оновленні даних користувача: {ex.Message}");
             }
         }
@@ -150,16 +147,50 @@ namespace EfCore.service.impl
         {
             try
             {
-                // Оновити пароль користувача
                 currentUser.Password = BCrypt.Net.BCrypt.HashPassword(userPassword);
 
-                // Зберегти зміни в базі даних
                 context.SaveChanges();
             }
             catch (Exception ex)
             {
-                // Обробити помилку
                 throw new ApplicationException($"Помилка при оновленні паролю користувача: {ex.Message}");
+            }
+        }
+
+        public void AdminUpdateUserData(User currentUser, string userEmail, string userLastName, string userFirstName, string userMiddleName, string userPhoneNumber, string? userRole)
+        {
+             try
+            {
+
+                if (userRole == "Волонтер")
+                {
+                    userRole = "ROLE_VOLUNTEER";
+                }
+                else if (userRole == "Адмін")
+                {
+                    userRole = "ROLE_ADMIN";
+                }
+                else
+                {
+                    userRole = "ROLE_ORDERER";
+                }
+
+                Role newRole = context.Roles.FirstOrDefault(r => r.RoleName == userRole);
+
+                currentUser.Email = userEmail;
+                currentUser.LastName = userLastName;
+                currentUser.FirstName = userFirstName;
+                currentUser.MiddleName = userMiddleName;
+                currentUser.PhoneNumber = userPhoneNumber;
+
+                currentUser.RoleRef = newRole.RoleId;
+                currentUser.RoleRefNavigation = newRole;
+
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Помилка при оновленні даних користувача: {ex.Message}");
             }
         }
     }

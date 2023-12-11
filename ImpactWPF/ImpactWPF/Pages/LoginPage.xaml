@@ -151,6 +151,18 @@
 
            
         </Grid>
+
+
+        <Grid>
+            <ProgressBar Name="MyProgressBar"
+                         HorizontalAlignment="Center" 
+                         Margin="0,440,0,0"
+                         Height="39"
+                         VerticalAlignment="Top"
+                         Width="224"
+                         IsIndeterminate="True"
+                         Background="#002861" Visibility="Collapsed" Foreground="#FFF2F5F3"/>
+        </Grid>
     </Grid>
 
 </Page>

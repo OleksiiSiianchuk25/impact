@@ -43,7 +43,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        
+
         <Image x:Name="deactivateImage" Source="/images/deactivate.png" Grid.Column="2" HorizontalAlignment="Left" Margin="40,10,0,0" Width="31"  >
             <Image.Style>
                 <Style TargetType="Image">
@@ -64,5 +64,18 @@
                 </Style>
             </Image.Style>
         </Image>
+
+        <TextBlock x:Name="requestNameTextBlock" Text="{Binding RequestName}" Grid.Row="1" Grid.Column="0" Margin="12,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.ColumnSpan="3" Width="Auto" TextWrapping="Wrap"/>
+
+        <TextBlock x:Name="descriptionTextBlock" Text="{Binding Description}" Grid.Row="1" Margin="12,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto" Height="Auto" TextWrapping="Wrap"/>
+
+        <TextBlock x:Name="locationTextBlock" Text="{Binding Location}" Grid.Column="1" Margin="26,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto" TextWrapping="Wrap" />
+
+        <TextBlock Grid.Row="1" Text="Контакти:" Margin="12,233,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="82" FontSize="18"/>
+        <TextBlock x:Name="emailTextBlock" Text="{Binding ContactEmail}" Grid.Row="1" Margin="12,262,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
+        <TextBlock x:Name="phoneTextBlock" Text="{Binding ContactPhone}" Grid.Row="1" Margin="12,287,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
+
+        <TextBlock x:Name="dateTextBlock" Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Left" Margin="43,16,0,6" Width="Auto"/>
+
     </Grid>
 </UserControl>

@@ -16,7 +16,8 @@ namespace EfCore.service
 
         void CreateRequest(RequestDTO newRequest);
 
-        void UpdateRequest(Request request);
+        void UpdateRequest(Request currentRequest, string requestName, string description, string contactPhone,
+            string contactEmail, string location, List<int> selectedCategoryIds);
 
         void DeleteRequest(int requestId);
 

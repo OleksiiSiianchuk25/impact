@@ -222,7 +222,7 @@
                                         CanUserResize="False"
                                         Binding="{Binding Email}"
                                         FontFamily="Dubai"
-                                        FontSize="25">
+                                        FontSize="25" CanUserReorder="False" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -235,7 +235,7 @@
                                         CanUserResize="False"
                                         Binding="{Binding PhoneNumber}"
                                         FontFamily="Dubai"
-                                        FontSize="25">
+                                        FontSize="25" CanUserReorder="False" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -249,7 +249,7 @@
                                         CanUserResize="False"
                                         Binding="{Binding LastName}"
                                         FontSize="25"
-                                        FontFamily="Dubai">
+                                        FontFamily="Dubai" CanUserReorder="False" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -259,11 +259,12 @@
                     </DataGridTextColumn>
 
 
-                    <DataGridTemplateColumn Header="Змінити" Width="200">
+                    <DataGridTemplateColumn Header="Змінити" Width="200" CanUserReorder="False" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Style="{StaticResource TransparentButtonStyle}">
+                                    <Button Style="{StaticResource TransparentButtonStyle}" 
+                                            Click="EditButton_Click">
                                         <Image Source="/Images/editUser.png">
                                             <Image.Style>
                                                 <Style TargetType="Image">
@@ -290,7 +291,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Видалити" Width="204">
+                    <DataGridTemplateColumn Header="Видалити" Width="204" CanUserReorder="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

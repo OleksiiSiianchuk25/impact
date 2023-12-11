@@ -1,8 +1,6 @@
 ﻿using EfCore.context;
-using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
-using ImpactWPF.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,61 +23,54 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for ProfilePage.xaml
+    /// Interaction logic for EditOrdererPage.xaml
     /// </summary>
-    public partial class ProfilePage : Page
+    public partial class EditOrdererPage : Page
     {
-        private User currentUser;
-        private ObservableCollection<String> petCollection = new ObservableCollection<String>();
         private readonly UserServiceImpl userService;
+        private ObservableCollection<String> petCollection = new ObservableCollection<String>();
+        private User currentUser;
+        private string currentUserRole;
 
-        public ProfilePage()
+        public EditOrdererPage(AdminOrdPage.UserT user)
         {
             InitializeComponent();
-
             PetCollection.Add("Волонтер");
             PetCollection.Add("Замовник");
-            if (UserSession.Instance.UserRole == "ROLE_ADMIN")
-            {
-                PetCollection.Add("Адмін");
-            }
 
             userService = new UserServiceImpl(new ImpactDbContext());
-            Loaded += ProfilePage_Loaded;
-            roleUpdate.SelectionChanged += RoleRegistation_SelectionChanged;
+            currentUser = userService.GetUserByEmail(user.Email);
+
+            currentUserRole = userService.GetUserRoleByEmail(currentUser.Email).RoleName;
+            Loaded += EditOrdererPage_Loaded;
+            roleUpdate.SelectionChanged += RoleEditPage_SelectionChanged;
         }
 
-        private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditOrdererPage_Loaded(object sender, RoutedEventArgs e)
         {
-            string selectedRole = roleUpdate.SelectedItem as string;
-            UpdatedRoleTextBlock.Text = selectedRole;
-            UpdatedRoleTextBlock.Foreground = Brushes.Black;
-        }
-
-        private void ProfilePage_Loaded(object sender, RoutedEventArgs e)
-        {
-            currentUser = userService.GetUserByEmail(UserSession.Instance.UserEmail);
-            string currentUserRole = UserSession.Instance.UserRole;
-
             emailUpdate.tbInput.Text = currentUser.Email;
             lastnameUpdate.tbInput.Text = currentUser.LastName;
             firstnameUpdate.tbInput.Text = currentUser.FirstName;
             middlenameUpdate.tbInput.Text = currentUser.MiddleName;
             phoneNumberUpdate.tbInput.Text = currentUser.PhoneNumber;
+
             if (currentUserRole == "ROLE_VOLUNTEER")
             {
                 roleUpdate.SelectedItem = "Волонтер";
-                
-            }   
-            else if (currentUserRole == "ROLE_ADMIN")
-            {
-                roleUpdate.SelectedItem = "Адмін";
+
             }
             else
             {
                 roleUpdate.SelectedItem = "Замовник";
             }
-            
+
+        }
+
+        private void RoleEditPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedRole = roleUpdate.SelectedItem as string;
+            UpdatedRoleTextBlock.Text = selectedRole;
+            UpdatedRoleTextBlock.Foreground = Brushes.Black;
         }
 
         public ObservableCollection<string> PetCollection
@@ -113,6 +104,7 @@ namespace ImpactWPF.Pages
                 UserMenuGrid.Visibility = Visibility.Collapsed;
             }
         }
+
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new HomePage());
@@ -154,39 +146,15 @@ namespace ImpactWPF.Pages
                 string userPhoneNumber = phoneNumberUpdate.tbInput.Text;
                 string userRole = roleUpdate.SelectedItem as string;
 
-                if (!string.IsNullOrEmpty(passwordUpdate.pbInput.Password))
-                {
-                    if (passwordUpdate.pbInput.Password != confirmPasswordUpdate.pbInput.Password)
-                    {
-                        throw new InvalidOperationException("Пароль та його підтвердження не співпадають.");
-                    }
+                userService.AdminUpdateUserData(currentUser, userEmail, userLastName, userFirstName, userMiddleName, userPhoneNumber, userRole);
 
-                    if (!IsPasswordValid(passwordUpdate.pbInput.Password))
-                    {
-                        MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
-                        return;
-                    }
-
-                    string userPassword = new string(passwordUpdate.pbInput.Password);
-                    userService.UpdateUserPassword(currentUser, userPassword);
-                }
-
-                userService.UpdateUserData(currentUser, userEmail, userLastName, userFirstName, userMiddleName, userPhoneNumber, userRole);
-
-                MessageBox.Show("Ви успішно відредагували профіль!");
-                NavigationService?.Navigate(new HomePage());
+                MessageBox.Show("Ви успішно відредагували замовника!");
+                NavigationService?.Navigate(new AdminOrdPage());
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Виникла помилка: {ex.Message}");
             }
-        }
-
-        private bool IsPasswordValid(string password)
-        {
-            Regex regex = new Regex(@"^(?=.*[0-9])(?=.*[A-Z]).{8,}$
-");
-            return regex.IsMatch(password);
         }
 
         private bool IsPhoneNumberValid(string name)

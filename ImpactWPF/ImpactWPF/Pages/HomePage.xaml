@@ -10,22 +10,7 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="HomePage"
       Background="#FEFDFD">
-    <Page.Resources>
-        <Style x:Key="RectangleStyle" TargetType="Rectangle">
-            <Setter Property="RadiusX" Value="15" />
-            <Setter Property="RadiusY" Value="15" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Width" Value="358" />
-            <Setter Property="Height" Value="313" />
-            <Setter Property="Fill" Value="#FFFFF9C2" />
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
+
     <Grid>
         <Grid>
             <Rectangle RadiusX="15" RadiusY="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="358" Height="81" Fill="#F8F8F8"  Margin="1402,157,0,0" >
@@ -355,25 +340,24 @@
         <Grid>
             <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Margin="160,371,108,-10">
                 <Grid>
-                    <UniformGrid Columns="4" Rows="4" Margin="1,1,1,1">
-                        <!-- Row 1: Cards -->
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0" />
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <!-- Row 2: Cards -->
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <!-- Add more rows as needed -->
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-                        <Rectangle Style="{StaticResource RectangleStyle}" Margin="0,35,0,0"/>
-
-                    </UniformGrid>
-                    <Button Width="352" HorizontalAlignment="Center" Margin="0,1093,0,0" Background="#D8E0FF" BorderBrush="Transparent" BorderThickness="0" Content="Завантажити ще" Height="81" VerticalAlignment="Top" FontSize="30" FontWeight="Bold">
+                    <ItemsControl ItemsSource="{Binding Requests}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="4" Rows="3" Margin="1,1,1,1"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <userControls:HomeCardControl Request="{Binding}" Margin="0,35,0,0"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Width="352" HorizontalAlignment="Center"
+                            Margin="0,1093,0,0" Background="#D8E0FF"
+                            BorderBrush="Transparent" BorderThickness="0" 
+                            Content="Завантажити ще" Height="81" VerticalAlignment="Top"
+                            FontSize="30" FontWeight="Bold"
+                            Click="Button_LoadMore_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#002861" />
@@ -495,7 +479,8 @@
                     <ColumnDefinition   />
                 </Grid.ColumnDefinitions>
 
-                <Border Background="#F8F8F8" CornerRadius="15" Grid.RowSpan="9" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Border Background="#F8F8F8" CornerRadius="15" Grid.RowSpan="9"
+                        Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
                     <Border.Style>
                         <Style TargetType="Border">
@@ -526,7 +511,7 @@
                 <userControls:FilterControl Grid.Row="6" Grid.Column="7" Width="272" Height="51" Placeholder="гуманітарна допомога" ButtonImageSource="/images/humanitarka.png"/>
                 <userControls:FilterControl Grid.Row="7" Grid.Column="8" Width="272" Height="51" Placeholder="інше" ButtonImageSource="/images/other.png"/>
 
-                <Button x:Name="clearButton"  Width="275" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Очистити" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Row="8"  >
+                <Button x:Name="clearButton"  Width="275" Height="61" HorizontalAlignment="Center" Background="#D8E0FF" BorderBrush="#002861" BorderThickness="2" Content="Очистити" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Row="8"  >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#002861" />
@@ -561,7 +546,7 @@
                     </Button.Style>
                 </Button>
 
-                <Button  Width="275" Height="61" HorizontalAlignment="Center" Background="#FEFDFD" BorderBrush="#002861" BorderThickness="2" Content="Застосувати" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Column="1" Grid.Row="8">
+                <Button  Width="275" Height="61" HorizontalAlignment="Center" Background="#D8E0FF" BorderBrush="#002861" BorderThickness="2" Content="Застосувати" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Grid.Column="1" Grid.Row="8">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#002861" />
