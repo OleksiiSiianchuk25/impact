@@ -47,6 +47,10 @@ public partial class ImpactDbContext : DbContext
             entity.Property(e => e.ContactPhone)
                 .HasMaxLength(20)
                 .HasColumnName("contact_phone");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(CURRENT_TIMESTAMP AT TIME ZONE 'UTC'::text)")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("created_at");
             entity.Property(e => e.CreatorUserRef).HasColumnName("creator_user_ref");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.Location)

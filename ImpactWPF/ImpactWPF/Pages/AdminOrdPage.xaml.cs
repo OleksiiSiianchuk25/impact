@@ -118,5 +118,16 @@ namespace ImpactWPF.Pages
             public string PhoneNumber { get; set; }
             public string LastName { get; set; }
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserT user = (UserT)userDataGrid.SelectedItem;
+
+            if (user != null)
+            {
+                EditOrdererPage editOrdererPage = new EditOrdererPage(user);
+                NavigationService.Navigate(editOrdererPage);
+            }
+        }
     }
 }

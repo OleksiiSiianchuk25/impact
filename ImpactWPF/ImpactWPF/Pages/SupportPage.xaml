@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ImpactWPF.Pages"
       xmlns:userControls="clr-namespace:ImpactWPF.Controls"
       xmlns:controls="clr-namespace:ImpactWPF.View.UserControls" 
+      xmlns:efcore="clr-namespace:EfCore.entity;assembly=EfCore"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="SupportPage"
@@ -23,23 +24,69 @@
             <TextBlock Text="Нове замовлення" 
                        Margin="1329,43,0,0" VerticalAlignment="Top"
                        HorizontalAlignment="Left" FontSize="26" FontWeight="Bold"
-                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown"/>
+                       MouseLeftButtonDown="CreateOrderPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ORDERER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
             <TextBlock Text="Нова пропозиція" Margin="1065,43,0,0"
                        VerticalAlignment="Top" HorizontalAlignment="Left"
                        FontSize="26" FontWeight="Bold"
-                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown"/>
+                       MouseLeftButtonDown="CreateProposalPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_VOLUNTEER">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
-            <TextBlock Text="Напишіть нам" Margin="1601,43,0,0"
+            <TextBlock Text="Користувачі" Margin="1407,43,0,0"
                        VerticalAlignment="Top" HorizontalAlignment="Left"
                        FontSize="26" FontWeight="Bold"
-                       MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
+                       MouseLeftButtonDown="AdminPage_MouseLeftButtonDown">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=UserRole, Source={x:Static efcore:UserSession.Instance}}" 
+                                         Value="ROLE_ADMIN">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBlock Text="Напишіть нам"
+                           Margin="1601,43,0,0" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           FontSize="26" 
+                           FontWeight="Bold"
+                           MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
         </Grid>
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="99*"/>
-                <RowDefinition Height="187*"/>
-                <RowDefinition Height="74*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -49,9 +96,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Зворотній зв'язок" 
-                   Margin="10,234,0,0"
+                   Margin="10,212,0,0"
                    Width="307"
-                   Height="63"
+                   Height="62"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
                    FontFamily="Dubai Medium"
@@ -59,48 +106,48 @@
                    Foreground="#002861" Grid.Column="1"/>
 
             <TextBlock Text="Вкажіть тему*"
-                   Margin="10,6,0,0"
+                   Margin="10,280,0,0"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
-                   Foreground="#000000" FontSize="22" FontFamily="Dubai" Grid.Column="1" Grid.Row="1" Height="37" Width="138"
+                   Foreground="#000000" FontSize="22" FontFamily="Dubai" Grid.Column="1" Height="38" Width="138"
                    />
 
             <controls:CustomTextBox 
             x:Name="themeSupport"
             Width="970"
             Height="80"
-            Margin="0,48,0,0"
+            Margin="0,322,0,0"
             PlaceholderMargin="25, 0, 0, 0"
             InputMargin="25, 0, 0, 0"
             VerticalAlignment="Top" 
             HorizontalAlignment="Center" 
             Placeholder="Тема" 
-            Grid.Column="1" Grid.Row="1"/>
+            Grid.Column="1"/>
 
             <TextBlock Text="Напишіть нам*"
-                   Margin="10,149,0,0"
+                   Margin="10,424,0,0"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Left"
-                   Foreground="#000000" FontSize="22" FontFamily="Dubai" Grid.Column="1" Grid.Row="1" Height="37" Width="150"
+                   Foreground="#000000" FontSize="22" FontFamily="Dubai" Grid.Column="1" Height="36" Width="150"
                    />
 
             <controls:CustomTextBox 
             x:Name="textSupport"
             Width="970"
             Height="350"
-            Margin="0,186,0,0"
+            Margin="0,460,0,0"
             PlaceholderMargin="25, 0, 0, 265"
             InputMargin="25, 0, 0, 265"
             VerticalAlignment="Top" 
             HorizontalAlignment="Center" 
             Placeholder="Пропозиції, коментарі, запитання" 
-            Grid.Column="1" Grid.Row="1"/>
+            Grid.Column="1"/>
 
             <Button Content="Надіслати"
                 FontSize="24" HorizontalAlignment="Left" 
-                Margin="539,10,0,0" VerticalAlignment="Top"
+                Margin="539,853,0,0" VerticalAlignment="Top"
                 Width="440" Height="80" 
-                Grid.Column="1" Grid.Row="2" Click="SendButton_Click">
+                Grid.Column="1" Click="SendButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Foreground" Value="Black" />

@@ -1,4 +1,8 @@
-﻿using ImpactWPF.Controls;
+﻿using EfCore.context;
+using EfCore.entity;
+using EfCore.service.impl;
+using ImpactWPF.Controls;
+using ImpactWPF.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,13 +26,37 @@ namespace ImpactWPF.Pages
     /// </summary>
     public partial class HomePage : Page
     {
+        private readonly ImpactDbContext dbContext;
+        private readonly RequestServiceImpl requestService;
+        private readonly HomePageViewModel viewModel;
+
         public HomePage()
         {
             InitializeComponent();
 
+            dbContext = new ImpactDbContext();
+            requestService = new RequestServiceImpl(dbContext);
+
             // Встановлення по замовчуванні для кнопки "Пропозиції"
             SetButtonStyles(PropositionButton);
+
+
+            viewModel = new HomePageViewModel();
+            LoadInitialRequests();
+            DataContext = viewModel;
         }
+
+        private void LoadInitialRequests()
+        {
+            List<Request> initialRequests = requestService.GetActiveRequests(viewModel.PageSize);
+            viewModel.Requests = new ObservableCollection<Request>(initialRequests);
+        }
+
+        private void Button_LoadMore_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.LoadMoreRequests();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Отримання кнопки, яка була натиснута

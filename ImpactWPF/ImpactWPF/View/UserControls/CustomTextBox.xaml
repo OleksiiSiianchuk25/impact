@@ -41,6 +41,7 @@
                          Margin="49,0,0,0" 
                          Width="370"
                          Focusable="True"
-                         TextChanged="TbInput_TextChanged"/>
+                         TextChanged="TbInput_TextChanged"
+                        TextWrapping="Wrap"/>
     </Grid>
 </UserControl>

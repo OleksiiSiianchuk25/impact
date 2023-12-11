@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,11 +42,100 @@ namespace ImpactWPF
 
             userService = new UserServiceImpl(new ImpactDbContext());
 
-            // Додайте цей рядок, щоб підписатися на подію SelectionChanged
             roleRegistation.SelectionChanged += RoleRegistation_SelectionChanged;
+
         }
 
-        // Цей метод буде викликаний, коли користувач змінить вибір в ComboBox
+        private void PasswordRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userPassword = passwordRegistration.pbInput.Password;
+
+            if (!IsPasswordValid(userPassword))
+            {
+                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private bool IsPasswordValid(string password)
+        {
+            Regex regex = new Regex(@"^(?=.*[0-9])(?=.*[A-Z]).{8,}$");
+            return regex.IsMatch(password);
+        }
+
+        private void PhoneNumberRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userPhoneNumber = phoneNumberRegistration.tbInput.Text;
+
+            if (!IsPhoneNumberValid(userPhoneNumber))
+            {
+                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private bool IsPhoneNumberValid(string name)
+        {
+            Regex regex = new Regex(@"^\+?\d{1,4}?[-.\s]?\(?\d{1,}\)?[-.\s]?\d{1,}[-.\s]?\d{1,}$");
+            return regex.IsMatch(name);
+        }
+
+        private void MiddleNameRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userMiddleName = middlenameRegistration.tbInput.Text;
+
+            if (!IsValidName(userMiddleName))
+            {
+                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private void FirstNameRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userFirstName = firstnameRegistration.tbInput.Text;
+
+            if (!IsValidName(userFirstName))
+            {
+                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private void LastNameRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userLastName = lastnameRegistration.tbInput.Text;
+
+            if (!IsValidName(userLastName))
+            {
+                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private bool IsValidName(string name)
+        {
+            Regex regex = new Regex(@"^[a-zA-Zа-яА-ЯїЇіІєЄґҐ'`]+$");
+            return regex.IsMatch(name);
+        }
+
+        private void EmailRegistration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string userEmail = emailRegistration.tbInput.Text;
+
+            if (!IsValidEmail(userEmail))
+            {
+                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
+                emailRegistration.tbInput.Clear();
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            Regex regex = new Regex(@"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$");
+            return regex.IsMatch(email);
+        }
+
         private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedRole = roleRegistation.SelectedItem as string;
@@ -83,6 +173,11 @@ namespace ImpactWPF
         {
             try
             {
+                if (!ValidateFields())
+                {
+                    return;
+                }
+
                 string userEmail = emailRegistration.tbInput.Text; 
 
                 if (userService.GetUserByEmail(userEmail) != null)
@@ -113,6 +208,53 @@ namespace ImpactWPF
             {
                 MessageBox.Show($"Виникла помилка: {ex.Message}");
             }
+        }
+
+        private bool ValidateFields()
+        {
+            if (!IsValidEmail(emailRegistration.tbInput.Text))
+            {
+                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
+                return false;
+            }
+
+            if (!IsValidName(firstnameRegistration.tbInput.Text))
+            {
+                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!");
+                return false;
+            }
+
+            if (!IsValidName(lastnameRegistration.tbInput.Text))
+            {
+                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!");
+                return false;
+            }
+
+            if (!IsValidName(middlenameRegistration.tbInput.Text))
+            {
+                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!");
+                return false;
+            }
+
+            if (!IsPhoneNumberValid(phoneNumberRegistration.tbInput.Text))
+            {
+                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
+                return false;
+            }
+
+            if (!IsPasswordValid(passwordRegistration.pbInput.Password))
+            {
+                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
+                return false;
+            }
+
+            if (roleRegistation.SelectedItem == null)
+            {
+                MessageBox.Show("Будь ласка, оберіть роль!");
+                return false;
+            }
+
+            return true;
         }
 
         private int GetRoleIdFromRoleName(string roleName)

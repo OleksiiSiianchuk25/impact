@@ -1,12 +1,13 @@
 ﻿using EfCore.context;
 using EfCore.entity;
+using EfCore.service.impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfCore.service.impl
+namespace EFCore.service.impl
 {
     public class AuthServiceImpl
     {

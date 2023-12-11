@@ -1,4 +1,5 @@
 ﻿using EfCore.context;
+using EfCore.service.impl;
 
 namespace EfCore
 {
@@ -6,12 +7,7 @@ namespace EfCore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
 
-            using (ImpactDbContext impact = new ImpactDbContext())
-            {
-                Console.WriteLine(impact.Roles.Find(1).RoleName); 
-            } 
         }
     }
 }

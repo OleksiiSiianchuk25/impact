@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿    using System;
+    using System.Collections.Generic;
 
-namespace EfCore.entity;
+    namespace EfCore.entity;
 
-public partial class Request
-{
-    public int RequestId { get; set; }
+    public partial class Request
+    {
+        public int RequestId { get; set; }
 
-    public string RequestName { get; set; } = null!;
+        public string RequestName { get; set; } = null!;
 
-    public string Description { get; set; } = null!;
+        public string Description { get; set; } = null!;
 
-    public string Location { get; set; } = null!;
+        public string Location { get; set; } = null!;
 
-    public int? CreatorUserRef { get; set; }
+        public int? CreatorUserRef { get; set; }
 
-    public string ContactPhone { get; set; } = null!;
+        public string ContactPhone { get; set; } = null!;
 
-    public string ContactEmail { get; set; } = null!;
+        public string ContactEmail { get; set; } = null!;
 
-    public int RoleRef { get; set; }
+        public int RoleRef { get; set; }
 
-    public int? RequestStatusId { get; set; }
+        public int? RequestStatusId { get; set; }
 
-    public virtual User? CreatorUserRefNavigation { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-    public virtual RequestStatus? RequestStatus { get; set; }
+        public virtual User? CreatorUserRefNavigation { get; set; }
 
-    public virtual RequestRole RoleRefNavigation { get; set; } = null!;
+        public virtual RequestStatus? RequestStatus { get; set; }
 
-    public virtual ICollection<RequestCategory> Categories { get; set; } = new List<RequestCategory>();
-}
+        public virtual RequestRole RoleRefNavigation { get; set; } = null!;
+
+        public virtual ICollection<RequestCategory> Categories { get; set; } = new List<RequestCategory>();
+    }

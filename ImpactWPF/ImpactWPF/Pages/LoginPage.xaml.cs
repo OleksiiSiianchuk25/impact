@@ -1,5 +1,6 @@
 ﻿using EfCore.entity;
 using EfCore.service.impl;
+using EFCore.service.impl;
 using ImpactWPF.Pages;
 using System;
 using System.Collections.Generic;
@@ -28,16 +29,17 @@ namespace ImpactWPF
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            MyProgressBar.Visibility = Visibility.Visible;
+
             string email = userEmailLogin.tbInput.Text;
             string password = userPasswordLogin.pbInput.Password;
 
             AuthServiceImpl authService = new AuthServiceImpl(new EfCore.context.ImpactDbContext());
-            if (authService.AuthenticateUser(email, password))
+            if (await Task.Run(() => authService.AuthenticateUser(email, password)))
             {
-                MessageBox.Show("Авторизація успішна!");
-                string role = authService.GetUserRoleByEmail(email).RoleName; 
+                string role = authService.GetUserRoleByEmail(email).RoleName;
                 UserSession.Instance.Login(email, role);
                 NavigationService?.Navigate(new HomePage());
             }
@@ -45,7 +47,10 @@ namespace ImpactWPF
             {
                 MessageBox.Show("Неправильна адреса електронної пошти або пароль.");
             }
+
+            MyProgressBar.Visibility = Visibility.Collapsed;
         }
+
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {

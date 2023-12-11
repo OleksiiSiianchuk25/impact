@@ -133,5 +133,16 @@ namespace ImpactWPF.Pages
             public string Email { get; set; }
             public string Type { get; set; }
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            RequestT request = (RequestT)requestDataGrid.SelectedItem;
+
+            if (request != null)
+            {
+                EditRequest editRequest = new EditRequest(request);
+                NavigationService.Navigate(editRequest);
+            }
+        }
     }
 }
