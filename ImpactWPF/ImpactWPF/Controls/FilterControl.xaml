@@ -32,7 +32,9 @@
                 </Style>
             </Button.Style>
 
-            <ToggleButton Checked="ImageButton_Checked" Unchecked="ImageButton_Unchecked" Margin="200,0,0,0">
+            <ToggleButton Checked="ImageButton_Checked" 
+                          Unchecked="ImageButton_Unchecked"
+                          Margin="200,0,0,0">
                 <ToggleButton.Resources>
                     <!-- Створення стилю для ToggleButton -->
                     <Style TargetType="{x:Type ToggleButton}">

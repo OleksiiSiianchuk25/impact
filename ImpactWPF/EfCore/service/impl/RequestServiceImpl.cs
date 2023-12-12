@@ -169,6 +169,35 @@ namespace EfCore.service.impl
                 .FirstOrDefault(r => EF.Functions.ILike(r.RequestName, $"%{requestName}%"));
         }
 
+        public List<Request> GetRequestsByName(string searchTerm, int pageSize)
+        {
+            return context.Requests
+                .Where(r => r.RequestName.Contains(searchTerm))
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public List<Request> GetPropositionsByName(string searchTerm, int pageSize)
+        {
+            return context.Requests
+                .Where(r => r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId &&
+                            r.RoleRefNavigation.RoleName == requestRoleService.GetPropositionRequestRole().RoleName &&
+                            r.RequestName.Contains(searchTerm))
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public List<Request> GetOrdersByName(string searchTerm, int pageSize)
+        {
+            return context.Requests
+                .Where(r => r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId &&
+                            r.RoleRefNavigation.RoleName == requestRoleService.GetOrderRequestRole().RoleName &&
+                            r.RequestName.Contains(searchTerm))
+                .Take(pageSize)
+                .ToList();
+        }
+
+
         public List<string> GetRequestCategoriesNames(int requestId)
         {
             try
@@ -211,24 +240,6 @@ namespace EfCore.service.impl
 
         public List<Request> GetMoreRequests(int currentPage, int pageSize)
         {
-            /*try
-            {
-                int startIndex = (currentPage - 1) * pageSize;
-
-                List<Request> moreRequests = context.Requests
-                    .Where(r => r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
-                    .OrderByDescending(r => r.CreatedAt) 
-                    .Skip(startIndex)
-                    .Take(pageSize)
-                    .ToList();
-
-                return moreRequests;
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException($"Error getting more requests: {ex.Message}");
-            }*/
-
             int skipCount = (currentPage - 1) * pageSize;
             return context.Requests
                 .Where(r => r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
@@ -238,5 +249,63 @@ namespace EfCore.service.impl
                 .ToList();
         }
 
+        public List<Request> GetMoreActivePropositions(int currentPage, int pageSize)
+        {
+            int skipCount = (currentPage - 1) * pageSize;
+            return context.Requests
+                .Where(r => r.RoleRefNavigation.RoleName == requestRoleService.GetPropositionRequestRole().RoleName &&
+                            r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                .OrderByDescending(r => r.CreatedAt)
+                .Skip(skipCount)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public List<Request> GetMoreActiveOrders(int currentPage, int pageSize)
+        {
+            int skipCount = (currentPage - 1) * pageSize;
+            return context.Requests
+                .Where(r => r.RoleRefNavigation.RoleName == requestRoleService.GetOrderRequestRole().RoleName &&
+                            r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                .OrderByDescending(r => r.CreatedAt)
+                .Skip(skipCount)
+                .Take(pageSize)
+                .ToList();
+        }
+
+
+        public List<Request> GetActivePropositions(int pageSize)
+        {
+            return context.Requests
+                .Where(r => r.RoleRefNavigation.RoleName == requestRoleService.GetPropositionRequestRole().RoleName &&
+                            r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public List<Request> GetActiveOrders(int pageSize)
+        {
+            return context.Requests
+                .Where(r => r.RoleRefNavigation.RoleName == requestRoleService.GetOrderRequestRole().RoleName &&
+                            r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                .Take (pageSize)
+                .ToList();
+        }
+
+        public List<Request> GetRequestsByCategories(List<int> categoryIds)
+        {
+            try
+            {
+                var filteredRequests = context.Requests
+                    .Where(r => r.Categories.Any(c => categoryIds.Contains(c.CategoryId)))
+                    .ToList();
+
+                return filteredRequests;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error getting requests by categories: {ex.Message}");
+            }
+        }
     }
 }

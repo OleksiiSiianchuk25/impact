@@ -25,6 +25,15 @@ namespace ImpactWPF.Controls
             InitializeComponent();
         }
 
+        public static readonly DependencyProperty IsSelectedProperty =
+        DependencyProperty.Register("IsSelected", typeof(bool), typeof(FilterControl), new PropertyMetadata(false));
+
+        public bool IsSelected
+        {
+            get { return (bool)GetValue(IsSelectedProperty); }
+            set { SetValue(IsSelectedProperty, value); }
+        }
+
         public static readonly DependencyProperty ButtonImageSourceProperty =
             DependencyProperty.Register("ButtonImageSource", typeof(ImageSource), typeof(FilterControl));
 
@@ -46,35 +55,29 @@ namespace ImpactWPF.Controls
 
 
         private void ImageButton_Checked(object sender, RoutedEventArgs e)
-    {
-        System.Windows.Media.Color newColor = System.Windows.Media.Color.FromRgb(0xFF, 0xE8, 0x83);
-        Filter.Background = new SolidColorBrush(newColor);
-        Filter.BorderBrush = new SolidColorBrush(newColor);
+        {
+            System.Windows.Media.Color newColor = System.Windows.Media.Color.FromRgb(0xFF, 0xE8, 0x83);
+            Filter.Background = new SolidColorBrush(newColor);
+            Filter.BorderBrush = new SolidColorBrush(newColor);
 
-        double centerX = ButtonImage.ActualWidth / 2;
-        double centerY = ButtonImage.ActualHeight / 2;
+            double centerX = ButtonImage.ActualWidth / 2;
+            double centerY = ButtonImage.ActualHeight / 2;
 
-        // Rotate the image by 45 degrees around its center
-        ((RotateTransform)ButtonImage.RenderTransform).CenterX = centerX;
-        ((RotateTransform)ButtonImage.RenderTransform).CenterY = centerY;
-        ((RotateTransform)ButtonImage.RenderTransform).Angle = 45;
+            // Rotate the image by 45 degrees around its center
+            ((RotateTransform)ButtonImage.RenderTransform).CenterX = centerX;
+            ((RotateTransform)ButtonImage.RenderTransform).CenterY = centerY;
+            ((RotateTransform)ButtonImage.RenderTransform).Angle = 45;
+        }
+
+
+        private void ImageButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Color newColor = System.Windows.Media.Color.FromRgb(0xFF, 0xE8, 0x83);
+            Filter.Background = Brushes.White;
+            Filter.BorderBrush = new SolidColorBrush(newColor);
+
+            // Reset the rotation when unchecked
+            ((RotateTransform)ButtonImage.RenderTransform).Angle = 0;
+        }
     }
-
-
-    private void ImageButton_Unchecked(object sender, RoutedEventArgs e)
-    {
-        System.Windows.Media.Color newColor = System.Windows.Media.Color.FromRgb(0xFF, 0xE8, 0x83);
-        Filter.Background = Brushes.White;
-        Filter.BorderBrush = new SolidColorBrush(newColor);
-
-        // Reset the rotation when unchecked
-        ((RotateTransform)ButtonImage.RenderTransform).Angle = 0;
-    }
-
-      
-    }
-
-
-    
-
 }

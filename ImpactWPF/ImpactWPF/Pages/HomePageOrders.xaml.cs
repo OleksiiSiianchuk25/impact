@@ -1,7 +1,6 @@
 ﻿using EfCore.context;
 using EfCore.entity;
 using EfCore.service.impl;
-using ImpactWPF.Controls;
 using ImpactWPF.View;
 using System;
 using System.Collections.Generic;
@@ -22,26 +21,32 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for HomePageOrders.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePageOrders : Page
     {
         private readonly ImpactDbContext dbContext;
         private readonly RequestServiceImpl requestService;
-        private readonly HomePageViewModel viewModel;
+        private readonly HomePageOrdersViewModel viewModel;
 
-        public HomePage()
+        public HomePageOrders()
         {
             InitializeComponent();
 
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
 
-            SetButtonStyles(PropositionButton);
+            SetButtonStyles(OrderButton);
 
-            viewModel = new HomePageViewModel(this);
+            viewModel = new HomePageOrdersViewModel(this);
             viewModel.LoadInitialRequests();
             DataContext = viewModel;
+        }
+
+        private void LoadInitialRequests()
+        {
+            List<Request> initialRequests = requestService.GetActiveOrders(viewModel.PageSize);
+            viewModel.Requests = new ObservableCollection<Request>(initialRequests);
         }
 
         private void Button_LoadMore_Click(object sender, RoutedEventArgs e)
@@ -49,7 +54,11 @@ namespace ImpactWPF.Pages
             viewModel.LoadMoreRequests();
         }
 
-
+        private void nameInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Отримання тексту з текстового поля
+            viewModel.SearchTerm = nameInput.Text;
+        }
 
         public Button GetLoadMoreButton()
         {
@@ -58,14 +67,17 @@ namespace ImpactWPF.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // Отримання кнопки, яка була натиснута
             var clickedButton = (Button)sender;
 
+            // Зміна стилів для обраної кнопки
             SetButtonStyles(clickedButton);
 
+            // Зміна стилів для іншої кнопки
             var otherButton = (clickedButton == PropositionButton) ? OrderButton : PropositionButton;
             ClearButtonStyles(otherButton);
 
-            NavigationService?.Navigate(new HomePageOrders());
+            NavigationService?.Navigate(new HomePage());
         }
 
         private void SetButtonStyles(Button button)
@@ -125,13 +137,6 @@ namespace ImpactWPF.Pages
             }
         }
 
-        private void nameInput_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Отримання тексту з текстового поля
-            viewModel.SearchTerm = nameInput.Text;
-        }
-
-
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (myGrid.Visibility == Visibility.Collapsed)
@@ -154,6 +159,7 @@ namespace ImpactWPF.Pages
         {
             // Handle MouseLeave event if needed
         }
+
 
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

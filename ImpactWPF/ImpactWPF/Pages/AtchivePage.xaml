@@ -500,12 +500,18 @@
                        MouseLeftButtonDown="SupportPage_MouseLeftButtonDown"/>
         </Grid>
         <Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Margin="160,371,108,-10">
+                <Grid>
+                   
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="221*"/>
-                <RowDefinition Height="88*"/>
-                <RowDefinition Height="630*"/>
-                <RowDefinition Height="69*"/>
-                <RowDefinition Height="85*"/>
+                <RowDefinition Height="218*"/>
+                <RowDefinition Height="87*"/>
+                <RowDefinition Height="775*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="141*"/>
@@ -515,7 +521,7 @@
                 <ColumnDefinition Width="141*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="ArchivePropositionButton" Content="Пропозиції" FontSize="35"  Click="ArchiveButton_Click" Width="596" Height="80" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1">
+            <Button x:Name="ArchivePropositionButton" Content="Пропозиції" FontSize="35"  Click="ArchiveButton_Click" Width="596" Height="80" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="138,0,0,0" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#D8E0FF" />
@@ -543,7 +549,7 @@
                 </Button.Style>
             </Button>
 
-            <Button x:Name="ArchiveOrderButton" Content="Замовлення" FontSize="35"  Click="ArchiveButton_Click" Width="596" Height="80" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3">
+            <Button x:Name="ArchiveOrderButton" Content="Замовлення" FontSize="35"  Click="ArchiveButton_Click" Width="596" Height="80" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,138,0" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#D8E0FF" />
@@ -571,7 +577,7 @@
                 </Button.Style>
             </Button>
 
-            <Button  Content="Фільтр" FontSize="35" Width="364" Height="80" Grid.Row="1" Grid.Column="2" Click="ArchiveFilterButtonClick" >
+            <Button  Content="Фільтр" FontSize="35" Width="364" Height="80" Grid.Row="1" Grid.Column="2" Click="ArchiveFilterButtonClick" Margin="16,4,16,3" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#F8F8F8" />
@@ -623,47 +629,7 @@
 
 
 
-            <Button Width="351" Height="62" HorizontalAlignment="Center"  Background="#D8E0FF" BorderBrush="Transparent" BorderThickness="0" Content="Завантажити ще" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" Grid.Row="3" Grid.Column="2">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#002861" />
-                        <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid>
-                                        <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="15">
-                                            <Grid>
-                                                <TextBlock Text="{TemplateBinding Content}" Margin="60,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="196" FontSize="22"/>
-                                                <Image x:Name="ButtonImage" Source="/Images/dowload.png" Margin="247,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="48" Width="51"/>
-                                            </Grid>
-                                        </Border>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="ButtonBorder" Property="Background" Value="#002861" />
-                                            <Setter Property="Foreground" Value="White" />
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="ButtonBorder" Property="Background" Value="#002861" />
-                                            <Setter Property="Foreground" Value="White" />
-                                            <Setter TargetName="ButtonImage" Property="Source" Value="/Images/dowload2.png"/>
-                                            <!-- Change to the path of the new image -->
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="7" Opacity="0.5" />
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-            </Button>
+
 
         </Grid>
 
@@ -686,18 +652,11 @@
                 <ColumnDefinition Width="141*"/>
             </Grid.ColumnDefinitions>
 
-
-            <userControls:ArchiveCardControl1 Grid.Column="1" Grid.Row="1" Margin="0,0,36,10" />
-            <userControls:ArchiveCardControl1 Grid.Column="2" Grid.Row="1" Margin="12,0,24,10"/>
-            <userControls:ArchiveCardControl1 Grid.Column="3" Grid.Row="1" Margin="24,0,12,10"/>
-            <userControls:ArchiveCardControl1 Grid.Column="4" Grid.Row="1" Margin="36,0,0,10"/>
-
-
         </Grid>
 
 
 
-        <Grid x:Name="DeactivateGrid" Height="1080" VerticalAlignment="Bottom" >
+        <Grid x:Name="DeactivateGrid" Height="1080" VerticalAlignment="Bottom" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="201*"/>
                 <RowDefinition Height="142*"/>
