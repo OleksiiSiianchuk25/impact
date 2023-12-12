@@ -9,12 +9,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows;
 
 namespace ImpactWPF.View
 {
-    class HomePageViewModel : INotifyPropertyChanged
+    public class HomePageOrdersViewModel : INotifyPropertyChanged
     {
         private readonly RequestServiceImpl requestService = new RequestServiceImpl(new ImpactDbContext());
         private ObservableCollection<Request> _requests;
@@ -22,76 +21,12 @@ namespace ImpactWPF.View
         private int _pageSize = 12;    // Number of requests per page
         private int _currentRowCount = 3;  // Initial number of rows
         private int _additionalRowCount = 3;  // Number of additional rows to load
-        private HomePage _homePage;
-/*
-        private ObservableCollection<CategoryViewModel> _categories;
+        private HomePageOrders _homePage;
 
-        public ObservableCollection<CategoryViewModel> Categories
-        {
-            get { return _categories; }
-            set
-            {
-                _categories = value;
-                OnPropertyChanged(nameof(Categories));
-            }
-        }*/
-
-        public HomePageViewModel(HomePage homePage)
+        public HomePageOrdersViewModel(HomePageOrders homePage)
         {
             _homePage = homePage;
             SearchTerm = string.Empty;
-            /*
-                        Categories = new ObservableCollection<CategoryViewModel>
-                        {
-                            new CategoryViewModel { Name = "медикаменти" },
-                            new CategoryViewModel { Name = "одяг" },
-                            new CategoryViewModel { Name = "збір коштів" },
-                            new CategoryViewModel { Name = "продукти харчування" },
-                            new CategoryViewModel { Name = "техніка" },
-                            new CategoryViewModel { Name = "донорство крові" },
-                            new CategoryViewModel { Name = "переклад" },
-                            new CategoryViewModel { Name = "психологічна допомога" },
-                            new CategoryViewModel { Name = "медична допомога" },
-                            new CategoryViewModel { Name = "юридична допомога" },
-                            new CategoryViewModel { Name = "вантажні перевезення" },
-                            new CategoryViewModel { Name = "військові потреби" },
-                            new CategoryViewModel { Name = "допомога тваринам" },
-                            new CategoryViewModel { Name = "житло" },
-                            new CategoryViewModel { Name = "гуманітарна допомога" },
-                            new CategoryViewModel { Name = "інше" }
-                        };*/
-        }
-
-        private string _searchTerm;
-
-        public string SearchTerm
-        {
-            get { return _searchTerm; }
-            set
-            {   
-                _searchTerm = value;
-                OnPropertyChanged(nameof(SearchTerm));
-                PerformSearch(_searchTerm);
-            }
-        }
-
-        public void LoadInitialRequests()
-        {
-            List<Request> initialRequests = requestService.GetActivePropositions(PageSize);
-            Requests = new ObservableCollection<Request>(initialRequests);
-        }
-
-        private void PerformSearch(string searchTerm)
-        {
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                List<Request> searchResults = requestService.GetPropositionsByName(searchTerm, PageSize);
-                Requests = new ObservableCollection<Request>(searchResults);
-            }
-            else
-            {
-                LoadInitialRequests();
-            }
         }
 
         public int PageSize
@@ -101,6 +36,39 @@ namespace ImpactWPF.View
             {
                 _pageSize = value;
                 OnPropertyChanged(nameof(PageSize));
+            }
+        }
+
+
+        private string _searchTerm;
+
+        public string SearchTerm
+        {
+            get { return _searchTerm; }
+            set
+            {
+                _searchTerm = value;
+                OnPropertyChanged(nameof(SearchTerm));
+                PerformSearch(_searchTerm);
+            }
+        }
+
+        public void LoadInitialRequests()
+        {
+            List<Request> initialRequests = requestService.GetActiveOrders(PageSize);
+            Requests = new ObservableCollection<Request>(initialRequests);
+        }
+
+        private void PerformSearch(string searchTerm)
+        {
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                List<Request> searchResults = requestService.GetOrdersByName(searchTerm, PageSize);
+                Requests = new ObservableCollection<Request>(searchResults);
+            }
+            else
+            {
+                LoadInitialRequests();
             }
         }
 
@@ -143,7 +111,7 @@ namespace ImpactWPF.View
 
         public void LoadMoreRequests()
         {
-            List<Request> moreRequests = requestService.GetMoreActivePropositions(_currentPage, _pageSize);
+            List<Request> moreRequests = requestService.GetMoreActiveOrders(_currentPage, _pageSize);
 
             if (moreRequests.Any())
             {
@@ -153,17 +121,17 @@ namespace ImpactWPF.View
                 }
                 _currentPage++;
 
-                if(moreRequests.Count < 4)
+                if (moreRequests.Count < 4)
                 {
                     CurrentRowCount += 1;
                 }
-                else if(moreRequests.Count < 7)
+                else if (moreRequests.Count < 7)
                 {
                     CurrentRowCount += 2;
                 }
                 else
                 {
-                    CurrentRowCount += AdditionalRowCount; 
+                    CurrentRowCount += AdditionalRowCount;
                 }
 
                 double newMarginTop = 133 + (CurrentRowCount) * 360;

@@ -7,24 +7,38 @@
              mc:Ignorable="d" 
              d:DesignHeight="313" d:DesignWidth="358">
     <Grid>
+        <Grid>
 
-        <Rectangle x:Name="rectangle" Style="{StaticResource RectangleStyle}" />
+            <Rectangle x:Name="rectangle" Style="{StaticResource RectangleStyle}" />
 
-        <Image Source="/images/date.png" HorizontalAlignment="Left" Margin="12,17,0,273" Width="24" Height="24.12" />
-        <Image Source="/images/location.png" HorizontalAlignment="Left" Margin="151,20,0,274" Width="17" Height="18.76"/>
-        <Image Source="/images/phone.png" HorizontalAlignment="Left" Margin="15.57,176,0,120" Width="15" Height="17"/>
+            <Image Source="/images/date.png" HorizontalAlignment="Left" Margin="12,17,0,273" Width="24" Height="24.12" />
+            <Image Source="/images/location.png" HorizontalAlignment="Left" Margin="151,17,0,277" Width="17" Height="18.76"/>
+            <Image Source="/images/phone.png" HorizontalAlignment="Left" Margin="15.57,176,0,120" Width="15" Height="17"/>
 
-        <TextBlock x:Name="requestNameTextBlock" Text="{Binding RequestName}" Grid.Row="1" Grid.Column="0" Margin="14.59,53.25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.ColumnSpan="3" Width="Auto" TextWrapping="Wrap"/>
+            <TextBlock x:Name="requestNameTextBlock" Text="{Binding RequestName}" Grid.Row="1" Grid.Column="0" Margin="14.59,53.25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.ColumnSpan="3" Width="300" TextWrapping="Wrap"/>
 
-        <TextBlock x:Name="descriptionTextBlock" Text="{Binding Description}" Margin="15,94,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto" TextWrapping="Wrap"/>
+            <TextBlock x:Name="descriptionTextBlock" Text="{Binding Description}" Margin="15,94,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Height="Auto" TextWrapping="Wrap"/>
 
-        <TextBlock x:Name="locationTextBlock" Text="{Binding Location}" Margin="170,22,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto" TextWrapping="Wrap" />
+            <TextBlock x:Name="locationTextBlock" Text="{Binding Location}" Margin="170,21,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="178" Height="Auto" TextWrapping="Wrap" />
 
-        <TextBlock Text="Контакти" Margin="36,172,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="82" FontSize="18"/>
-        <TextBlock x:Name="emailTextBlock" Text="{Binding ContactEmail}" Margin="18,203,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto"/>
-        <TextBlock x:Name="phoneTextBlock" Text="{Binding ContactPhone}" Grid.Row="1" Margin="18,226,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
+            <TextBlock Text="Контакти" Margin="36,172,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="82" FontSize="18"/>
+            <TextBlock x:Name="emailTextBlock" Text="{Binding ContactEmail}" Margin="18,203,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
+            <TextBlock x:Name="phoneTextBlock" Text="{Binding ContactPhone}" Grid.Row="1" Margin="18,226,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="300"/>
 
-        <TextBlock x:Name="dateTextBlock" Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Left" Margin="40,22,0,276" Width="Auto" Height="15"/>
+            <TextBlock x:Name="dateTextBlock" Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Left" Margin="40,22,0,276" Width="111" Height="15"/>
+        </Grid>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="251*"/>
+                <RowDefinition Height="31*"/>
+                <RowDefinition Height="31*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+        </Grid>
     </Grid>
 </UserControl>
