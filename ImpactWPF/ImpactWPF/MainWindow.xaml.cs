@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,15 +29,28 @@ namespace ImpactWPF
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new LoginPage());
+            mainFrame.Navigate(new Animation());
             WindowState = WindowState.Maximized;
+            anianimation.Play();
+
+            // Встановлюємо обробник події завершення анімації
+            anianimation.MediaEnded += MediaElement_MediaEnded;
 
             Logger.Info("Застосунок успішно запустився");
         }
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            // Обробка події завершення анімації
+            anianimation.Visibility = Visibility.Collapsed; 
+                                                            
 
-        public void NavigateToPage(Page page)
+            
+            mainFrame.Navigate(new LoginPage());
+        }        public void NavigateToPage(Page page)
         {
             mainFrame.Navigate(page);
         }
     }
 }
+    
+

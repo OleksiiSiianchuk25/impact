@@ -10,5 +10,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Frame Name="mainFrame" NavigationUIVisibility="Hidden" />
+        <Grid>
+            <MediaElement Name="anianimation" Source="C:\Users\annam\OneDrive\Документи\GitHub\repo\impact\ImpactWPF\ImpactWPF\media\impact_animation.mp4"  LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+        </Grid>
     </Grid>
 </Window>
