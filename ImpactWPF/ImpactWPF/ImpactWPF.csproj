@@ -59,6 +59,8 @@
     <None Remove="Images\translate.png" />
     <None Remove="Images\truck.png" />
     <None Remove="Images\userIcon.png" />
+    <None Remove="media\impactanimation.avi" />
+    <None Remove="media\impact_animation.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -225,6 +227,12 @@
     <Resource Include="Images\userIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="media\impact_animation.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="media\impactanimation.avi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

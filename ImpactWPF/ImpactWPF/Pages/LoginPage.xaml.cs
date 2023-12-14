@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,16 @@ namespace ImpactWPF
             Logger.Info("Сторінка входу успішно ініціалізована");
         }
 
+      
+
+        private void TestVideo_MediaFailed_1(object sender, ExceptionRoutedEventArgs e)
+        {
+            var details = $"Failed to load media: {e.ErrorException.Message}";
+
+            Debug.WriteLine(details);
+            MessageBox.Show(details);
+        }
+        
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             MyProgressBar.Visibility = Visibility.Visible;

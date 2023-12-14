@@ -11,7 +11,7 @@
       Background="#FEFDFD">
     <Grid Background="White">
 
-        <Grid>
+            <Grid>
             <userControls:CustomTextBox 
             x:Name="userEmailLogin"
             ImageSource="../Images/email.png"
@@ -163,6 +163,7 @@
                          IsIndeterminate="True"
                          Background="#002861" Visibility="Collapsed" Foreground="#FFF2F5F3"/>
         </Grid>
+       
     </Grid>
 
 </Page>
