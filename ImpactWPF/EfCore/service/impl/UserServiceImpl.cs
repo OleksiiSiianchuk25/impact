@@ -52,6 +52,7 @@ namespace EfCore.service.impl
             }
             return user;
         }
+
         public void DeleteUserById(int userId)
         {
             User user = GetUserById(userId);

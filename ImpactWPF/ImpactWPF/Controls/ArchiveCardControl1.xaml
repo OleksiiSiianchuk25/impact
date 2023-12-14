@@ -7,75 +7,79 @@
              mc:Ignorable="d" 
              d:DesignHeight="454" d:DesignWidth="370">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61*"/>
-            <ColumnDefinition Width="81*"/>
-            <ColumnDefinition Width="43*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="22*"/>
-            <RowDefinition Height="205*"/>
-        </Grid.RowDefinitions>
-        <Rectangle x:Name="rectangle" Fill="#FFFFF9C2" RadiusX="15" RadiusY="15" Grid.RowSpan="2" Grid.ColumnSpan="3" >
-            <Rectangle.Effect>
-                <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.5"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Image Source="/images/date.png" HorizontalAlignment="Left" Margin="10,12,0,3" Width="31" />
-        <Image Source="/images/location.png" Grid.Column="1" HorizontalAlignment="Left" Margin="1,12,0,3" Width="20"/>
-        <Image Source="/images/edit.png" Grid.Column="2" HorizontalAlignment="Left" Margin="5,6,0,0" Width="31" >
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
+        <Grid Margin="0,0,35,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="43*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22*"/>
+                <RowDefinition Height="205*"/>
+            </Grid.RowDefinitions>
+            <Rectangle x:Name="rectangle" Fill="#FFFFF9C2" RadiusX="15" RadiusY="15" Grid.RowSpan="2" Grid.ColumnSpan="3" >
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.5"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Image Source="/images/date.png" HorizontalAlignment="Left" Margin="10,12,0,3" Width="31" />
+            <Image Source="/images/location.png" Grid.Column="1" HorizontalAlignment="Left" Margin="1,12,0,3" Width="20"/>
+            <Image x:Name="editImage" Source="/images/edit.png" Grid.Column="2" 
+                   HorizontalAlignment="Left" Margin="5,6,0,0" Width="31" >
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
 
-        <Image x:Name="deactivateImage" Source="/images/deactivate.png" Grid.Column="2" HorizontalAlignment="Left" Margin="40,10,0,0" Width="31"  >
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Effect">
-                                <Setter.Value>
-                                    <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
+            <Image x:Name="deactivateImage" Source="/images/deactivate.png" Grid.Column="2"
+                   HorizontalAlignment="Left" Margin="40,10,0,0" Width="31"  >
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Transparent" ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Gray" ShadowDepth="3" BlurRadius="3" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
 
-        <TextBlock x:Name="requestNameTextBlock" Text="{Binding RequestName}" Grid.Row="1" Grid.Column="0" Margin="12,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.ColumnSpan="3" Width="Auto" TextWrapping="Wrap"/>
+            <TextBlock x:Name="requestNameTextBlock" Text="{Binding RequestName}" Grid.Row="1" Grid.Column="0" Margin="12,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Grid.ColumnSpan="3" Width="Auto" TextWrapping="Wrap"/>
 
-        <TextBlock x:Name="descriptionTextBlock" Text="{Binding Description}" Grid.Row="1" Margin="12,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto" Height="Auto" TextWrapping="Wrap"/>
+            <TextBlock x:Name="descriptionTextBlock" Text="{Binding Description}" Grid.Row="1" Margin="12,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="308" Height="Auto" TextWrapping="Wrap"/>
 
-        <TextBlock x:Name="locationTextBlock" Text="{Binding Location}" Grid.Column="1" Margin="26,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto" TextWrapping="Wrap" />
+            <TextBlock x:Name="locationTextBlock" Text="{Binding Location}" Grid.Column="1" Margin="26,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="Auto" Height="Auto" TextWrapping="Wrap" />
 
-        <TextBlock Grid.Row="1" Text="Контакти:" Margin="12,233,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="82" FontSize="18"/>
-        <TextBlock x:Name="emailTextBlock" Text="{Binding ContactEmail}" Grid.Row="1" Margin="12,262,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
-        <TextBlock x:Name="phoneTextBlock" Text="{Binding ContactPhone}" Grid.Row="1" Margin="12,287,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
+            <TextBlock Grid.Row="1" Text="Контакти:" Margin="12,233,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="82" FontSize="18"/>
+            <TextBlock x:Name="emailTextBlock" Text="{Binding ContactEmail}" Grid.Row="1" Margin="12,262,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
+            <TextBlock x:Name="phoneTextBlock" Text="{Binding ContactPhone}" Grid.Row="1" Margin="12,287,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="Auto"/>
 
-        <TextBlock x:Name="dateTextBlock" Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Left" Margin="43,16,0,6" Width="Auto"/>
+            <TextBlock x:Name="dateTextBlock" Text="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}" HorizontalAlignment="Left" Margin="43,16,0,6" Width="Auto"/>
 
+        </Grid>
     </Grid>
 </UserControl>

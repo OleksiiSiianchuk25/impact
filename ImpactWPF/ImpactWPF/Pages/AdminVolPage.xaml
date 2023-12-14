@@ -188,8 +188,8 @@
             <DataGrid x:Name="userDataGrid"
                       d:ItemsSource="{d:SampleData ItemCount=6}"
                       MinHeight="656"
-                      Margin="180,284,180,140"
-                      Width="1561" Height="655"
+                      Margin="180,284,179,54"
+                      Width="1561" 
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False" ColumnHeaderHeight="80"
                       HeadersVisibility="Column"
@@ -295,7 +295,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Style="{StaticResource TransparentButtonStyle}">
+                                    <Button Style="{StaticResource TransparentButtonStyle}"
+                                            Click="DeleteButton_Click">
                                         <Image Source="/Images/deleteUser.png">
                                             <Image.Style>
                                                 <Style TargetType="Image">

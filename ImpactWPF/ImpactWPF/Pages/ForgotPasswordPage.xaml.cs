@@ -1,4 +1,5 @@
 ﻿using EfCore.service.impl;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,18 @@ namespace ImpactWPF.Pages
     /// </summary>
     public partial class ForgotPasswordPage : Page
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         public ForgotPasswordPage()
         {
             InitializeComponent();
+
+            Logger.Info("Сторінка зміни паролю успішно ініціалізована");
         }
 
         private void TurnBackButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач повернувся на сторінку входу");
             NavigationService?.Navigate(new LoginPage());
         }
 
@@ -38,19 +44,23 @@ namespace ImpactWPF.Pages
                 string email = emailForgotPassword.tbInput.Text;
                     
                 string verificationCode = VerificationCodeManager.GenerateVerificationCode();
+                Logger.Info("Код підтвердження успішно згенерований");
 
                 VerificationCodeManager.StoreVerificationCode(email, verificationCode);
+                Logger.Info($"Код підтвердження успішно прив'язаний до електронної адреси користувача: {email}");
 
                 string subject = "Код підтвердження";
                 string body = $"Ваш код підтвердження: {verificationCode}";
 
                 VerificationCodeManager.SendEmail(email, subject, body);
+                Logger.Info("Користувач отримав код підтвердження на свою електронну адресу");
 
+                Logger.Info("Користувач перенаправлений на сторінку для вводу коду підтвердження");
                 NavigationService?.Navigate(new EnterEmailPage(email));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка: {ex.Message}");
+                Logger.Warn($"Помилка: {ex.Message}");
             }
         }
 

@@ -1,5 +1,4 @@
 ﻿using EfCore.context;
-using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
 using NLog;
@@ -22,47 +21,42 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for CreateOrderPage.xaml
+    /// Interaction logic for EditRequestArchive.xaml
     /// </summary>
-    public partial class CreateOrderPage : Page
+    public partial class EditRequestArchive : Page
     {
         private readonly ImpactDbContext dbContext;
         private readonly RequestServiceImpl requestService;
-        private readonly UserServiceImpl userService;
+        private Request currentRequest;
         List<string> selectedCategoriesList = new List<string>();
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public CreateOrderPage()
+        public EditRequestArchive(Request request)
         {
             InitializeComponent();
 
-            Logger.Info("Сторінка для створення нового замовлення успішно ініціалізована");
+            Logger.Info("Сторінка для редагування запиту успішно ініціалізована");
 
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
-            userService = new UserServiceImpl(dbContext);
+
+            currentRequest = requestService.GetRequestById(request.RequestId);
+
+            Loaded += EditRequest_Loaded;
         }
 
-        private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        private void EditRequest_Loaded(object sender, RoutedEventArgs e)
         {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
+            nameRequest.tbInput.Text = currentRequest.RequestName;
+            descriptionRequest.tbInput.Text = currentRequest.Description;
+            locationRequest.tbInput.Text = currentRequest.Location;
+            contactEmailRequest.tbInput.Text = currentRequest.ContactEmail;
+            contactPhoneRequest.tbInput.Text = currentRequest.ContactPhone;
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
+            List<string> associatedCategories = requestService.GetRequestCategoriesNames(currentRequest.RequestId);
+
+            Logger.Info($"Дані запиту: {currentRequest.RequestName} успішно завантажені");
         }
-
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -108,11 +102,11 @@ namespace ImpactWPF.Pages
             NavigationService?.Navigate(new SupportPage());
         }
 
-        private void CreateProposalButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateRequestButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Logger.Info("Початок процесу створення нового замовлення");
+                Logger.Info("Початок процесу оновлення даних запиту");
 
                 if (!ValidateFields())
                 {
@@ -120,7 +114,7 @@ namespace ImpactWPF.Pages
                     return;
                 }
 
-                string proposalName = orderNameRequest.tbInput.Text;
+                string requestName = nameRequest.tbInput.Text;
                 string description = descriptionRequest.tbInput.Text;
                 string contactPhone = contactPhoneRequest.tbInput.Text;
                 string contactEmail = contactEmailRequest.tbInput.Text;
@@ -128,27 +122,14 @@ namespace ImpactWPF.Pages
 
                 List<int> selectedCategoryIds = GetCategoryIds(selectedCategoriesList);
 
-                RequestDTO requestDTO = new RequestDTO
-                {
-                    RequestName = proposalName,
-                    Description = description,
-                    ContactPhone = contactPhone,
-                    ContactEmail = contactEmail,
-                    Location = location,
-                    CreatorUserRef = userService.GetUserByEmail(UserSession.Instance.UserEmail).UserId,
-                    RoleRef = 1,
-                    Categories = selectedCategoryIds
-                };
+                requestService.UpdateRequest(currentRequest, requestName, description, contactPhone, contactEmail, location, selectedCategoryIds);
+                Logger.Info("Запит успішно оновлений");
 
-
-                requestService.CreateRequest(requestDTO);
-                Logger.Info("Нове замовлення успішно створена");
-
-                NavigationService?.Navigate(new CreateOrderPage());
+                NavigationService?.Navigate(new AtchivePage());
             }
             catch (Exception ex)
             {
-                Logger.Error($"Помилка при створенні пропозиції: {ex.Message}");
+                Logger.Error($"Помилка при редагуванні запиту: {ex.Message}");
             }
 
         }
@@ -166,7 +147,6 @@ namespace ImpactWPF.Pages
                     categoryIds.Add(category.CategoryId);
                 }
             }
-
             Logger.Info("Успішно отримано id категорій за їх іменами");
             return categoryIds;
         }
@@ -293,9 +273,9 @@ namespace ImpactWPF.Pages
                 return false;
             }
 
-            if (orderNameRequest.tbInput.Text.Length <= 1)
+            if (nameRequest.tbInput.Text.Length <= 1)
             {
-                Logger.Warn("Назва замовлення містить менше 1 символа");
+                Logger.Warn("Назва запиту містить менше 1 символа");
                 MessageBox.Show("Назва замовлення повинно містити більше 1 символа!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }

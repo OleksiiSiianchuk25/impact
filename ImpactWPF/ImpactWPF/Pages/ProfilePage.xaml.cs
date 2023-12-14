@@ -3,6 +3,7 @@ using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
 using ImpactWPF.Controls;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,10 +33,13 @@ namespace ImpactWPF.Pages
         private User currentUser;
         private ObservableCollection<String> petCollection = new ObservableCollection<String>();
         private readonly UserServiceImpl userService;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public ProfilePage()
         {
             InitializeComponent();
+
+            Logger.Info("Сторінка профілю успішно ініціалізована");
 
             PetCollection.Add("Волонтер");
             PetCollection.Add("Замовник");
@@ -46,14 +50,15 @@ namespace ImpactWPF.Pages
 
             userService = new UserServiceImpl(new ImpactDbContext());
             Loaded += ProfilePage_Loaded;
-            roleUpdate.SelectionChanged += RoleRegistation_SelectionChanged;
+            roleUpdate.SelectionChanged += RoleUpdate_SelectionChanged;
         }
 
-        private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RoleUpdate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedRole = roleUpdate.SelectedItem as string;
             UpdatedRoleTextBlock.Text = selectedRole;
             UpdatedRoleTextBlock.Foreground = Brushes.Black;
+            Logger.Info($"Користувач обрав роль \"{selectedRole}\"");
         }
 
         private void ProfilePage_Loaded(object sender, RoutedEventArgs e)
@@ -79,7 +84,8 @@ namespace ImpactWPF.Pages
             {
                 roleUpdate.SelectedItem = "Замовник";
             }
-            
+
+            Logger.Info($"Дані користувача: {currentUser.Email} успішно завантажені");
         }
 
         public ObservableCollection<string> PetCollection
@@ -107,34 +113,42 @@ namespace ImpactWPF.Pages
             if (UserMenuGrid.Visibility == Visibility.Collapsed)
             {
                 UserMenuGrid.Visibility = Visibility.Visible;
+                Logger.Info("Користувач відкрив спадне навігаційне меню користувача");
             }
             else
             {
                 UserMenuGrid.Visibility = Visibility.Collapsed;
+                Logger.Info("Користувач закрив спадне навігаційне меню користувача");
             }
         }
+
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на домашню сторінку");
             NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нової пропозиції");
             NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нового замовлення");
             NavigationService?.Navigate(new CreateOrderPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
             NavigationService?.Navigate(new AdminPage());
         }
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку техпідтримки");
             NavigationService?.Navigate(new SupportPage());
         }
 
@@ -142,8 +156,11 @@ namespace ImpactWPF.Pages
         {
             try
             {
+                Logger.Info("Початок процесу оновлення даних користувача");
+
                 if (!ValidateFields())
                 {
+                    Logger.Error("Валідація полів вводу не пройшла успішно");
                     return;
                 }
 
@@ -163,7 +180,9 @@ namespace ImpactWPF.Pages
 
                     if (!IsPasswordValid(passwordUpdate.pbInput.Password))
                     {
-                        MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
+                        Logger.Warn("Некоректний формат паролю");
+                        MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!",
+                            "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
@@ -172,13 +191,13 @@ namespace ImpactWPF.Pages
                 }
 
                 userService.UpdateUserData(currentUser, userEmail, userLastName, userFirstName, userMiddleName, userPhoneNumber, userRole);
+                Logger.Info("Дані користувача успішно оновленні");
 
-                MessageBox.Show("Ви успішно відредагували профіль!");
                 NavigationService?.Navigate(new HomePage());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Виникла помилка: {ex.Message}");
+                Logger.Error($"Виникла помилка: {ex.Message}");
             }
         }
 
@@ -212,34 +231,41 @@ namespace ImpactWPF.Pages
         {
             if (!IsValidEmail(emailUpdate.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
+                Logger.Warn("Некоректний формат електронної адреси");
+                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(firstnameUpdate.tbInput.Text))
             {
-                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("Ім'я містить неприпустимі символи");
+                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(lastnameUpdate.tbInput.Text))
             {
-                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("Прізвище містить неприпустимі символи");
+                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(middlenameUpdate.tbInput.Text))
             {
-                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("По-батькові містить неприпустимі символи");
+                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsPhoneNumberValid(phoneNumberUpdate.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
+                Logger.Warn("Некоректний формат номера телефону");
+                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890",
+                    "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
+            Logger.Info("Валідація полів вводу успішно завершена.");
             return true;
         }
     }

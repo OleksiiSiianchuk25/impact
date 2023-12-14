@@ -1,5 +1,6 @@
 ﻿using ImpactWPF.Controls;
 using ImpactWPF.Pages;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,15 @@ namespace ImpactWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         public MainWindow()
         {
             InitializeComponent();
             mainFrame.Navigate(new LoginPage());
             WindowState = WindowState.Maximized;
+
+            Logger.Info("Застосунок успішно запустився");
         }
 
         public void NavigateToPage(Page page)

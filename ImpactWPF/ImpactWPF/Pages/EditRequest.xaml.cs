@@ -2,6 +2,7 @@
 using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,17 +28,18 @@ namespace ImpactWPF.Pages
     {
         private readonly ImpactDbContext dbContext;
         private readonly RequestServiceImpl requestService;
-        private readonly UserServiceImpl userService;
         private Request currentRequest;
         List<string> selectedCategoriesList = new List<string>();
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public EditRequest(AdminPage.RequestT request)
         {
             InitializeComponent();
 
+            Logger.Info("Сторінка для редагування запиту успішно ініціалізована");
+
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
-            userService = new UserServiceImpl(dbContext);
 
             currentRequest = requestService.SearchRequestByName(request.Name);
 
@@ -54,6 +56,7 @@ namespace ImpactWPF.Pages
 
             List<string> associatedCategories = requestService.GetRequestCategoriesNames(currentRequest.RequestId);
 
+            Logger.Info($"Дані запиту: {currentRequest.RequestName} успішно завантажені");
         }
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -61,44 +64,54 @@ namespace ImpactWPF.Pages
             if (UserMenuGrid.Visibility == Visibility.Collapsed)
             {
                 UserMenuGrid.Visibility = Visibility.Visible;
+                Logger.Info("Користувач відкрив спадне навігаційне меню користувача");
             }
             else
             {
                 UserMenuGrid.Visibility = Visibility.Collapsed;
+                Logger.Info("Користувач закрив спадне навігаційне меню користувача");
             }
         }
 
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на домашню сторінку");
             NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нової пропозиції");
             NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нового замовлення");
             NavigationService?.Navigate(new CreateOrderPage());
-        }
-
-        private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new SupportPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
             NavigationService?.Navigate(new AdminPage());
         }
 
-        private void CreateProposalButton_Click(object sender, RoutedEventArgs e)
+        private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            Logger.Info("Користувач перейшов на сторінку техпідтримки");
+            NavigationService?.Navigate(new SupportPage());
+        }
+
+        private void UpdateRequestButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                Logger.Info("Початок процесу оновлення даних запиту");
+
                 if (!ValidateFields())
                 {
+                    Logger.Error("Валідація полів вводу не пройшла успішно");
                     return;
                 }
 
@@ -111,12 +124,13 @@ namespace ImpactWPF.Pages
                 List<int> selectedCategoryIds = GetCategoryIds(selectedCategoriesList);
 
                 requestService.UpdateRequest(currentRequest, requestName, description, contactPhone, contactEmail, location, selectedCategoryIds);
+                Logger.Info("Запит успішно оновлений");
 
                 NavigationService?.Navigate(new AdminPage());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка при редагуванні запиту: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Logger.Error($"Помилка при редагуванні запиту: {ex.Message}");
             }
 
         }
@@ -134,7 +148,7 @@ namespace ImpactWPF.Pages
                     categoryIds.Add(category.CategoryId);
                 }
             }
-
+            Logger.Info("Успішно отримано id категорій за їх іменами");
             return categoryIds;
         }
 
@@ -154,6 +168,7 @@ namespace ImpactWPF.Pages
                     if (!selectedCategoriesList.Contains(categoryName))
                     {
                         selectedCategoriesList.Add(categoryName);
+                        Logger.Info($"Користувач обрав категорію: {categoryName}");
                     }
                 }
 
@@ -199,6 +214,7 @@ namespace ImpactWPF.Pages
                     if (selectedCategoriesList.Contains(categoryName))
                     {
                         selectedCategoriesList.Remove(categoryName);
+                        Logger.Info($"Користувач вилучив категорію з обраних: {categoryName}");
                     }
                 }
 
@@ -228,10 +244,12 @@ namespace ImpactWPF.Pages
             if (Categories.Visibility == Visibility.Collapsed)
             {
                 Categories.Visibility = Visibility.Visible;
+                Logger.Info("Користувач відкрив спадний список з категоріями");
             }
             else
             {
                 Categories.Visibility = Visibility.Collapsed;
+                Logger.Info("Користувач закрив спадний список з категоріями");
             }
         }
 
@@ -251,34 +269,41 @@ namespace ImpactWPF.Pages
         {
             if (!IsValidEmail(contactEmailRequest.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
+                Logger.Warn("Некоректний формат електронної адреси");
+                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (nameRequest.tbInput.Text.Length <= 1)
             {
-                MessageBox.Show("Ім'я запиту повинно містити більше 1 символа!");
+                Logger.Warn("Назва запиту містить менше 1 символа");
+                MessageBox.Show("Назва замовлення повинно містити більше 1 символа!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsPhoneNumberValid(contactPhoneRequest.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
+                Logger.Warn("Некоректний формат номера телефону");
+                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890",
+                    "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (selectedCategoriesList.Count > 3 || selectedCategoriesList.Count < 0)
             {
-                MessageBox.Show("Будь ласка, оберіть від 1 до 3 категорій!");
+                Logger.Warn("Користувач не обрав від 1 до 3 категорій");
+                MessageBox.Show("Будь ласка, оберіть від 1 до 3 категорій!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (descriptionRequest.tbInput.Text.Length < 0 || descriptionRequest.tbInput.Text.Length > 200)
             {
-                MessageBox.Show("Опис запиту повинен містити від 0 до 200 символів!");
+                Logger.Warn("Опис запиту не містить від 0 до 200 символів");
+                MessageBox.Show("Опис запиту повинен містити від 0 до 200 символів!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
+            Logger.Info("Валідація полів вводу успішно завершена.");
             return true;
         }
     }
