@@ -3,6 +3,7 @@ using EfCore.entity;
 using EfCore.service.impl;
 using ImpactWPF.Controls;
 using ImpactWPF.View;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

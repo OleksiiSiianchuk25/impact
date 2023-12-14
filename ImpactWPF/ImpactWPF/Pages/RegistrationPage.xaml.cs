@@ -22,6 +22,7 @@ using EfCore.dto;
 using EfCore.entity;
 using EfCore.service.impl;
 using Microsoft.EntityFrameworkCore;
+using NLog;
 
 namespace ImpactWPF
 {
@@ -32,10 +33,13 @@ namespace ImpactWPF
     {
         private ObservableCollection<String> petCollection = new ObservableCollection<String>();
         private readonly UserServiceImpl userService;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public RegistrationPage()
         {
             InitializeComponent();
+
+            Logger.Info("Сторінка реєстрації успішно ініціалізована");
 
             PetCollection.Add("Волонтер");
             PetCollection.Add("Замовник");
@@ -43,18 +47,7 @@ namespace ImpactWPF
             userService = new UserServiceImpl(new ImpactDbContext());
 
             roleRegistation.SelectionChanged += RoleRegistation_SelectionChanged;
-
-        }
-
-        private void PasswordRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userPassword = passwordRegistration.pbInput.Password;
-
-            if (!IsPasswordValid(userPassword))
-            {
-                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
-                emailRegistration.tbInput.Clear();
-            }
+            
         }
 
         private bool IsPasswordValid(string password)
@@ -63,71 +56,16 @@ namespace ImpactWPF
             return regex.IsMatch(password);
         }
 
-        private void PhoneNumberRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userPhoneNumber = phoneNumberRegistration.tbInput.Text;
-
-            if (!IsPhoneNumberValid(userPhoneNumber))
-            {
-                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
-                emailRegistration.tbInput.Clear();
-            }
-        }
-
         private bool IsPhoneNumberValid(string name)
         {
             Regex regex = new Regex(@"^\+?\d{1,4}?[-.\s]?\(?\d{1,}\)?[-.\s]?\d{1,}[-.\s]?\d{1,}$");
             return regex.IsMatch(name);
         }
 
-        private void MiddleNameRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userMiddleName = middlenameRegistration.tbInput.Text;
-
-            if (!IsValidName(userMiddleName))
-            {
-                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!");
-                emailRegistration.tbInput.Clear();
-            }
-        }
-
-        private void FirstNameRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userFirstName = firstnameRegistration.tbInput.Text;
-
-            if (!IsValidName(userFirstName))
-            {
-                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!");
-                emailRegistration.tbInput.Clear();
-            }
-        }
-
-        private void LastNameRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userLastName = lastnameRegistration.tbInput.Text;
-
-            if (!IsValidName(userLastName))
-            {
-                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!");
-                emailRegistration.tbInput.Clear();
-            }
-        }
-
         private bool IsValidName(string name)
         {
             Regex regex = new Regex(@"^[a-zA-Zа-яА-ЯїЇіІєЄґҐ'`]+$");
             return regex.IsMatch(name);
-        }
-
-        private void EmailRegistration_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string userEmail = emailRegistration.tbInput.Text;
-
-            if (!IsValidEmail(userEmail))
-            {
-                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
-                emailRegistration.tbInput.Clear();
-            }
         }
 
         private bool IsValidEmail(string email)
@@ -141,6 +79,7 @@ namespace ImpactWPF
             string selectedRole = roleRegistation.SelectedItem as string;
             RoleTextBlock.Text = selectedRole;
             RoleTextBlock.Foreground = Brushes.Black;
+            Logger.Info($"Користувач обрав роль \"{selectedRole}\"");
         }
 
 
@@ -166,6 +105,7 @@ namespace ImpactWPF
 
         private void TurnBackToLoginPage_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач повернувся до сторінки входу");
             NavigationService?.Navigate(new LoginPage());
         }
 
@@ -173,8 +113,11 @@ namespace ImpactWPF
         {
             try
             {
+                Logger.Info("Початок процесу реєстрації користувача");
+
                 if (!ValidateFields())
                 {
+                    Logger.Error("Валідація полів реєстрації не пройшла успішно");
                     return;
                 }
 
@@ -182,7 +125,8 @@ namespace ImpactWPF
 
                 if (userService.GetUserByEmail(userEmail) != null)
                 {
-                    MessageBox.Show("Користувач з такою електронною поштою вже існує! " + userEmail);
+                    Logger.Warn($"Користувач з такою електронною поштою вже існує: {userEmail}");
+                    MessageBox.Show("Користувач з такою електронною поштою вже існує! " + userEmail, "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -201,12 +145,14 @@ namespace ImpactWPF
 
                 userService.RegisterUser(userDTO);
 
-                MessageBox.Show("Ви успішно зареєструвалися!");
+                Logger.Info("Користувач успішно зареєстрований");
+
+                Logger.Info("Користувач перенаправлений на сторінку входу");
                 NavigationService?.Navigate(new LoginPage());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Виникла помилка: {ex.Message}");
+                Logger.Error($"Виникла помилка при реєстрації користувача: {ex.Message}");
             }
         }
 
@@ -214,46 +160,56 @@ namespace ImpactWPF
         {
             if (!IsValidEmail(emailRegistration.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com");
+                Logger.Warn("Некоректний формат електронної адреси");
+                MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(firstnameRegistration.tbInput.Text))
             {
-                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("Ім'я містить неприпустимі символи");
+                MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(lastnameRegistration.tbInput.Text))
             {
-                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("Прізвище містить неприпустимі символи");
+                MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsValidName(middlenameRegistration.tbInput.Text))
             {
-                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!");
+                Logger.Warn("По-батькові містить неприпустимі символи");
+                MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsPhoneNumberValid(phoneNumberRegistration.tbInput.Text))
             {
-                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890");
+                Logger.Warn("Некоректний формат номера телефону");
+                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890",
+                    "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (!IsPasswordValid(passwordRegistration.pbInput.Password))
             {
-                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!");
+                Logger.Warn("Некоректний формат паролю");
+                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!",
+                    "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             if (roleRegistation.SelectedItem == null)
             {
-                MessageBox.Show("Будь ласка, оберіть роль!");
+                Logger.Warn("Користувач не обрав роль");
+                MessageBox.Show("Будь ласка, оберіть роль!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
+            Logger.Info("Валідація полів реєстрації успішно завершена.");
             return true;
         }
 

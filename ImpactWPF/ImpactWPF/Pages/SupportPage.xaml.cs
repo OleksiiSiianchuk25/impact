@@ -1,5 +1,6 @@
 ﻿using EfCore.entity;
 using EfCore.service.impl;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,13 @@ namespace ImpactWPF.Pages
     /// </summary>
     public partial class SupportPage : Page
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         public SupportPage()
         {
             InitializeComponent();
+
+            Logger.Info("Сторінка техпідтримки успішно ініціалізована");
         }
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -32,34 +37,42 @@ namespace ImpactWPF.Pages
             if (UserMenuGrid.Visibility == Visibility.Collapsed)
             {
                 UserMenuGrid.Visibility = Visibility.Visible;
+                Logger.Info("Користувач відкрив спадне навігаційне меню користувача");
             }
             else
             {
                 UserMenuGrid.Visibility = Visibility.Collapsed;
+                Logger.Info("Користувач закрив спадне навігаційне меню користувача");
             }
         }
+
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на домашню сторінку");
             NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нової пропозиції");
             NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нового замовлення");
             NavigationService?.Navigate(new CreateOrderPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
             NavigationService?.Navigate(new AdminPage());
         }
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку техпідтримки");
             NavigationService?.Navigate(new SupportPage());
         }
 
@@ -72,7 +85,8 @@ namespace ImpactWPF.Pages
 
                 if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(body))
                 {
-                    MessageBox.Show("Будь ласка, заповніть обидва поля.");
+                    Logger.Warn("Користувач не заповнив обидва поля");
+                    MessageBox.Show("Будь ласка, заповніть обидва поля.", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -80,8 +94,7 @@ namespace ImpactWPF.Pages
 
                 VerificationCodeManager.SendSupportEmail(subject, body);
 
-
-                MessageBox.Show("Ваше повідомлення успішно надіслано!");
+                Logger.Info("Повідомлення користувача успішно надіслано");
 
                 themeSupport.tbInput.Text = "";
                 textSupport.tbInput.Text = "";
@@ -89,7 +102,7 @@ namespace ImpactWPF.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка відправки повідомлення: {ex.Message}");
+                Logger.Error($"Помилка відправки повідомлення: {ex.Message}");
             }
         }
     }

@@ -1,13 +1,10 @@
 ﻿using EfCore.context;
 using EfCore.entity;
 using EfCore.service.impl;
-using ImpactWPF.Controls;
 using ImpactWPF.View;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,27 +21,27 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for AtchivePage.xaml
+    /// Interaction logic for AtchivePageOrd.xaml
     /// </summary>
-    public partial class AtchivePage : Page
+    public partial class AtchivePageOrd : Page
     {
-        private readonly ArchivePageViewModel archiveViewModel;
+        private readonly ArchivePageViewModelOrd archiveViewModel;
         private readonly RequestServiceImpl requestService;
         private readonly ImpactDbContext dbContext;
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public AtchivePage()
+        public AtchivePageOrd()
         {
             InitializeComponent();
 
-            Logger.Info("Сторінка архіву з пропозиціями користувача успішно ініціалізована");
+            Logger.Info("Сторінка архіву із замовленнями користувача успішно ініціалізована");
 
-            SetButtonStyles(ArchivePropositionButton);
+            SetButtonStyles(ArchiveOrderButton);
 
             dbContext = new ImpactDbContext();
             requestService = new RequestServiceImpl(dbContext);
 
-            archiveViewModel = new ArchivePageViewModel(this);
+            archiveViewModel = new ArchivePageViewModelOrd(this);
             archiveViewModel.LoadArchiveRequests();
             DataContext = archiveViewModel;
 
@@ -116,7 +113,7 @@ namespace ImpactWPF.Pages
                 myArchiveFilterGrid.Visibility = Visibility.Collapsed;
                 Logger.Info("Користувач закрив вікно фільтрів");
             }
-          }
+        }
 
         private void CloseFilter(object sender, MouseButtonEventArgs e)
         {
@@ -196,6 +193,8 @@ namespace ImpactWPF.Pages
                 button.Background = Brushes.Transparent;
                 button.BorderBrush = new SolidColorBrush(color);
             }
+
+            // Додавання заокруглення
 
         }
 
@@ -280,12 +279,10 @@ namespace ImpactWPF.Pages
             if (UserMenuGrid.Visibility == Visibility.Collapsed)
             {
                 UserMenuGrid.Visibility = Visibility.Visible;
-                Logger.Info("Користувач відкрив спадне навігаційне меню користувача");
             }
             else
             {
                 UserMenuGrid.Visibility = Visibility.Collapsed;
-                Logger.Info("Користувач закрив спадне навігаційне меню користувача");
             }
         }
 
@@ -304,7 +301,7 @@ namespace ImpactWPF.Pages
             if (request != null)
             {
                 EditRequestArchive editRequest = new EditRequestArchive(request);
-                Logger.Info("Користувача перейшов на сторінку для редагування пропозиції");
+                Logger.Info("Користувача перейшов на сторінку для редагування замовлення");
                 NavigationService.Navigate(editRequest);
             }
         }
@@ -314,14 +311,14 @@ namespace ImpactWPF.Pages
             requestService.ChangeRequestStatus(request.RequestId, 2);
 
             DeactivateGrid.Visibility = Visibility.Collapsed;
-            Logger.Info($"Користувач деактивував пропозицію: {request.RequestName}");
+            Logger.Info($"Користувач деактивував замовлення: {request.RequestName}");
 
             NavigationService?.Navigate(new AtchivePage());
         }
 
         private void OnNoButtonClick()
         {
-            Logger.Info("Користувач закрив випливаюче вікно для деактивації пропозиції");
+            Logger.Info("Користувач закрив випливаюче вікно для деактивації замовлення");
             DeactivateGrid.Visibility = Visibility.Collapsed;
         }
 
@@ -337,7 +334,7 @@ namespace ImpactWPF.Pages
         {
             ActivateGrid.Visibility = Visibility.Visible;
 
-            Logger.Info("Користувач відкрив випливаюче вікно для активації пропозиції");
+            Logger.Info("Користувач відкрив випливаюче вікно для активації замовлення");
 
             YesButtonA.Click += (sender, e) => OnYesButtonAClick(request);
             NoButtonA.Click += (sender, e) => OnNoButtonAClick();

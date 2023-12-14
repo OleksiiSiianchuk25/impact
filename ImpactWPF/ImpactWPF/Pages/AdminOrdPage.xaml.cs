@@ -2,6 +2,7 @@
 using EfCore.entity;
 using EfCore.service.impl;
 using Microsoft.Extensions.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static ImpactWPF.Pages.AdminPage;
 
 namespace ImpactWPF.Pages
 {
@@ -27,16 +29,19 @@ namespace ImpactWPF.Pages
     public partial class AdminOrdPage : Page
     {
         private readonly ImpactDbContext context;
-
+        UserServiceImpl userService;
         List<User> users;
         List<UserT> usersT;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AdminOrdPage()
         {
             InitializeComponent();
 
+            Logger.Info("Сторінка адміна з таблицею замовників успішно ініціалізована");
+
             this.context = new ImpactDbContext();
-            UserServiceImpl userService = new UserServiceImpl(context);
+            userService = new UserServiceImpl(context);
 
             this.users = userService.GetOrderers();
             this.usersT = MapUsersForTable(users);
@@ -49,49 +54,60 @@ namespace ImpactWPF.Pages
             if (UserMenuGrid.Visibility == Visibility.Collapsed)
             {
                 UserMenuGrid.Visibility = Visibility.Visible;
+                Logger.Info("Користувач відкрив спадне навігаційне меню користувача");
             }
             else
             {
                 UserMenuGrid.Visibility = Visibility.Collapsed;
+                Logger.Info("Користувач закрив спадне навігаційне меню користувача");
             }
         }
+
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на домашню сторінку");
             NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нової пропозиції");
             NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для створення нового замовлення");
             NavigationService?.Navigate(new CreateOrderPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
             NavigationService?.Navigate(new AdminPage());
         }
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку техпідтримки");
             NavigationService?.Navigate(new SupportPage());
         }
 
         private void AdminVolunteersButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею волонтерів");
             NavigationService?.Navigate(new AdminVolPage());
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
             NavigationService?.Navigate(new AdminPage());
         }
 
         private void AdminOrderersButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку адміна з таблицею замовників");
             NavigationService?.Navigate(new AdminOrdPage());
         }
 
@@ -108,6 +124,8 @@ namespace ImpactWPF.Pages
                 returnedUsersT.Add(newRequestT);
             }
             List<UserT> sortedUsersT = returnedUsersT.OrderBy(member => member.Email).ToList();
+
+            Logger.Info("Замовники успішно додані до таблиці");
 
             return sortedUsersT;
         }
@@ -126,7 +144,24 @@ namespace ImpactWPF.Pages
             if (user != null)
             {
                 EditOrdererPage editOrdererPage = new EditOrdererPage(user);
+
+                Logger.Info("Користувача перейшов на сторінку для редагування замовника");
+
                 NavigationService.Navigate(editOrdererPage);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserT user = (UserT)userDataGrid.SelectedItem;
+
+            if (user != null)
+            {
+                userService.DeleteUserById(userService.GetUserByEmail(user.Email).UserId);
+
+                Logger.Info($"Користувач успішно видалив замовника: {user.Email}");
+
+                NavigationService?.Navigate(new AdminOrdPage());
             }
         }
     }

@@ -2,7 +2,6 @@
 using ImpactWPF.Pages;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,61 +18,61 @@ using System.Windows.Shapes;
 namespace ImpactWPF.Controls
 {
     /// <summary>
-    /// Interaction logic for ArchiveCardControl1.xaml
+    /// Interaction logic for ArchiveCardControl2Ord.xaml
     /// </summary>
-    public partial class ArchiveCardControl1 : UserControl
+    public partial class ArchiveCardControl2Ord : UserControl
     {
-        public ArchiveCardControl1()
+        public ArchiveCardControl2Ord()
         {
             InitializeComponent();
-            deactivateImage.MouseLeftButtonDown += DeactivateImage_MouseLeftButtonDown;
+            activateImage.MouseLeftButtonDown += ActivateImage_MouseLeftButtonDown;
             editImage.MouseLeftButtonDown += EditImage_MouseLeftButtonDown;
+        }
+        public event EventHandler ActivateButtonClicked;
+
+        protected virtual void OnActivateButtonClicked(EventArgs e)
+        {
+            ActivateButtonClicked?.Invoke(this, e);
         }
 
         public static readonly DependencyProperty ArchiveRequestProperty =
-        DependencyProperty.Register("ArchiveRequest", typeof(Request), typeof(ArchiveCardControl1));
+        DependencyProperty.Register("ArchiveOrderG", typeof(Request), typeof(ArchiveCardControl2Ord));
 
-        public Request ArchiveRequest
+        public Request ArchiveOrderG
         {
             get { return (Request)GetValue(ArchiveRequestProperty); }
             set { SetValue(ArchiveRequestProperty, value); }
         }
 
-        public event EventHandler DeactivateButtonClicked;
 
-        protected virtual void OnDeactivateButtonClicked(EventArgs e)
+        private void ActivateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DeactivateButtonClicked?.Invoke(this, e);
-        }
 
-
-        private void DeactivateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
             FrameworkElement parent = this;
-            while (parent != null && !(parent is AtchivePage))
+            while (parent != null && !(parent is AtchivePageOrd))
             {
                 parent = VisualTreeHelper.GetParent(parent) as FrameworkElement;
             }
 
-            if (parent is AtchivePage archivePage && ArchiveRequest != null)
+            if (parent is AtchivePageOrd archivePage && ArchiveOrderG != null)
             {
-                archivePage.ShowDeactivateGrid(ArchiveRequest);
+                archivePage.ShowActivateGrid(ArchiveOrderG);
+
             }
         }
 
         private void EditImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             FrameworkElement parent = this;
-            while (parent != null && !(parent is AtchivePage))
+            while (parent != null && !(parent is AtchivePageOrd))
             {
                 parent = VisualTreeHelper.GetParent(parent) as FrameworkElement;
             }
 
-            if (parent is AtchivePage archivePage && ArchiveRequest != null)
+            if (parent is AtchivePageOrd archivePage && ArchiveOrderG != null)
             {
-                archivePage.EditRequestPage(ArchiveRequest);
+                archivePage.EditRequestPage(ArchiveOrderG);
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using ImpactWPF.Pages;
+﻿using EfCore.entity;
+using ImpactWPF.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,27 @@ namespace ImpactWPF.Controls
         public ArchiveCardControl2()
         {
             InitializeComponent();
+            activateImage.MouseLeftButtonDown += ActivateImage_MouseLeftButtonDown;
+            editImage.MouseLeftButtonDown += EditImage_MouseLeftButtonDown;
         }
-        public event EventHandler DeactivateButtonClicked;
+        public event EventHandler ActivateButtonClicked;
 
-        protected virtual void OnDeactivateButtonClicked(EventArgs e)
+        protected virtual void OnActivateButtonClicked(EventArgs e)
         {
-            DeactivateButtonClicked?.Invoke(this, e);
+            ActivateButtonClicked?.Invoke(this, e);
+        }
+
+        public static readonly DependencyProperty ArchiveRequestProperty =
+        DependencyProperty.Register("ArchiveRequestG", typeof(Request), typeof(ArchiveCardControl2));
+
+        public Request ArchiveRequestG
+        {
+            get { return (Request)GetValue(ArchiveRequestProperty); }
+            set { SetValue(ArchiveRequestProperty, value); }
         }
 
 
-        private void DeactivateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ActivateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
             FrameworkElement parent = this;
@@ -42,13 +54,26 @@ namespace ImpactWPF.Controls
                 parent = VisualTreeHelper.GetParent(parent) as FrameworkElement;
             }
 
-            if (parent is AtchivePage archivePage)
+            if (parent is AtchivePage archivePage && ArchiveRequestG != null)
             {
-                archivePage.ShowActivateGrid();
+                archivePage.ShowActivateGrid(ArchiveRequestG);
 
             }
         }
 
+        private void EditImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement parent = this;
+            while (parent != null && !(parent is AtchivePage))
+            {
+                parent = VisualTreeHelper.GetParent(parent) as FrameworkElement;
+            }
+
+            if (parent is AtchivePage archivePage && ArchiveRequestG != null)
+            {
+                archivePage.EditRequestPage(ArchiveRequestG);
+            }
+        }
     }
 
 }

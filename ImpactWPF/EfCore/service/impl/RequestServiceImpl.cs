@@ -84,9 +84,28 @@ namespace EfCore.service.impl
                     context.Entry(currentRequest).Collection(r => r.Categories).Load();
                 }
 
-                currentRequest.Categories.Clear();
+                if (selectedCategoryIds.Count != 0)
+                {
+                    currentRequest.Categories.Clear();
 
-                currentRequest.Categories = GetRequestCategories(selectedCategoryIds);
+                    currentRequest.Categories = GetRequestCategories(selectedCategoryIds);
+                }
+
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Помилка при оновленні даних запиту: {ex.Message}");
+            }
+        }
+
+        public void ChangeRequestStatus(int currentRequestId, int newStatus)
+        {
+            try
+            {
+                Request currentRequest = GetRequestById(currentRequestId);
+
+                currentRequest.RequestStatusId = newStatus;
 
                 context.SaveChanges();
             }
@@ -307,5 +326,22 @@ namespace EfCore.service.impl
                 throw new ApplicationException($"Error getting requests by categories: {ex.Message}");
             }
         }
+
+        public List<Request> GetPropositionsByEmail(string userEmail)
+        {
+            return context.Requests
+                .Where(r => r.CreatorUserRefNavigation.Email == userEmail &&
+                            r.RoleRefNavigation.RoleName == requestRoleService.GetPropositionRequestRole().RoleName)
+                .ToList();
+        }
+
+        public List<Request> GetOrdersByEmail(string userEmail)
+        {
+            return context.Requests
+                .Where(r => r.CreatorUserRefNavigation.Email == userEmail &&
+                            r.RoleRefNavigation.RoleName == requestRoleService.GetOrderRequestRole().RoleName)
+                .ToList();
+        }
+
     }
 }

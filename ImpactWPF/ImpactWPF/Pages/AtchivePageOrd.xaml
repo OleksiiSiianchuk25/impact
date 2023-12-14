@@ -1,4 +1,4 @@
-﻿<Page x:Class="ImpactWPF.Pages.AtchivePage"
+﻿<Page x:Class="ImpactWPF.Pages.AtchivePageOrd"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,14 +9,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Background="#FEFDFD"
-      Title="AtchivePage">
+      Title="AtchivePageOrd">
     <Page.Resources>
         <DataTemplate x:Key="ActiveCardTemplate">
-            <userControls:ArchiveCardControl1 ArchiveRequest="{Binding}" />
+            <userControls:ArchiveCardControl1Ord ArchiveOrder="{Binding}" />
         </DataTemplate>
 
         <DataTemplate x:Key="InactiveCardTemplate">
-            <userControls:ArchiveCardControl2 ArchiveRequestG="{Binding}" />
+            <userControls:ArchiveCardControl2Ord ArchiveOrderG="{Binding}" />
         </DataTemplate>
 
 
@@ -512,7 +512,7 @@
                 <ItemsControl ItemsSource="{Binding Requests}" Width="1632">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="4" Rows="{Binding Requests.Count}" Margin="1,1,1,1"/>
+                            <UniformGrid Columns="4" Rows="{Binding Requests.Count}"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>

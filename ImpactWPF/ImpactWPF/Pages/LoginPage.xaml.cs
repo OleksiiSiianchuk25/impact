@@ -2,6 +2,8 @@
 using EfCore.service.impl;
 using EFCore.service.impl;
 using ImpactWPF.Pages;
+using Microsoft.Extensions.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +26,13 @@ namespace ImpactWPF
     /// </summary>
     public partial class LoginPage : Page
     {
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+
         public LoginPage()
         {
             InitializeComponent();
+
+            Logger.Info("Сторінка входу успішно ініціалізована");
         }
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -41,11 +47,16 @@ namespace ImpactWPF
             {
                 string role = authService.GetUserRoleByEmail(email).RoleName;
                 UserSession.Instance.Login(email, role);
+
+                Logger.Info("Користувач успішно авторизувався");
+
+                Logger.Info("Користувач перенаправлений на домашню сторінку");
                 NavigationService?.Navigate(new HomePage());
             }
             else
             {
-                MessageBox.Show("Неправильна адреса електронної пошти або пароль.");
+                Logger.Error("Неправильна адреса електронної пошти або пароль.");
+                MessageBox.Show("Неправильна адреса електронної пошти або пароль.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             MyProgressBar.Visibility = Visibility.Collapsed;
@@ -54,11 +65,13 @@ namespace ImpactWPF
 
         private void CreateAccountButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку реєстрації");
             NavigationService?.Navigate(new RegistrationPage());
         }
 
         private void ForgotPasswordButton_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Info("Користувач перейшов на сторінку для зміни паролю");
             NavigationService?.Navigate(new ForgotPasswordPage());
         }
     }
