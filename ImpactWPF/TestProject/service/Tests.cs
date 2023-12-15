@@ -356,5 +356,45 @@ namespace TestProject.service
             Assert.IsNull(userSession.UserEmail);
             Assert.IsNull(userSession.UserRole);
         }
+
+        [Test]
+        public void Constructor_ShouldUseNpgsql()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<ImpactDbContext>()
+                .UseNpgsql("Host=ep-empty-recipe-96792924.eu-central-1.aws.neon.tech;Database=impact-db;Username=sijanchuk;Password=nN8hVXe1pILY")
+                .Options;
+
+            // Act
+            var dbContext = new ImpactDbContext(options);
+
+            // Assert
+            Assert.IsTrue(options.Extensions.Any(e => e.GetType() == typeof(Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal.NpgsqlOptionsExtension)));
+        }
+
+        
+
+        [Test]
+        public void Request_ShouldHaveDefaultValues()
+        {
+            // Arrange
+            var request = new Request();
+
+            // Assert
+            Assert.AreEqual(0, request.RequestId);
+            Assert.AreEqual(default(string), request.RequestName);
+            Assert.AreEqual(default(string), request.Description);
+            Assert.AreEqual(default(string), request.Location);
+            Assert.AreEqual(default(int?), request.CreatorUserRef);
+            Assert.AreEqual(default(string), request.ContactPhone);
+            Assert.AreEqual(default(string), request.ContactEmail);
+            Assert.AreEqual(default(int), request.RoleRef);
+            Assert.AreEqual(default(int?), request.RequestStatusId);
+            Assert.AreEqual(default(DateTime?), request.CreatedAt);
+            Assert.AreEqual(default(User), request.CreatorUserRefNavigation);
+            Assert.AreEqual(default(RequestStatus), request.RequestStatus);
+            Assert.AreEqual(default(RequestRole), request.RoleRefNavigation);
+            Assert.IsNotNull(request.Categories);
+        }
     }
 }

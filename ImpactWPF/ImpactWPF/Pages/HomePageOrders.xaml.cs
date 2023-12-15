@@ -1,30 +1,26 @@
-﻿using EfCore.context;
-using EfCore.entity;
-using EfCore.service.impl;
-using ImpactWPF.View;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
+﻿// <copyright file="HomePageOrders.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.Pages
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Markup;
+    using System.Windows.Media;
+    using System.Xml;
+    using EfCore.context;
+    using EfCore.entity;
+    using EfCore.service.impl;
+    using ImpactWPF.View;
+
     /// <summary>
-    /// Interaction logic for HomePageOrders.xaml
+    /// Interaction logic for HomePageOrders.xaml.
     /// </summary>
     public partial class HomePageOrders : Page
     {
@@ -34,38 +30,38 @@ namespace ImpactWPF.Pages
 
         public HomePageOrders()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            dbContext = new ImpactDbContext();
-            requestService = new RequestServiceImpl(dbContext);
+            this.dbContext = new ImpactDbContext();
+            this.requestService = new RequestServiceImpl(this.dbContext);
 
-            SetButtonStyles(OrderButton);
+            this.SetButtonStyles(this.OrderButton);
 
-            viewModel = new HomePageOrdersViewModel(this);
-            viewModel.LoadInitialRequests();
-            DataContext = viewModel;
+            this.viewModel = new HomePageOrdersViewModel(this);
+            this.viewModel.LoadInitialRequests();
+            this.DataContext = this.viewModel;
         }
 
         private void LoadInitialRequests()
         {
-            List<Request> initialRequests = requestService.GetActiveOrders(viewModel.PageSize);
-            viewModel.Requests = new ObservableCollection<Request>(initialRequests);
+            List<Request> initialRequests = this.requestService.GetActiveOrders(this.viewModel.PageSize);
+            this.viewModel.Requests = new ObservableCollection<Request>(initialRequests);
         }
 
         private void Button_LoadMore_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.LoadMoreRequests();
+            this.viewModel.LoadMoreRequests();
         }
 
         private void nameInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Отримання тексту з текстового поля
-            viewModel.SearchTerm = nameInput.Text;
+            this.viewModel.SearchTerm = this.nameInput.Text;
         }
 
         public Button GetLoadMoreButton()
         {
-            return Button_LoadMore;
+            return this.Button_LoadMore;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -74,13 +70,13 @@ namespace ImpactWPF.Pages
             var clickedButton = (Button)sender;
 
             // Зміна стилів для обраної кнопки
-            SetButtonStyles(clickedButton);
+            this.SetButtonStyles(clickedButton);
 
             // Зміна стилів для іншої кнопки
-            var otherButton = (clickedButton == PropositionButton) ? OrderButton : PropositionButton;
-            ClearButtonStyles(otherButton);
+            var otherButton = (clickedButton == this.PropositionButton) ? this.OrderButton : this.PropositionButton;
+            this.ClearButtonStyles(otherButton);
 
-            NavigationService?.Navigate(new HomePage());
+            this.NavigationService?.Navigate(new HomePage());
         }
 
         private void SetButtonStyles(Button button)
@@ -98,9 +94,6 @@ namespace ImpactWPF.Pages
             button.ClearValue(Button.EffectProperty);
         }
 
-
-
-
         // Ваш код
         public class YourViewModel
         {
@@ -111,7 +104,7 @@ namespace ImpactWPF.Pages
                 // Додайте прямокутники з відповідними властивостями до колекції
                 for (int i = 0; i < 12; i++)
                 {
-                    YourRectangleCollection.Add(new RectangleData());
+                    this.YourRectangleCollection.Add(new RectangleData());
                 }
             }
         }
@@ -120,6 +113,7 @@ namespace ImpactWPF.Pages
         {
             public Thickness RectangleMargin { get; set; } = new Thickness(5); // Задайте відповідні відступи тут
         }
+
         private void searchInput_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -142,13 +136,13 @@ namespace ImpactWPF.Pages
 
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (CategoriesGrid.Visibility == Visibility.Collapsed)
+            if (this.CategoriesGrid.Visibility == Visibility.Collapsed)
             {
-                CategoriesGrid.Visibility = Visibility.Visible;
+                this.CategoriesGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                CategoriesGrid.Visibility = Visibility.Collapsed;
+                this.CategoriesGrid.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -158,7 +152,7 @@ namespace ImpactWPF.Pages
             if (checkBox != null)
             {
                 // Clone the original content (copy only text and style)
-                string originalContent = (checkBox.Content ?? "").ToString();
+                string originalContent = (checkBox.Content ?? string.Empty).ToString();
                 Style originalStyle = checkBox.Style;
 
                 // Serialize and deserialize to create a deep copy of the CheckBox
@@ -180,7 +174,7 @@ namespace ImpactWPF.Pages
                             string text = textBlock.Text;
 
                             // Apply the specific style to the new CheckBox
-                            newCheckBox.Style = (Style)FindResource("CheckBoxStyle1");
+                            newCheckBox.Style = (Style)this.FindResource("CheckBoxStyle1");
 
                             Border newBorder = new Border();
                             newBorder.CornerRadius = new CornerRadius(15);
@@ -193,7 +187,7 @@ namespace ImpactWPF.Pages
                             newBorder.Child = newCheckBox;
 
                             // Отримайте вихідне зображення
-                            Image originalImage = FindVisualParent<Grid>(checkBox).Children.OfType<Image>().FirstOrDefault();
+                            Image originalImage = this.FindVisualParent<Grid>(checkBox).Children.OfType<Image>().FirstOrDefault();
 
                             if (originalImage != null)
                             {
@@ -203,7 +197,6 @@ namespace ImpactWPF.Pages
                                 newImage.Height = originalImage.Height;
                                 newImage.Width = originalImage.Width;
                                 newImage.Margin = new Thickness(-3, 0, 0, 10);
-
 
                                 // Отримайте StackPanel нового CheckBox
                                 StackPanel newStackPanel = newCheckBox.Content as StackPanel;
@@ -215,25 +208,25 @@ namespace ImpactWPF.Pages
                                 }
                             }
 
-
                             ListBoxItem newItem = new ListBoxItem();
                             newItem.Content = newBorder;
 
                             // Apply the specific style to the new ListBoxItem
-                            newItem.Style = (Style)FindResource("ListBoxItemStyle1");
+                            newItem.Style = (Style)this.FindResource("ListBoxItemStyle1");
 
-                            LeftList.Items.Add(newItem);
+                            this.LeftList.Items.Add(newItem);
 
                             // Remove the existing handler to avoid multiple subscriptions
-                            newCheckBox.Unchecked -= CheckBox_Unchecked;
-                            newCheckBox.Unchecked += CheckBox_Unchecked;
+                            newCheckBox.Unchecked -= this.CheckBox_Unchecked;
+                            newCheckBox.Unchecked += this.CheckBox_Unchecked;
 
                             // Highlight the original item
-                            Border border = FindVisualParent<Border>(checkBox);
+                            Border border = this.FindVisualParent<Border>(checkBox);
                             if (border != null)
                             {
                                 border.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFE, 0xE8, 0x83));
                             }
+
                             if (stackPanel != null)
                             {
                                 Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
@@ -251,18 +244,15 @@ namespace ImpactWPF.Pages
                                     }
                                 }
                             }
-                            viewModel.SelectedCategories.Add(text);
+
+                            this.viewModel.SelectedCategories.Add(text);
                         }
                     }
-                    viewModel.FilterRequestsByCategories();
+
+                    this.viewModel.FilterRequestsByCategories();
                 }
             }
         }
-
-
-
-
-
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -270,18 +260,18 @@ namespace ImpactWPF.Pages
             if (checkBox != null)
             {
                 // Find the parent ListBoxItem in LeftList
-                foreach (ListBoxItem item in LeftList.Items.Cast<ListBoxItem>().ToList())
+                foreach (ListBoxItem item in this.LeftList.Items.Cast<ListBoxItem>().ToList())
                 {
                     CheckBox itemCheckBox = item.Content as CheckBox;
                     if (itemCheckBox != null && itemCheckBox.Content.ToString() == checkBox.Content.ToString())
                     {
-                        LeftList.Items.Remove(item);
+                        this.LeftList.Items.Remove(item);
                         break;
                     }
                 }
 
                 // Remove the existing handler to avoid multiple subscriptions
-                checkBox.Unchecked -= CheckBox_Unchecked;
+                checkBox.Unchecked -= this.CheckBox_Unchecked;
                 StackPanel stackPanel = checkBox.Content as StackPanel;
 
                 TextBlock textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
@@ -289,11 +279,12 @@ namespace ImpactWPF.Pages
                 string text = textBlock.Text;
 
                 // Highlight the original item
-                Border border = FindVisualParent<Border>(checkBox);
+                Border border = this.FindVisualParent<Border>(checkBox);
                 if (border != null)
                 {
                     border.Background = new SolidColorBrush(Colors.White);
                 }
+
                 if (stackPanel != null)
                 {
                     Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
@@ -306,23 +297,22 @@ namespace ImpactWPF.Pages
                         }
                     }
                 }
-                viewModel.SelectedCategories.Remove(text);
-                viewModel.FilterRequestsByCategories();
+
+                this.viewModel.SelectedCategories.Remove(text);
+                this.viewModel.FilterRequestsByCategories();
             }
         }
 
-
-
-
-
-
-
-        private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
+        private T? FindVisualParent<T>(DependencyObject child)
+            where T : DependencyObject
         {
             DependencyObject parentObject = VisualTreeHelper.GetParent(child);
 
             if (parentObject == null)
+            {
                 return null;
+            }
+
             T parent = parentObject as T;
             if (parent != null)
             {
@@ -330,12 +320,9 @@ namespace ImpactWPF.Pages
             }
             else
             {
-                return FindVisualParent<T>(parentObject);
+                return this.FindVisualParent<T>(parentObject);
             }
         }
-
-
-
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -347,43 +334,41 @@ namespace ImpactWPF.Pages
             // Handle MouseLeave event if needed
         }
 
-
-
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (UserMenuGrid.Visibility == Visibility.Collapsed)
+            if (this.UserMenuGrid.Visibility == Visibility.Collapsed)
             {
-                UserMenuGrid.Visibility = Visibility.Visible;
+                this.UserMenuGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                UserMenuGrid.Visibility = Visibility.Collapsed;
+                this.UserMenuGrid.Visibility = Visibility.Collapsed;
             }
         }
 
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new HomePage());
+            this.NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new CreateProposalPage());
+            this.NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new CreateOrderPage());
+            this.NavigationService?.Navigate(new CreateOrderPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new AdminPage());
+            this.NavigationService?.Navigate(new AdminPage());
         }
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new SupportPage());
+            this.NavigationService?.Navigate(new SupportPage());
         }
     }
 }

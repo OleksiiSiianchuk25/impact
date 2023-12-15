@@ -1,94 +1,128 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="ArchiveCardData.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.Controls
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class ArchiveCardData : INotifyPropertyChanged
     {
         private string requestName;
+
         public string RequestName
         {
-            get { return requestName; }
+            get
+            {
+                return this.requestName;
+            }
+
             set
             {
-                if (requestName != value)
+                if (this.requestName != value)
                 {
-                    requestName = value;
-                    OnPropertyChanged(nameof(RequestName));
+                    this.requestName = value;
+                    this.OnPropertyChanged(nameof(this.RequestName));
                 }
             }
         }
 
         private string description;
+
         public string Description
         {
-            get { return description; }
+            get
+            {
+                return this.description;
+            }
+
             set
             {
-                if (description != value)
+                if (this.description != value)
                 {
-                    description = value;
-                    OnPropertyChanged(nameof(Description));
+                    this.description = value;
+                    this.OnPropertyChanged(nameof(this.Description));
                 }
             }
         }
 
         private string location;
+
         public string Location
         {
-            get { return location; }
+            get
+            {
+                return this.location;
+            }
+
             set
             {
-                if (location != value)
+                if (this.location != value)
                 {
-                    location = value;
-                    OnPropertyChanged(nameof(Location));
+                    this.location = value;
+                    this.OnPropertyChanged(nameof(this.Location));
                 }
             }
         }
 
         private string contactEmail;
+
         public string ContactEmail
         {
-            get { return contactEmail; }
+            get
+            {
+                return this.contactEmail;
+            }
+
             set
             {
-                if (contactEmail != value)
+                if (this.contactEmail != value)
                 {
-                    contactEmail = value;
-                    OnPropertyChanged(nameof(ContactEmail));
+                    this.contactEmail = value;
+                    this.OnPropertyChanged(nameof(this.ContactEmail));
                 }
             }
         }
 
         private string contactPhone;
+
         public string ContactPhone
         {
-            get { return contactPhone; }
+            get
+            {
+                return this.contactPhone;
+            }
+
             set
             {
-                if (contactPhone != value)
+                if (this.contactPhone != value)
                 {
-                    contactPhone = value;
-                    OnPropertyChanged(nameof(ContactPhone));
+                    this.contactPhone = value;
+                    this.OnPropertyChanged(nameof(this.ContactPhone));
                 }
             }
         }
 
         private DateTime createdAt;
+
         public DateTime CreatedAt
         {
-            get { return createdAt; }
+            get
+            {
+                return this.createdAt;
+            }
+
             set
             {
-                if (createdAt != value)
+                if (this.createdAt != value)
                 {
-                    createdAt = value;
-                    OnPropertyChanged(nameof(CreatedAt));
+                    this.createdAt = value;
+                    this.OnPropertyChanged(nameof(this.CreatedAt));
                 }
             }
         }
@@ -98,7 +132,7 @@ namespace ImpactWPF.Controls
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

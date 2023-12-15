@@ -1,10 +1,14 @@
-﻿using NLog;
-using System.Windows;
+﻿// <copyright file="App.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF
 {
+    using System.Windows;
+    using NLog;
+
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for App.xaml.
     /// </summary>
     public partial class App : Application
     {
@@ -14,13 +18,11 @@ namespace ImpactWPF
         {
             base.OnStartup(e);
 
-
-            Current.DispatcherUnhandledException += AppDispatcherUnhandledException;
+            Current.DispatcherUnhandledException += this.AppDispatcherUnhandledException;
         }
 
         private void AppDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-
             logger.Error($"Виникла неперехоплена помилка: {e.Exception.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             e.Handled = true;

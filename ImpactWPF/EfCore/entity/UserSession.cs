@@ -8,8 +8,8 @@ namespace EfCore.entity
 {
     public class UserSession
     {
-        public string UserEmail { get; private set; }
-        public string UserRole { get; private set; } 
+        public string? UserEmail { get; private set; }
+        public string? UserRole { get; private set; } 
 
         private static UserSession _instance;
 

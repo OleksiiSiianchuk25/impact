@@ -1,24 +1,16 @@
-﻿using EfCore.service.impl;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// <copyright file="EnterEmailPage.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.Pages
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using EfCore.service.impl;
+    using NLog;
+
     /// <summary>
-    /// Interaction logic for EnterEmailPage.xaml
+    /// Interaction logic for EnterEmailPage.xaml.
     /// </summary>
     public partial class EnterEmailPage : Page
     {
@@ -28,30 +20,29 @@ namespace ImpactWPF.Pages
 
         public EnterEmailPage(string email)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             Logger.Info("Сторінку для введення коду підтвердження успішно ініціалізована");
 
             this.email = email;
         }
 
-
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач повернувся на сторінку зміни паролю");
-            NavigationService?.Navigate(new ForgotPasswordPage());
+            this.NavigationService?.Navigate(new ForgotPasswordPage());
         }
 
         private void VerifyCodeButton_Click(object sender, RoutedEventArgs e)
         {
-            string enteredCode = codeTextBox.tbInput.Text;
+            string enteredCode = this.codeTextBox.tbInput.Text;
 
-            if (VerificationCodeManager.VerifyCode(email, enteredCode))
+            if (VerificationCodeManager.VerifyCode(this.email, enteredCode))
             {
                 Logger.Info("Користувач успішно ввів код підтвердження");
 
                 Logger.Info("Користувач перенаправлений на сторінку для зміни паролю");
-                NavigationService?.Navigate(new ResetPasswordPage(email));
+                this.NavigationService?.Navigate(new ResetPasswordPage(this.email));
             }
             else
             {

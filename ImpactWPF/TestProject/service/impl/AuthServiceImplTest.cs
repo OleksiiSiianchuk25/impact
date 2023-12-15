@@ -18,8 +18,19 @@ namespace TestProject.service.impl
         public void TestAuthenticateUser_CorrectPassword_ReturnsTrue()
         {
             // Arrange
-            var mockContext = new Mock<ImpactDbContext>();
-            var authService = new AuthServiceImpl(mockContext.Object);
+            SetUpMockContextWithUser(out var mockContext, out var authService);
+
+            // Act
+            bool result = authService.AuthenticateUser("john.doe@example.com", "password123");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        private void SetUpMockContextWithUser(out Mock<ImpactDbContext> mockContext, out AuthServiceImpl authService)
+        {
+            mockContext = new Mock<ImpactDbContext>();
+            var mockSet = new Mock<DbSet<User>>();
 
             var user = new User
             {
@@ -32,9 +43,7 @@ namespace TestProject.service.impl
                 RoleRef = 1
             };
 
-            // Setup IQueryable<User> instead of DbSet<User>
             var users = new List<User> { user }.AsQueryable();
-            var mockSet = new Mock<DbSet<User>>();
             mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
             mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
             mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(users.ElementType);
@@ -42,11 +51,11 @@ namespace TestProject.service.impl
 
             mockContext.Setup(c => c.Users).Returns(mockSet.Object);
 
-            // Act
-            bool result = authService.AuthenticateUser("john.doe@example.com", "password123");
+            authService = new AuthServiceImpl(mockContext.Object);
 
-            // Assert
-            Assert.IsTrue(result);
+            // Mocking Find method
+            mockSet.Setup(m => m.Find(It.IsAny<object[]>()))
+                   .Returns((object[] keyValues) => users.FirstOrDefault(u => u.UserId == (int)keyValues[0]));
         }
 
         [Test]

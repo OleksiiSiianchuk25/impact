@@ -1,0 +1,5 @@
+D:\LNU\Інженерія\Repo\impact\Impact\TestProject1\obj\Debug\net6.0-windows\TestProject1.csproj.AssemblyReference.cache
+D:\LNU\Інженерія\Repo\impact\Impact\TestProject1\obj\Debug\net6.0-windows\TestProject1.GeneratedMSBuildEditorConfig.editorconfig
+D:\LNU\Інженерія\Repo\impact\Impact\TestProject1\obj\Debug\net6.0-windows\TestProject1.AssemblyInfoInputs.cache
+D:\LNU\Інженерія\Repo\impact\Impact\TestProject1\obj\Debug\net6.0-windows\TestProject1.AssemblyInfo.cs
+D:\LNU\Інженерія\Repo\impact\Impact\TestProject1\obj\Debug\net6.0-windows\TestProject1.csproj.CoreCompileInputs.cache

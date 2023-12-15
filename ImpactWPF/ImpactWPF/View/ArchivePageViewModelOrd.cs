@@ -1,132 +1,160 @@
-﻿using EfCore.context;
-using EfCore.entity;
-using EfCore.service.impl;
-using ImpactWPF.Pages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Input;
+﻿// <copyright file="ArchivePageViewModelOrd.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows.Input;
+    using EfCore.context;
+    using EfCore.entity;
+    using EfCore.service.impl;
+    using ImpactWPF.Pages;
+
     public class ArchivePageViewModelOrd : INotifyPropertyChanged
     {
         private readonly RequestServiceImpl requestService = new RequestServiceImpl(new ImpactDbContext());
-        private ObservableCollection<Request> _requests;
-        private AtchivePageOrd _archivePage;
+        private ObservableCollection<Request> requests;
+        private readonly AtchivePageOrd archivePage;
 
         public ArchivePageViewModelOrd(AtchivePageOrd archivePage)
         {
-            _archivePage = archivePage;
+            this.archivePage = archivePage;
         }
 
         private bool isActivatedFilter;
+
         public bool IsActivatedFilter
         {
-            get { return isActivatedFilter; }
+            get
+            {
+                return this.isActivatedFilter;
+            }
+
             set
             {
-                if (isActivatedFilter != value)
+                if (this.isActivatedFilter != value)
                 {
-                    isActivatedFilter = value;
-                    OnPropertyChanged(nameof(IsActivatedFilter));
+                    this.isActivatedFilter = value;
+                    this.OnPropertyChanged(nameof(this.IsActivatedFilter));
                 }
             }
         }
 
         private bool isDeactivatedFilter;
+
         public bool IsDeactivatedFilter
         {
-            get { return isDeactivatedFilter; }
+            get
+            {
+                return this.isDeactivatedFilter;
+            }
+
             set
             {
-                if (isDeactivatedFilter != value)
+                if (this.isDeactivatedFilter != value)
                 {
-                    isDeactivatedFilter = value;
-                    OnPropertyChanged(nameof(IsDeactivatedFilter));
+                    this.isDeactivatedFilter = value;
+                    this.OnPropertyChanged(nameof(this.IsDeactivatedFilter));
                 }
             }
         }
 
         private DateTime fromDateFilter;
+
         public DateTime FromDateFilter
         {
-            get { return fromDateFilter; }
+            get
+            {
+                return this.fromDateFilter;
+            }
+
             set
             {
-                if (fromDateFilter != value)
+                if (this.fromDateFilter != value)
                 {
-                    fromDateFilter = value;
-                    OnPropertyChanged(nameof(FromDateFilter));
+                    this.fromDateFilter = value;
+                    this.OnPropertyChanged(nameof(this.FromDateFilter));
                 }
             }
         }
 
         private DateTime toDateFilter;
+
         public DateTime ToDateFilter
         {
-            get { return toDateFilter; }
+            get
+            {
+                return this.toDateFilter;
+            }
+
             set
             {
-                if (toDateFilter != value)
+                if (this.toDateFilter != value)
                 {
-                    toDateFilter = value;
-                    OnPropertyChanged(nameof(ToDateFilter));
+                    this.toDateFilter = value;
+                    this.OnPropertyChanged(nameof(this.ToDateFilter));
                 }
             }
         }
 
         public DateTime SelectedFromDate { get; set; }
+
         public DateTime SelectedToDate { get; set; }
 
         public void OnSelectedFromDateChanged(DateTime selectedDate)
         {
-            SelectedFromDate = selectedDate;
-            OnPropertyChanged(nameof(SelectedFromDate));
+            this.SelectedFromDate = selectedDate;
+            this.OnPropertyChanged(nameof(this.SelectedFromDate));
         }
 
         public void OnSelectedToDateChanged(DateTime selectedDate)
         {
-            SelectedToDate = selectedDate;
-            OnPropertyChanged(nameof(SelectedToDate));
+            this.SelectedToDate = selectedDate;
+            this.OnPropertyChanged(nameof(this.SelectedToDate));
         }
 
         public ICommand ApplyFilterCommand { get; private set; }
 
         public void FilterData()
         {
-            LoadArchiveRequests();
+            this.LoadArchiveRequests();
 
-            var filteredData = Requests.Where(item =>
-                (IsActivatedFilter && item.RequestStatusId == 1) ||
-                (IsDeactivatedFilter && item.RequestStatusId == 2) ||
-                ((item.CreatedAt >= SelectedFromDate) && (item.CreatedAt <= SelectedToDate))
-            );
+            var filteredData = this.Requests.Where(item =>
+                (this.IsActivatedFilter && item.RequestStatusId == 1) ||
+                (this.IsDeactivatedFilter && item.RequestStatusId == 2) ||
+                ((item.CreatedAt >= this.SelectedFromDate) && (item.CreatedAt <= this.SelectedToDate)));
 
-            Requests = new ObservableCollection<Request>(filteredData.ToList());
-            OnPropertyChanged(nameof(Requests));
+            this.Requests = new ObservableCollection<Request>(filteredData.ToList());
+            this.OnPropertyChanged(nameof(this.Requests));
         }
 
         private bool IsDateInRange(DateTime createdAt)
         {
-            return (createdAt >= SelectedFromDate) && (createdAt <= SelectedToDate);
+            return (createdAt >= this.SelectedFromDate) && (createdAt <= this.SelectedToDate);
         }
 
         public void LoadArchiveRequests()
         {
-            List<Request> archiveOrders = requestService.GetOrdersByEmail(UserSession.Instance.UserEmail);
-            Requests = new ObservableCollection<Request>(archiveOrders);
+            List<Request> archiveOrders = this.requestService.GetOrdersByEmail(UserSession.Instance.UserEmail);
+            this.Requests = new ObservableCollection<Request>(archiveOrders);
         }
 
         public ObservableCollection<Request> Requests
         {
-            get { return _requests; }
+            get
+            {
+                return this.requests;
+            }
+
             set
             {
-                _requests = value;
-                OnPropertyChanged(nameof(Requests));
+                this.requests = value;
+                this.OnPropertyChanged(nameof(this.Requests));
             }
         }
 
@@ -135,7 +163,7 @@ namespace ImpactWPF.View
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
