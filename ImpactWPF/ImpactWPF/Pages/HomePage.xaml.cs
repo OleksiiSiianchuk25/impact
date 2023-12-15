@@ -214,6 +214,7 @@ namespace ImpactWPF.Pages
                 // Serialize and deserialize to create a deep copy of the CheckBox
                 string checkBoxXaml = XamlWriter.Save(checkBox);
 
+
                 using (StringReader stringReader = new StringReader(checkBoxXaml))
                 {
                     using (XmlReader xmlReader = XmlReader.Create(stringReader))
@@ -225,6 +226,10 @@ namespace ImpactWPF.Pages
                             newCheckBox.IsChecked = true;
                             StackPanel stackPanel = checkBox.Content as StackPanel;
 
+
+                            TextBlock textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
+
+                            string text = textBlock.Text;
 
                             // Apply the specific style to the new CheckBox
                             newCheckBox.Style = (Style)FindResource("CheckBoxStyle1");
@@ -298,8 +303,10 @@ namespace ImpactWPF.Pages
                                     }
                                 }
                             }
+                            viewModel.SelectedCategories.Add(text);
                         }
                     }
+                    viewModel.FilterRequestsByCategories();
                 }
             }
         }
@@ -329,6 +336,11 @@ namespace ImpactWPF.Pages
                 checkBox.Unchecked -= CheckBox_Unchecked;
                 StackPanel stackPanel = checkBox.Content as StackPanel;
 
+                TextBlock textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
+
+                string text = textBlock.Text;
+
+
                 // Highlight the original item
                 Border border = FindVisualParent<Border>(checkBox);
                 if (border != null)
@@ -347,6 +359,9 @@ namespace ImpactWPF.Pages
                         }
                     }
                 }
+
+                viewModel.SelectedCategories.Remove(text);
+                viewModel.FilterRequestsByCategories();
             }
         }
 

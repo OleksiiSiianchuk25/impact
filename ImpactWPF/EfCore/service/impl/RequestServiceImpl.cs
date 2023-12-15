@@ -23,10 +23,19 @@ namespace EfCore.service.impl
             this.requestStatusService = new RequestStatusServiceImpl(context);
         }
 
+        public RequestServiceImpl(ImpactDbContext context, RequestRoleServiceImpl requestRoleService, RequestStatusServiceImpl requestStatusService)
+        {
+            this.context = context;
+            this.requestRoleService = requestRoleService;
+            this.requestStatusService = requestStatusService;
+        }
+
         public void CreateRequest(RequestDTO requestDTO)
         {
             try
             {
+                List<int> categoryIds = requestDTO.Categories.ToList();
+
                 Request newRequest = new Request
                 {
                     RequestName = requestDTO.RequestName,
@@ -38,7 +47,7 @@ namespace EfCore.service.impl
                     RoleRef = requestDTO.RoleRef,
                     CreatedAt = DateTime.Now,
                     RequestStatusId = 1,
-                    Categories = GetRequestCategories((List<int>)requestDTO.Categories)
+                    Categories = GetRequestCategories(categoryIds)
                 };
 
                 context.Requests.Add(newRequest);
@@ -50,6 +59,7 @@ namespace EfCore.service.impl
                 throw new ApplicationException($"Error creating request: {ex.Message}");
             }
         }
+
 
         private List<RequestCategory> GetRequestCategories(List<int> categoryIds)
         {
@@ -343,5 +353,43 @@ namespace EfCore.service.impl
                 .ToList();
         }
 
+        public List<Request> GetActivePropositionsByCategories(List<string> categoryNames, int pageSize)
+        {
+            try
+            {
+                var filteredRequests = context.Requests
+                .Where(r => r.Categories.Any(c => categoryNames.Contains(c.CategoryName)))
+                .Where(r => r.RoleRefNavigation.RoleName == requestRoleService.GetPropositionRequestRole().RoleName)
+                .Where(r => r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                .Take(pageSize)
+                .ToList();
+
+
+                return filteredRequests;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error getting active propositions by categories: {ex.Message}");
+            }
+        }
+
+        public List<Request> GetActiveOrdersByCategories(List<string> categoryNames, int pageSize)
+        {
+            try
+            {
+                var filteredRequests = context.Requests
+                    .Where(r => r.Categories.Any(c => categoryNames.Contains(c.CategoryName)) &&
+                                r.RoleRefNavigation.RoleName == requestRoleService.GetOrderRequestRole().RoleName &&
+                                r.RequestStatusId == requestStatusService.GetActiveRequestStatus().StatusId)
+                    .Take(pageSize)
+                    .ToList();
+
+                return filteredRequests;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error getting active propositions by categories: {ex.Message}");
+            }
+        }
     }
 }

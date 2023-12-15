@@ -12,22 +12,26 @@ namespace EfCore.service.impl
     {
         private readonly ImpactDbContext context;
 
+        public RoleServiceImpl()
+        {
+        }
+
         public RoleServiceImpl(ImpactDbContext context)
         {
             this.context = context;
         }
 
-        public Role GetOrdererRole()
+        public virtual Role GetOrdererRole()
         {
             return context.Roles.Find(1);
         }
 
-        public Role GetVolunteerRole()
+        public virtual Role GetVolunteerRole()
         {
             return context.Roles.Find(2);
         }
 
-        public Role GetAdminRole()
+        public virtual Role GetAdminRole()
         {
             return context.Roles.Find(3);
         }

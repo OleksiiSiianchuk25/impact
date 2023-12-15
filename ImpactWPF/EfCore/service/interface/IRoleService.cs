@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EfCore.service
 {
-    internal interface IRoleService
+    public interface IRoleService
     {
         Role GetOrdererRole();
 

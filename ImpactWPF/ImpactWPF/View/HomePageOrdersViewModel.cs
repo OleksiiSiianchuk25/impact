@@ -1,148 +1,218 @@
-﻿using EfCore.context;
-using EfCore.entity;
-using EfCore.service.impl;
-using ImpactWPF.Pages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// <copyright file="HomePageOrdersViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.View
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows;
+    using EfCore.context;
+    using EfCore.entity;
+    using EfCore.service.impl;
+    using ImpactWPF.Pages;
+
     public class HomePageOrdersViewModel : INotifyPropertyChanged
     {
-        private readonly RequestServiceImpl requestService = new RequestServiceImpl(new ImpactDbContext());
-        private ObservableCollection<Request> _requests;
-        private int _currentPage = 1;  // Track the current page
-        private int _pageSize = 12;    // Number of requests per page
-        private int _currentRowCount = 3;  // Initial number of rows
-        private int _additionalRowCount = 3;  // Number of additional rows to load
-        private HomePageOrders _homePage;
+        private readonly HomePageOrders homePage;
+        private readonly RequestServiceImpl requestServiceр = new (new ImpactDbContext());
+        private ObservableCollection<Request> requests = new ObservableCollection<Request>();
+        private int currentPage = 1;  // Track the current page
+        private int pageSize = 12;    // Number of requests per page
+        private int currentRowCount = 3;  // Initial number of rows
+        private int additionalRowCount = 3;  // Number of additional rows to
+        private string searchTerm;
 
         public HomePageOrdersViewModel(HomePageOrders homePage)
         {
-            _homePage = homePage;
-            SearchTerm = string.Empty;
+            this.homePage = homePage;
+            this.SearchTerm = string.Empty;
+            this.SelectedCategories = new List<string>();
         }
 
         public int PageSize
         {
-            get { return _pageSize; }
+            get
+            {
+                return this.pageSize;
+            }
+
             set
             {
-                _pageSize = value;
-                OnPropertyChanged(nameof(PageSize));
+                this.pageSize = value;
+                this.OnPropertyChanged(nameof(this.PageSize));
             }
         }
 
-
-        private string _searchTerm;
-
         public string SearchTerm
         {
-            get { return _searchTerm; }
+            get
+            {
+                return this.searchTerm;
+            }
+
             set
             {
-                _searchTerm = value;
-                OnPropertyChanged(nameof(SearchTerm));
-                PerformSearch(_searchTerm);
+                this.searchTerm = value;
+                this.OnPropertyChanged(nameof(this.SearchTerm));
+                this.PerformSearch(this.searchTerm);
             }
         }
 
         public void LoadInitialRequests()
         {
-            List<Request> initialRequests = requestService.GetActiveOrders(PageSize);
-            Requests = new ObservableCollection<Request>(initialRequests);
+            List<Request> initialRequests = this.requestServiceр.GetActiveOrders(this.PageSize);
+            this.Requests = new ObservableCollection<Request>(initialRequests);
+
+            double newMarginTop = 352;
+
+            if (initialRequests.Count < 4)
+            {
+                this.CurrentRowCount = 1;
+            }
+            else if (initialRequests.Count < 9)
+            {
+                this.CurrentRowCount = 2;
+                newMarginTop = 754;
+            }
+            else
+            {
+                this.CurrentRowCount = 3;
+                newMarginTop = 1106;
+            }
+
+            this.UpdateLoadMoreButtonMargin(newMarginTop);
         }
 
         private void PerformSearch(string searchTerm)
         {
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                List<Request> searchResults = requestService.GetOrdersByName(searchTerm, PageSize);
-                Requests = new ObservableCollection<Request>(searchResults);
+                List<Request> searchResults = this.requestServiceр.GetOrdersByName(searchTerm, this.PageSize);
+                this.Requests = new ObservableCollection<Request>(searchResults);
             }
             else
             {
-                LoadInitialRequests();
+                this.LoadInitialRequests();
             }
         }
 
         public ObservableCollection<Request> Requests
         {
-            get { return _requests; }
+            get
+            {
+                return this.requests;
+            }
+
             set
             {
-                _requests = value;
-                OnPropertyChanged(nameof(Requests));
+                this.requests = value;
+                this.OnPropertyChanged(nameof(this.Requests));
             }
         }
 
         public int CurrentRowCount
         {
-            get { return _currentRowCount; }
+            get
+            {
+                return this.currentRowCount;
+            }
+
             set
             {
-                _currentRowCount = value;
-                OnPropertyChanged(nameof(CurrentRowCount));
+                this.currentRowCount = value;
+                this.OnPropertyChanged(nameof(this.CurrentRowCount));
             }
         }
 
         public int AdditionalRowCount
         {
-            get { return _additionalRowCount; }
+            get
+            {
+                return this.additionalRowCount;
+            }
+
             set
             {
-                _additionalRowCount = value;
-                OnPropertyChanged(nameof(AdditionalRowCount));
+                this.additionalRowCount = value;
+                this.OnPropertyChanged(nameof(this.AdditionalRowCount));
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void LoadMoreRequests()
         {
-            List<Request> moreRequests = requestService.GetMoreActiveOrders(_currentPage, _pageSize);
+            this.currentPage++;
+
+            List<Request> moreRequests = this.requestServiceр.GetMoreActiveOrders(this.currentPage, this.pageSize);
 
             if (moreRequests.Any())
             {
                 foreach (var request in moreRequests)
                 {
-                    _requests.Add(request);
+                    this.requests.Add(request);
                 }
-                _currentPage++;
 
-                if (moreRequests.Count < 4)
+                if (moreRequests.Count < 5)
                 {
-                    CurrentRowCount += 1;
+                    this.CurrentRowCount += 1;
                 }
-                else if (moreRequests.Count < 7)
+                else if (moreRequests.Count < 9)
                 {
-                    CurrentRowCount += 2;
+                    this.CurrentRowCount += 2;
                 }
                 else
                 {
-                    CurrentRowCount += AdditionalRowCount;
+                    this.CurrentRowCount += this.AdditionalRowCount;
                 }
 
-                double newMarginTop = 133 + (CurrentRowCount) * 360;
+                double newMarginTop = this.CurrentRowCount * 360;
 
-                UpdateLoadMoreButtonMargin(newMarginTop);
+                this.UpdateLoadMoreButtonMargin(newMarginTop);
+            }
+        }
+
+        private List<string> selectedCategories;
+
+        public List<string> SelectedCategories
+        {
+            get
+            {
+                return this.selectedCategories;
+            }
+
+            set
+            {
+                this.selectedCategories = value;
+                this.OnPropertyChanged(nameof(this.SelectedCategories));
+                this.FilterRequestsByCategories();
+            }
+        }
+
+        public void FilterRequestsByCategories()
+        {
+            if (this.SelectedCategories != null && this.SelectedCategories.Any())
+            {
+                List<Request> filteredRequests = this.requestServiceр.GetActiveOrdersByCategories(this.SelectedCategories, this.PageSize);
+                this.Requests = new ObservableCollection<Request>(filteredRequests);
+            }
+            else
+            {
+                this.LoadInitialRequests();
             }
         }
 
         public void UpdateLoadMoreButtonMargin(double newMarginTop)
         {
-            _homePage.Button_LoadMore.Margin = new Thickness(0, newMarginTop, 0, 0);
+            this.homePage.Button_LoadMore.Margin = new Thickness(0, newMarginTop, 0, 0);
         }
     }
 }
