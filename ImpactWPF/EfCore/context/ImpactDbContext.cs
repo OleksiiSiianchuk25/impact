@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using EfCore.entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace EfCore.context;
 
 public partial class ImpactDbContext : DbContext
 {
+    [ExcludeFromCodeCoverage]
     public ImpactDbContext()
     {
     }

@@ -1,53 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using EfCore;
-using EfCore.context;
-using EfCore.dto;
-using EfCore.entity;
-using EfCore.service.impl;
-using Microsoft.EntityFrameworkCore;
-using NLog;
+﻿// <copyright file="RegistrationPage.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using System.Text.RegularExpressions;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using EfCore.context;
+    using EfCore.dto;
+    using EfCore.service.impl;
+    using NLog;
+
     /// <summary>
-    /// Interaction logic for RegistrationPage.xaml
+    /// Interaction logic for RegistrationPage.xaml.
     /// </summary>
     public partial class RegistrationPage : Page, INotifyPropertyChanged
     {
-        private ObservableCollection<String> petCollection = new ObservableCollection<String>();
+        private ObservableCollection<string> petCollection = new ObservableCollection<string>();
         private readonly UserServiceImpl userService;
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public RegistrationPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             Logger.Info("Сторінка реєстрації успішно ініціалізована");
 
-            PetCollection.Add("Волонтер");
-            PetCollection.Add("Замовник");
+            this.PetCollection.Add("Волонтер");
+            this.PetCollection.Add("Замовник");
 
-            userService = new UserServiceImpl(new ImpactDbContext());
+            this.userService = new UserServiceImpl(new ImpactDbContext());
 
-            roleRegistation.SelectionChanged += RoleRegistation_SelectionChanged;
-            
+            this.roleRegistation.SelectionChanged += this.RoleRegistation_SelectionChanged;
         }
 
         private bool IsPasswordValid(string password)
@@ -76,28 +66,31 @@ namespace ImpactWPF
 
         private void RoleRegistation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selectedRole = roleRegistation.SelectedItem as string;
-            RoleTextBlock.Text = selectedRole;
-            RoleTextBlock.Foreground = Brushes.Black;
+            string selectedRole = this.roleRegistation.SelectedItem as string;
+            this.RoleTextBlock.Text = selectedRole;
+            this.RoleTextBlock.Foreground = Brushes.Black;
             Logger.Info($"Користувач обрав роль \"{selectedRole}\"");
         }
 
+        public ObservableCollection<string> PetCollection
+        {
+            get
+            {
+                return this.petCollection;
+            }
 
-        public ObservableCollection<string> PetCollection 
-        { 
-            get { return petCollection; }
             set
             {
-                petCollection = value;
-                NotifyPropertyChanged();
+                this.petCollection = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName="")
+        public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if(PropertyChanged != null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -106,7 +99,7 @@ namespace ImpactWPF
         private void TurnBackToLoginPage_Click(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач повернувся до сторінки входу");
-            NavigationService?.Navigate(new LoginPage());
+            this.NavigationService?.Navigate(new LoginPage());
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)
@@ -115,40 +108,40 @@ namespace ImpactWPF
             {
                 Logger.Info("Початок процесу реєстрації користувача");
 
-                if (!ValidateFields())
+                if (!this.ValidateFields())
                 {
                     Logger.Error("Валідація полів реєстрації не пройшла успішно");
                     return;
                 }
 
-                string userEmail = emailRegistration.tbInput.Text; 
+                string userEmail = this.emailRegistration.tbInput.Text;
 
-                if (userService.GetUserByEmail(userEmail) != null)
+                if (this.userService.GetUserByEmail(userEmail) != null)
                 {
                     Logger.Warn($"Користувач з такою електронною поштою вже існує: {userEmail}");
                     MessageBox.Show("Користувач з такою електронною поштою вже існує! " + userEmail, "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                string selectedRole = roleRegistation.SelectedItem as string;
+                string selectedRole = this.roleRegistation.SelectedItem as string;
 
-                string userFirstname = firstnameRegistration.tbInput.Text;
-                string userLastname = lastnameRegistration.tbInput.Text;
-                string userMiddlename = middlenameRegistration.tbInput.Text;
-                string userPhonenumber = phoneNumberRegistration.tbInput.Text;
-                string userPassword = passwordRegistration.pbInput.Password;
-                string userPasswordConfirm = confirmPasswordRegistration.pbInput.Password;
-                int userRoleId = GetRoleIdFromRoleName(selectedRole);
+                string userFirstname = this.firstnameRegistration.tbInput.Text;
+                string userLastname = this.lastnameRegistration.tbInput.Text;
+                string userMiddlename = this.middlenameRegistration.tbInput.Text;
+                string userPhonenumber = this.phoneNumberRegistration.tbInput.Text;
+                string userPassword = this.passwordRegistration.pbInput.Password;
+                string userPasswordConfirm = this.confirmPasswordRegistration.pbInput.Password;
+                int userRoleId = this.GetRoleIdFromRoleName(selectedRole);
 
-                UserDTO userDTO = new UserDTO(userFirstname, userLastname, userMiddlename, 
+                UserDTO userDTO = new UserDTO(userFirstname, userLastname, userMiddlename,
                     userEmail, userPhonenumber, userPassword, userPasswordConfirm, userRoleId);
 
-                userService.RegisterUser(userDTO);
+                this.userService.RegisterUser(userDTO);
 
                 Logger.Info("Користувач успішно зареєстрований");
 
                 Logger.Info("Користувач перенаправлений на сторінку входу");
-                NavigationService?.Navigate(new LoginPage());
+                this.NavigationService?.Navigate(new LoginPage());
             }
             catch (Exception ex)
             {
@@ -158,51 +151,53 @@ namespace ImpactWPF
 
         private bool ValidateFields()
         {
-            if (!IsValidEmail(emailRegistration.tbInput.Text))
+            if (!this.IsValidEmail(this.emailRegistration.tbInput.Text))
             {
                 Logger.Warn("Некоректний формат електронної адреси");
                 MessageBox.Show("Некоректний формат електронної адреси! Приклад: example@mail.com", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (!IsValidName(firstnameRegistration.tbInput.Text))
+            if (!this.IsValidName(this.firstnameRegistration.tbInput.Text))
             {
                 Logger.Warn("Ім'я містить неприпустимі символи");
                 MessageBox.Show("Ім'я повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (!IsValidName(lastnameRegistration.tbInput.Text))
+            if (!this.IsValidName(this.lastnameRegistration.tbInput.Text))
             {
                 Logger.Warn("Прізвище містить неприпустимі символи");
                 MessageBox.Show("Прізвище повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (!IsValidName(middlenameRegistration.tbInput.Text))
+            if (!this.IsValidName(this.middlenameRegistration.tbInput.Text))
             {
                 Logger.Warn("По-батькові містить неприпустимі символи");
                 MessageBox.Show("По-батькові повинно містити тільки кирилицю або латиницю!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (!IsPhoneNumberValid(phoneNumberRegistration.tbInput.Text))
+            if (!this.IsPhoneNumberValid(this.phoneNumberRegistration.tbInput.Text))
             {
                 Logger.Warn("Некоректний формат номера телефону");
-                MessageBox.Show("Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890",
+                MessageBox.Show(
+                    "Некоректний формат номера телефону! \n Приклади: +1234567890\r\n+1 (123) 456-7890\r\n123.456.7890\r\n123-456-7890\r\n1234567890",
                     "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (!IsPasswordValid(passwordRegistration.pbInput.Password))
+            if (!this.IsPasswordValid(this.passwordRegistration.pbInput.Password))
             {
                 Logger.Warn("Некоректний формат паролю");
-                MessageBox.Show("Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!",
+                MessageBox.Show(
+                    "Пароль має складатися мінімум з 8 символів, перший символ у верхньому регістрі, а також пароль повинен містити мінімум 1 цифру!",
                     "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (roleRegistation.SelectedItem == null)
+            if (this.roleRegistation.SelectedItem == null)
             {
                 Logger.Warn("Користувач не обрав роль");
                 MessageBox.Show("Будь ласка, оберіть роль!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -219,6 +214,7 @@ namespace ImpactWPF
             {
                 return 2;
             }
+
             return 1;
         }
     }

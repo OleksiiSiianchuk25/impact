@@ -1,27 +1,31 @@
-﻿using EfCore.context;
-using EfCore.entity;
-using EfCore.service.impl;
-using ImpactWPF.View;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// <copyright file="AtchivePageOrd.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.Pages
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using EfCore.context;
+    using EfCore.entity;
+    using EfCore.service.impl;
+    using ImpactWPF.View;
+    using NLog;
+
     /// <summary>
-    /// Interaction logic for AtchivePageOrd.xaml
+    /// Interaction logic for AtchivePageOrd.xaml.
     /// </summary>
     public partial class AtchivePageOrd : Page
     {
@@ -32,19 +36,18 @@ namespace ImpactWPF.Pages
 
         public AtchivePageOrd()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             Logger.Info("Сторінка архіву із замовленнями користувача успішно ініціалізована");
 
-            SetButtonStyles(ArchiveOrderButton);
+            SetButtonStyles(this.ArchiveOrderButton);
 
-            dbContext = new ImpactDbContext();
-            requestService = new RequestServiceImpl(dbContext);
+            this.dbContext = new ImpactDbContext();
+            this.requestService = new RequestServiceImpl(this.dbContext);
 
-            archiveViewModel = new ArchivePageViewModelOrd(this);
-            archiveViewModel.LoadArchiveRequests();
-            DataContext = archiveViewModel;
-
+            this.archiveViewModel = new ArchivePageViewModelOrd(this);
+            this.archiveViewModel.LoadArchiveRequests();
+            this.DataContext = this.archiveViewModel;
         }
 
         private void ArchiveButton_Click(object sender, RoutedEventArgs e)
@@ -56,11 +59,11 @@ namespace ImpactWPF.Pages
             SetButtonStyles(clickedButton);
 
             // Зміна стилів для іншої кнопки
-            var otherButton = (clickedButton == ArchivePropositionButton) ? ArchiveOrderButton : ArchivePropositionButton;
+            var otherButton = (clickedButton == this.ArchivePropositionButton) ? this.ArchiveOrderButton : this.ArchivePropositionButton;
             ClearButtonStyles(otherButton);
 
             Logger.Info("Користувач перейшов на сторінку архіву з пропозиціями користувача");
-            NavigationService?.Navigate(new AtchivePage());
+            this.NavigationService?.Navigate(new AtchivePage());
         }
 
         private void ArchiveButton2_Click(object sender, RoutedEventArgs e)
@@ -72,14 +75,14 @@ namespace ImpactWPF.Pages
             SetButtonStyles(clickedButton);
 
             // Зміна стилів для іншої кнопки
-            var otherButton = (clickedButton == ArchivePropositionButton) ? ArchiveOrderButton : ArchivePropositionButton;
+            var otherButton = (clickedButton == this.ArchivePropositionButton) ? this.ArchiveOrderButton : this.ArchivePropositionButton;
             ClearButtonStyles(otherButton);
 
             Logger.Info("Користувач перейшов на сторінку архіву із замовленнями користувача");
-            NavigationService?.Navigate(new AtchivePageOrd());
+            this.NavigationService?.Navigate(new AtchivePageOrd());
         }
 
-        private void SetButtonStyles(Button button)
+        private static void SetButtonStyles(Button button)
         {
             // Use the Color structure from System.Windows.Media namespace
             System.Windows.Media.Color color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#002861");
@@ -90,8 +93,7 @@ namespace ImpactWPF.Pages
             Logger.Info("Стиль кнопки успішно змінений");
         }
 
-
-        private void ClearButtonStyles(Button button)
+        private static void ClearButtonStyles(Button button)
         {
             button.ClearValue(Button.BackgroundProperty);
             button.ClearValue(Button.BorderBrushProperty);
@@ -100,17 +102,16 @@ namespace ImpactWPF.Pages
             button.ClearValue(Button.EffectProperty);
         }
 
-
         private void ArchiveFilterButtonClick(object sender, RoutedEventArgs e)
         {
-            if (myArchiveFilterGrid.Visibility == Visibility.Collapsed)
+            if (this.myArchiveFilterGrid.Visibility == Visibility.Collapsed)
             {
-                myArchiveFilterGrid.Visibility = Visibility.Visible;
+                this.myArchiveFilterGrid.Visibility = Visibility.Visible;
                 Logger.Info("Користувач відкрив вікно фільтрів");
             }
             else
             {
-                myArchiveFilterGrid.Visibility = Visibility.Collapsed;
+                this.myArchiveFilterGrid.Visibility = Visibility.Collapsed;
                 Logger.Info("Користувач закрив вікно фільтрів");
             }
         }
@@ -118,14 +119,14 @@ namespace ImpactWPF.Pages
         private void CloseFilter(object sender, MouseButtonEventArgs e)
         {
             // Toggle the visibility of the Rectangle
-            if (myArchiveFilterGrid.Visibility == Visibility.Collapsed)
+            if (this.myArchiveFilterGrid.Visibility == Visibility.Collapsed)
             {
-                myArchiveFilterGrid.Visibility = Visibility.Visible;
+                this.myArchiveFilterGrid.Visibility = Visibility.Visible;
                 Logger.Info("Користувач відкрив вікно фільтрів");
             }
             else
             {
-                myArchiveFilterGrid.Visibility = Visibility.Collapsed;
+                this.myArchiveFilterGrid.Visibility = Visibility.Collapsed;
                 Logger.Info("Користувач закрив вікно фільтрів");
             }
         }
@@ -134,46 +135,45 @@ namespace ImpactWPF.Pages
         {
             Logger.Info("Початок процесу очищення фільтрів");
 
-            SetButtonStyles(button2, false);
-            archiveViewModel.IsDeactivatedFilter = false;
+            this.SetButtonStyles(this.button2, false);
+            this.archiveViewModel.IsDeactivatedFilter = false;
 
-            SetButtonStyles(button1, false);
-            archiveViewModel.IsActivatedFilter = false;
+            this.SetButtonStyles(this.button1, false);
+            this.archiveViewModel.IsActivatedFilter = false;
 
-            archiveViewModel.OnSelectedFromDateChanged(DateTime.MinValue);
-            selectedDateTextBlock.Text = "від: 00/00/0000";
-            selectedDateTextBlock.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
+            this.archiveViewModel.OnSelectedFromDateChanged(DateTime.MinValue);
+            this.selectedDateTextBlock.Text = "від: 00/00/0000";
+            this.selectedDateTextBlock.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
 
-            archiveViewModel.OnSelectedToDateChanged(DateTime.MaxValue);
-            selectedDateTextBlock2.Text = "до: 00/00/0000";
-            selectedDateTextBlock2.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
+            this.archiveViewModel.OnSelectedToDateChanged(DateTime.MaxValue);
+            this.selectedDateTextBlock2.Text = "до: 00/00/0000";
+            this.selectedDateTextBlock2.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
 
-            archiveViewModel.LoadArchiveRequests();
+            this.archiveViewModel.LoadArchiveRequests();
 
             Logger.Info("Значення фільтрів успішно очищенні");
         }
 
-
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            SetButtonStyles(button1, true);
-            archiveViewModel.IsActivatedFilter = true;
+            this.SetButtonStyles(this.button1, true);
+            this.archiveViewModel.IsActivatedFilter = true;
 
             Logger.Info("Користувач обрав фільтр \"активовані\"");
 
-            SetButtonStyles(button2, false);
-            archiveViewModel.IsDeactivatedFilter = false;
+            this.SetButtonStyles(this.button2, false);
+            this.archiveViewModel.IsDeactivatedFilter = false;
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            SetButtonStyles(button2, true);
-            archiveViewModel.IsDeactivatedFilter = true;
+            this.SetButtonStyles(this.button2, true);
+            this.archiveViewModel.IsDeactivatedFilter = true;
 
             Logger.Info("Користувач обрав фільтр \"деактивовані\"");
 
-            SetButtonStyles(button1, false);
-            archiveViewModel.IsActivatedFilter = false;
+            this.SetButtonStyles(this.button1, false);
+            this.archiveViewModel.IsActivatedFilter = false;
         }
 
         private void SetButtonStyles(Button button, bool isSelected)
@@ -184,7 +184,6 @@ namespace ImpactWPF.Pages
 
                 button.Background = new SolidColorBrush(color);
                 button.Foreground = Brushes.Black;
-
             }
             else
             {
@@ -195,105 +194,95 @@ namespace ImpactWPF.Pages
             }
 
             // Додавання заокруглення
-
         }
-
 
         private bool isCalendar1Visible = false;
         private bool isCalendar2Visible = false;
 
-        private void HideAllCalendars()
-        {
-            myCalendar.Visibility = Visibility.Collapsed;
-            myCalendar2.Visibility = Visibility.Collapsed;
-            isCalendar1Visible = false;
-            isCalendar2Visible = false;
-        }
-
         private void myImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (isCalendar2Visible)
+            if (this.isCalendar2Visible)
             {
-                myCalendar2.Visibility = Visibility.Collapsed;
-                isCalendar2Visible = false;
+                this.myCalendar2.Visibility = Visibility.Collapsed;
+                this.isCalendar2Visible = false;
             }
 
-            myCalendar.Visibility = myCalendar.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-            isCalendar1Visible = !isCalendar1Visible;
+            this.myCalendar.Visibility = this.myCalendar.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            this.isCalendar1Visible = !this.isCalendar1Visible;
 
             Logger.Info("Користувач відкрив/закрив календар");
         }
 
         private void myCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (myCalendar.SelectedDate.HasValue)
+            if (this.myCalendar.SelectedDate.HasValue)
             {
-                archiveViewModel.OnSelectedFromDateChanged(myCalendar.SelectedDate.Value);
-                selectedDateTextBlock.Text = $"від: {myCalendar.SelectedDate.Value.ToString("dd/MM/yyyy")}";
-                selectedDateTextBlock.Foreground = Brushes.Black; // Змінити колір тексту на чорний
+                this.archiveViewModel.OnSelectedFromDateChanged(this.myCalendar.SelectedDate.Value);
+                this.selectedDateTextBlock.Text = $"від: {this.myCalendar.SelectedDate.Value.ToString("dd/MM/yyyy")}";
+                this.selectedDateTextBlock.Foreground = Brushes.Black; // Змінити колір тексту на чорний
                 Logger.Info("Користувач обрав від якої дати фільтрувати");
             }
             else
             {
-                archiveViewModel.OnSelectedFromDateChanged(DateTime.MinValue);
-                selectedDateTextBlock.Text = "від: 00/00/0000";
-                selectedDateTextBlock.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
+                this.archiveViewModel.OnSelectedFromDateChanged(DateTime.MinValue);
+                this.selectedDateTextBlock.Text = "від: 00/00/0000";
+                this.selectedDateTextBlock.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
                 Logger.Info("Обрана стандартне значення дати від якої фільтрувати");
             }
         }
 
         private void myImage_MouseLeftButtonDown2(object sender, MouseButtonEventArgs e)
         {
-            if (isCalendar1Visible)
+            if (this.isCalendar1Visible)
             {
-                myCalendar.Visibility = Visibility.Collapsed;
-                isCalendar1Visible = false;
+                this.myCalendar.Visibility = Visibility.Collapsed;
+                this.isCalendar1Visible = false;
             }
 
-            myCalendar2.Visibility = myCalendar2.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-            isCalendar2Visible = !isCalendar2Visible;
+            this.myCalendar2.Visibility = this.myCalendar2.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            this.isCalendar2Visible = !this.isCalendar2Visible;
 
             Logger.Info("Користувач відкрив/закрив календар");
         }
 
         private void myCalendar_SelectedDatesChanged2(object sender, SelectionChangedEventArgs e)
         {
-            if (myCalendar2.SelectedDate.HasValue)
+            if (this.myCalendar2.SelectedDate.HasValue)
             {
-                archiveViewModel.OnSelectedToDateChanged(myCalendar2.SelectedDate.Value);
-                selectedDateTextBlock2.Text = $"до: {myCalendar2.SelectedDate.Value.ToString("dd/MM/yyyy")}";
-                selectedDateTextBlock2.Foreground = Brushes.Black; // Змінити колір тексту на чорний
+                this.archiveViewModel.OnSelectedToDateChanged(this.myCalendar2.SelectedDate.Value);
+                this.selectedDateTextBlock2.Text = $"до: {this.myCalendar2.SelectedDate.Value:dd/MM/yyyy}";
+                this.selectedDateTextBlock2.Foreground = Brushes.Black; // Змінити колір тексту на чорний
                 Logger.Info("Користувач обрав до якої дати фільтрувати");
             }
             else
             {
-                archiveViewModel.OnSelectedToDateChanged(DateTime.MaxValue);
-                selectedDateTextBlock2.Text = "до: 00/00/0000";
-                selectedDateTextBlock2.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
+                this.archiveViewModel.OnSelectedToDateChanged(DateTime.MaxValue);
+                this.selectedDateTextBlock2.Text = "до: 00/00/0000";
+                this.selectedDateTextBlock2.Foreground = Brushes.Gray; // Змінити колір тексту на сірий
                 Logger.Info("Обрана стандартне значення дати до якої фільтрувати");
             }
         }
 
         private void UserMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (UserMenuGrid.Visibility == Visibility.Collapsed)
+            if (this.UserMenuGrid.Visibility == Visibility.Collapsed)
             {
-                UserMenuGrid.Visibility = Visibility.Visible;
+                this.UserMenuGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                UserMenuGrid.Visibility = Visibility.Collapsed;
+                this.UserMenuGrid.Visibility = Visibility.Collapsed;
             }
         }
 
         public void ShowDeactivateGrid(Request request)
         {
-            DeactivateGrid.Visibility = Visibility.Visible;
+            this.DeactivateGrid.Visibility = Visibility.Visible;
 
             Logger.Info("Користувач відкрив випливаюче вікно для деактивації пропозиції");
 
-            YesButton.Click += (sender, e) => OnYesButtonClick(request);
-            NoButton.Click += (sender, e) => OnNoButtonClick();
+            this.YesButton.Click += (sender, e) => this.OnYesButtonClick(request);
+            this.NoButton.Click += (sender, e) => this.OnNoButtonClick();
         }
 
         public void EditRequestPage(Request request)
@@ -302,88 +291,87 @@ namespace ImpactWPF.Pages
             {
                 EditRequestArchive editRequest = new EditRequestArchive(request);
                 Logger.Info("Користувача перейшов на сторінку для редагування замовлення");
-                NavigationService.Navigate(editRequest);
+                this.NavigationService.Navigate(editRequest);
             }
         }
 
         private void OnYesButtonClick(Request request)
         {
-            requestService.ChangeRequestStatus(request.RequestId, 2);
+            this.requestService.ChangeRequestStatus(request.RequestId, 2);
 
-            DeactivateGrid.Visibility = Visibility.Collapsed;
+            this.DeactivateGrid.Visibility = Visibility.Collapsed;
             Logger.Info($"Користувач деактивував замовлення: {request.RequestName}");
 
-            NavigationService?.Navigate(new AtchivePage());
+            this.NavigationService?.Navigate(new AtchivePage());
         }
 
         private void OnNoButtonClick()
         {
             Logger.Info("Користувач закрив випливаюче вікно для деактивації замовлення");
-            DeactivateGrid.Visibility = Visibility.Collapsed;
+            this.DeactivateGrid.Visibility = Visibility.Collapsed;
         }
 
         private void ApplyFilterButton_Click(object sender, RoutedEventArgs e)
         {
-            archiveViewModel.FilterData();
+            this.archiveViewModel.FilterData();
             Logger.Info("Користувач застосував фільтри");
-            myArchiveFilterGrid.Visibility = Visibility.Collapsed;
+            this.myArchiveFilterGrid.Visibility = Visibility.Collapsed;
         }
-
 
         public void ShowActivateGrid(Request request)
         {
-            ActivateGrid.Visibility = Visibility.Visible;
+            this.ActivateGrid.Visibility = Visibility.Visible;
 
             Logger.Info("Користувач відкрив випливаюче вікно для активації замовлення");
 
-            YesButtonA.Click += (sender, e) => OnYesButtonAClick(request);
-            NoButtonA.Click += (sender, e) => OnNoButtonAClick();
+            this.YesButtonA.Click += (sender, e) => this.OnYesButtonAClick(request);
+            this.NoButtonA.Click += (sender, e) => this.OnNoButtonAClick();
         }
 
         private void OnYesButtonAClick(Request request)
         {
-            requestService.ChangeRequestStatus(request.RequestId, 1);
+            this.requestService.ChangeRequestStatus(request.RequestId, 1);
 
-            ActivateGrid.Visibility = Visibility.Collapsed;
+            this.ActivateGrid.Visibility = Visibility.Collapsed;
             Logger.Info($"Користувач активував пропозицію: {request.RequestName}");
 
-            NavigationService?.Navigate(new AtchivePage());
+            this.NavigationService?.Navigate(new AtchivePage());
         }
 
         private void OnNoButtonAClick()
         {
             Logger.Info("Користувач закрив випливаюче вікно для активації пропозиції");
-            ActivateGrid.Visibility = Visibility.Collapsed;
+            this.ActivateGrid.Visibility = Visibility.Collapsed;
         }
 
         private void HomePage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач перейшов на домашню сторінку");
-            NavigationService?.Navigate(new HomePage());
+            this.NavigationService?.Navigate(new HomePage());
         }
 
         private void CreateProposalPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач перейшов на сторінку для створення нової пропозиції");
-            NavigationService?.Navigate(new CreateProposalPage());
+            this.NavigationService?.Navigate(new CreateProposalPage());
         }
 
         private void CreateOrderPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач перейшов на сторінку для створення нового замовлення");
-            NavigationService?.Navigate(new CreateOrderPage());
+            this.NavigationService?.Navigate(new CreateOrderPage());
         }
 
         private void AdminPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач перейшов на сторінку адміна з таблицею запитів");
-            NavigationService?.Navigate(new AdminPage());
+            this.NavigationService?.Navigate(new AdminPage());
         }
 
         private void SupportPage_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач перейшов на сторінку техпідтримки");
-            NavigationService?.Navigate(new SupportPage());
+            this.NavigationService?.Navigate(new SupportPage());
         }
     }
 }

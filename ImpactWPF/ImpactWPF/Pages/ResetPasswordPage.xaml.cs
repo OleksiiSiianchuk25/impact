@@ -1,24 +1,28 @@
-﻿using EfCore.service.impl;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// <copyright file="ResetPasswordPage.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ImpactWPF.Pages
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using EfCore.service.impl;
+    using NLog;
+
     /// <summary>
-    /// Interaction logic for ResetPasswordPage.xaml
+    /// Interaction logic for ResetPasswordPage.xaml.
     /// </summary>
     public partial class ResetPasswordPage : Page
     {
@@ -27,7 +31,7 @@ namespace ImpactWPF.Pages
 
         public ResetPasswordPage(string email)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             Logger.Info("Сторінку для введення нового паролю успішно ініціалізована");
 
@@ -36,21 +40,21 @@ namespace ImpactWPF.Pages
 
         private void ResetPasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            string password = passwordTextBox.pbInput.Password;
-            string confirmPassword = confirmPasswordTextBox.pbInput.Password;
+            string password = this.passwordTextBox.pbInput.Password;
+            string confirmPassword = this.confirmPasswordTextBox.pbInput.Password;
 
             if (password == confirmPassword)
             {
                 try
                 {
                     UserServiceImpl userService = new UserServiceImpl(new EfCore.context.ImpactDbContext());
-                    userService.ChangePassword(email, password);
+                    userService.ChangePassword(this.email, password);
 
                     Logger.Info("Користувач успіщно змінив пароль");
                     MessageBox.Show("Пароль успішно змінено.", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     Logger.Info("Користувач перенаправлений на сторінку входу");
-                    NavigationService?.Navigate(new LoginPage());
+                    this.NavigationService?.Navigate(new LoginPage());
                 }
                 catch (Exception ex)
                 {
@@ -68,7 +72,7 @@ namespace ImpactWPF.Pages
         private void GetBackButton_Click(object sender, RoutedEventArgs e)
         {
             Logger.Info("Користувач повернувся на сторінку зміни паролю");
-            NavigationService?.Navigate(new ForgotPasswordPage());
+            this.NavigationService?.Navigate(new ForgotPasswordPage());
         }
     }
 }

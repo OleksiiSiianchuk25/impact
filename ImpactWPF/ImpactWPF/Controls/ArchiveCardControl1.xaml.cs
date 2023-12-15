@@ -24,16 +24,16 @@ namespace ImpactWPF.Controls
             this.editImage.MouseLeftButtonDown += this.EditImage_MouseLeftButtonDown;
         }
 
-        /// <summary>
-        /// Gets or sets the archive request associated with the ArchiveCardControl1.
-        /// </summary>
+        public static readonly DependencyProperty ArchiveRequestProperty =
+        DependencyProperty.Register("ArchiveRequest", typeof(Request), typeof(ArchiveCardControl1));
+
         public Request ArchiveRequest
         {
-            get { return (Request)this.GetValue(ArchiveCardControl1Helpers.ArchiveRequestProperty); }
-            set { this.SetValue(ArchiveCardControl1Helpers.ArchiveRequestProperty, value); }
+            get { return (Request)this.GetValue(ArchiveRequestProperty); }
+            set { this.SetValue(ArchiveRequestProperty, value); }
         }
 
-        public event EventHandler DeactivateButtonClicked = (sender, e) => { };
+        public event EventHandler DeactivateButtonClicked;
 
         protected virtual void OnDeactivateButtonClicked(EventArgs e)
         {

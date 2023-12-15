@@ -1,0 +1,144 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\TestProject2\\TestProject2.csproj": {}
+  },
+  "projects": {
+    "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\Impact\\Impact.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\Impact\\Impact.csproj",
+        "projectName": "Impact",
+        "projectPath": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\Impact\\Impact.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\TestProject2\\TestProject2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\TestProject2\\TestProject2.csproj",
+        "projectName": "TestProject2",
+        "projectPath": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\TestProject2\\TestProject2.csproj",
+        "packagesPath": "C:\\Users\\WellDone\\.nuget\\packages\\",
+        "outputPath": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\TestProject2\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\WellDone\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\Impact\\Impact.csproj": {
+                "projectPath": "D:\\LNU\\Інженерія\\Repo\\impact\\Impact\\Impact\\Impact.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Bogus": {
+              "target": "Package",
+              "version": "[34.0.2, )"
+            },
+            "ConsoleTableExt": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Faker.Net": {
+              "target": "Package",
+              "version": "[2.0.154, )"
+            },
+            "Microsoft.Bcl.AsyncInterfaces": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Bcl.HashCode": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.4.2, )"
+            },
+            "System.Threading": {
+              "target": "Package",
+              "version": "[4.0.11, )"
+            },
+            "System.Threading.Channels": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.ValueTuple": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

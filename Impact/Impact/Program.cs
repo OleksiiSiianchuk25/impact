@@ -6,7 +6,7 @@ using Bogus;
 
 namespace Impact
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -128,7 +128,7 @@ namespace Impact
             Console.ReadLine();
         }
 
-        static int GetRandomUserId(NpgsqlConnection conn)
+        public static int GetRandomUserId(NpgsqlConnection conn)
         {
             string query = "SELECT user_id FROM users ORDER BY random() LIMIT 1";
             using (var cmd = new NpgsqlCommand(query, conn))
@@ -137,7 +137,7 @@ namespace Impact
             }
         }
 
-        static int GetRandomRequestId(NpgsqlConnection conn)
+        public static int GetRandomRequestId(NpgsqlConnection conn)
         {
             string query = "SELECT request_id FROM requests ORDER BY random() LIMIT 1";
             using (var cmd = new NpgsqlCommand(query, conn))
@@ -146,7 +146,7 @@ namespace Impact
             }
         }
 
-        static int GetRandomCategoryId(NpgsqlConnection conn)
+        public static int GetRandomCategoryId(NpgsqlConnection conn)
         {
             string query = "SELECT category_id FROM request_categories ORDER BY random() LIMIT 1";
             using (var cmd = new NpgsqlCommand(query, conn))
@@ -156,7 +156,7 @@ namespace Impact
         }
 
 
-        static void PrintDataTableInColumn(DataTable table)
+        public static void PrintDataTableInColumn(DataTable table)
         {
             foreach (DataRow row in table.Rows)
             {

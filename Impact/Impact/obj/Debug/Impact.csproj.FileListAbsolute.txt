@@ -74,3 +74,5 @@ D:\LNU\Інженерія\Impact\Impact\obj\Debug\Impact.exe
 D:\LNU\Інженерія\Impact\Impact\obj\Debug\Impact.pdb
 D:\LNU\Інженерія\Impact\Impact\bin\Debug\Bogus.dll
 D:\LNU\Інженерія\Impact\Impact\bin\Debug\Bogus.xml
+D:\LNU\Інженерія\Repo\impact\Impact\Impact\obj\Debug\Impact.exe
+D:\LNU\Інженерія\Repo\impact\Impact\Impact\obj\Debug\Impact.pdb

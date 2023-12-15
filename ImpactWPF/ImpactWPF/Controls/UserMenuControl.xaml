@@ -7,6 +7,11 @@
              xmlns:efcore="clr-namespace:EfCore.entity;assembly=EfCore"
              mc:Ignorable="d" 
              d:DesignHeight="320" d:DesignWidth="250" Background="Transparent">
+
+    <UserControl.Resources>
+        <local:RoleConverter x:Key="RoleConverter"/>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*"/>
@@ -26,10 +31,13 @@
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Image Source="/images/menu.png" Grid.RowSpan="10" Grid.ColumnSpan="3"/>
-        <TextBlock  Text="Ім'я" x:Name="UserName" 
-                    FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" Margin="20,8,119,1"/>
-        <TextBlock  Text="Роль" x:Name="UserRole"  FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,20,1" />
-        <TextBlock  Text="test@gmail.com" x:Name="UserMail" FontSize="15" Foreground="#99FFFFFF"  Grid.Row="1" Grid.Column="1" Margin="20,32,0,9" Grid.RowSpan="3"  />
+        <TextBlock Text="{Binding UserEmail, Source={x:Static efcore:UserSession.Instance}}" x:Name="UserName" 
+           FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" Margin="20,8,119,1"/>
+        <TextBlock Text="{Binding UserRole, Source={x:Static efcore:UserSession.Instance}, Converter={StaticResource RoleConverter}}"  
+           FontSize="17" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,20,1" />
+        <TextBlock Text="{Binding UserEmail, Source={x:Static efcore:UserSession.Instance}}" x:Name="UserMail" 
+           FontSize="15" Foreground="#99FFFFFF"  Grid.Row="1" Grid.Column="1" Margin="20,32,0,9" Grid.RowSpan="3" />
+
         <TextBlock  Text="Мій профіль" x:Name="UserProfile" MouseLeftButtonUp="UserProfile_MouseLeftButtonUp"
                     FontSize="20" Foreground="#FFFFFF" 
                     Grid.Row="4" Grid.Column="1" Margin="45,7.5,0,7.5"/>
