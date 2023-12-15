@@ -417,7 +417,7 @@
                     </ItemsControl>
                     <Button x:Name="Button_LoadMore"
                             Width="352" HorizontalAlignment="Center"
-                            Margin="0,1093,0,0" Background="#D8E0FF"
+                            Margin="0,505,0,0" Background="#D8E0FF"
                             BorderBrush="Transparent" BorderThickness="0" 
                             Content="Завантажити ще" Height="81" VerticalAlignment="Top"
                             FontSize="30" FontWeight="Bold"
@@ -560,7 +560,8 @@
                 <Border.Effect>
                     <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.5" BlurRadius="5"/>
                 </Border.Effect>
-                <ListBox Name="listBox1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Width="657" Margin="14,14,14,24" >
+                <ListBox Name="listBox1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                         Width="657" Margin="14,14,14,24" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns="2" />

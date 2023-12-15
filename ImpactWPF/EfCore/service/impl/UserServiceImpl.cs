@@ -14,12 +14,17 @@ namespace EfCore.service.impl
     {
         private readonly ImpactDbContext context;
         private readonly RoleServiceImpl roleService;
-        private readonly VerificationCodeManager verificationCodeManager;
 
         public UserServiceImpl(ImpactDbContext context)
         {
             this.context = context;
             this.roleService = new RoleServiceImpl(context);
+        }
+
+        public UserServiceImpl(ImpactDbContext context, RoleServiceImpl roleService)
+        {
+            this.context = context;
+            this.roleService = roleService;
         }
 
         public List<User> GetAllUsers()
@@ -40,6 +45,7 @@ namespace EfCore.service.impl
             {
                 throw new ApplicationException("Користувач з електронною поштою: " + userEmail + " не існує!");
             }
+
             return context.Roles.Find(user.RoleRef);
         }
 

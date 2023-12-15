@@ -29,5 +29,7 @@ namespace EfCore.service
         void UpdateUserPassword(User currentUser, string userPassword);
 
         public void UpdateUserData(User currentUser, string userEmail, string userLastName, string userFirstName, string userMiddleName, string userPhoneNumber, string userRole);
+
+        public void AdminUpdateUserData(User currentUser, string userEmail, string userLastName, string userFirstName, string userMiddleName, string userPhoneNumber, string? userRole);
     }
 }

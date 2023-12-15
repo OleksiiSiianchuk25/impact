@@ -11,7 +11,7 @@
     <Grid>
         <Frame Name="mainFrame" NavigationUIVisibility="Hidden" />
         <Grid>
-            <MediaElement Name="anianimation" Source="C:\Users\annam\OneDrive\Документи\GitHub\repo\impact\ImpactWPF\ImpactWPF\media\impact_animation.mp4"  LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
+            <MediaElement Name="anianimation" Source="D:\LNU\Інженерія\Repo\impact\ImpactWPF\ImpactWPF\media\impact_animation.mp4"  LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded"/>
         </Grid>
     </Grid>
 </Window>

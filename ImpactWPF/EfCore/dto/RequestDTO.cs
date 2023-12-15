@@ -16,7 +16,7 @@ namespace EfCore.dto
         public string Location { get; set; }
         public int? CreatorUserRef { get; set; }
         public int RoleRef { get; set; }
-        public virtual ICollection<int> Categories { get; set; } = new List<int>();
+        public ICollection<int> Categories { get; set; } = new List<int>();
 
         public RequestDTO()
         {

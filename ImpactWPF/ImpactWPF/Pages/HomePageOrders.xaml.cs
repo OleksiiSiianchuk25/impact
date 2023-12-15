@@ -5,6 +5,7 @@ using ImpactWPF.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace ImpactWPF.Pages
 {
@@ -139,15 +142,199 @@ namespace ImpactWPF.Pages
 
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (myGrid.Visibility == Visibility.Collapsed)
+            if (CategoriesGrid.Visibility == Visibility.Collapsed)
             {
-                myGrid.Visibility = Visibility.Visible;
+                CategoriesGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                myGrid.Visibility = Visibility.Collapsed;
+                CategoriesGrid.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                // Clone the original content (copy only text and style)
+                string originalContent = (checkBox.Content ?? "").ToString();
+                Style originalStyle = checkBox.Style;
+
+                // Serialize and deserialize to create a deep copy of the CheckBox
+                string checkBoxXaml = XamlWriter.Save(checkBox);
+
+                using (StringReader stringReader = new StringReader(checkBoxXaml))
+                {
+                    using (XmlReader xmlReader = XmlReader.Create(stringReader))
+                    {
+                        CheckBox newCheckBox = (CheckBox)XamlReader.Load(xmlReader);
+
+                        if (newCheckBox != null)
+                        {
+                            newCheckBox.IsChecked = true;
+                            StackPanel stackPanel = checkBox.Content as StackPanel;
+
+                            TextBlock textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
+
+                            string text = textBlock.Text;
+
+                            // Apply the specific style to the new CheckBox
+                            newCheckBox.Style = (Style)FindResource("CheckBoxStyle1");
+
+                            Border newBorder = new Border();
+                            newBorder.CornerRadius = new CornerRadius(15);
+                            newBorder.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFE, 0xE8, 0x83));
+                            newBorder.BorderThickness = new Thickness(1);
+                            newBorder.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFE, 0xE8, 0x83));
+                            newBorder.Height = 45;
+                            newBorder.Width = 235;
+
+                            newBorder.Child = newCheckBox;
+
+                            // Отримайте вихідне зображення
+                            Image originalImage = FindVisualParent<Grid>(checkBox).Children.OfType<Image>().FirstOrDefault();
+
+                            if (originalImage != null)
+                            {
+                                // Створіть нове зображення з такими ж властивостями, як і вихідне зображення
+                                Image newImage = new Image();
+                                newImage.Source = originalImage.Source;
+                                newImage.Height = originalImage.Height;
+                                newImage.Width = originalImage.Width;
+                                newImage.Margin = new Thickness(-3, 0, 0, 10);
+
+
+                                // Отримайте StackPanel нового CheckBox
+                                StackPanel newStackPanel = newCheckBox.Content as StackPanel;
+
+                                // Додайте нове зображення до StackPanel нового CheckBox
+                                if (newStackPanel != null)
+                                {
+                                    newStackPanel.Children.Insert(0, newImage); // Додає зображення на початок StackPanel
+                                }
+                            }
+
+
+                            ListBoxItem newItem = new ListBoxItem();
+                            newItem.Content = newBorder;
+
+                            // Apply the specific style to the new ListBoxItem
+                            newItem.Style = (Style)FindResource("ListBoxItemStyle1");
+
+                            LeftList.Items.Add(newItem);
+
+                            // Remove the existing handler to avoid multiple subscriptions
+                            newCheckBox.Unchecked -= CheckBox_Unchecked;
+                            newCheckBox.Unchecked += CheckBox_Unchecked;
+
+                            // Highlight the original item
+                            Border border = FindVisualParent<Border>(checkBox);
+                            if (border != null)
+                            {
+                                border.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0xFF, 0xFE, 0xE8, 0x83));
+                            }
+                            if (stackPanel != null)
+                            {
+                                Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
+                                if (image != null)
+                                {
+                                    RotateTransform rotateTransform = image.RenderTransform as RotateTransform;
+                                    if (rotateTransform != null)
+                                    {
+                                        double centerX = image.ActualWidth / 2;
+                                        double centerY = image.ActualHeight / 2;
+
+                                        rotateTransform.CenterX = centerX;
+                                        rotateTransform.CenterY = centerY;
+                                        rotateTransform.Angle = 45;
+                                    }
+                                }
+                            }
+                            viewModel.SelectedCategories.Add(text);
+                        }
+                    }
+                    viewModel.FilterRequestsByCategories();
+                }
+            }
+        }
+
+
+
+
+
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                // Find the parent ListBoxItem in LeftList
+                foreach (ListBoxItem item in LeftList.Items.Cast<ListBoxItem>().ToList())
+                {
+                    CheckBox itemCheckBox = item.Content as CheckBox;
+                    if (itemCheckBox != null && itemCheckBox.Content.ToString() == checkBox.Content.ToString())
+                    {
+                        LeftList.Items.Remove(item);
+                        break;
+                    }
+                }
+
+                // Remove the existing handler to avoid multiple subscriptions
+                checkBox.Unchecked -= CheckBox_Unchecked;
+                StackPanel stackPanel = checkBox.Content as StackPanel;
+
+                TextBlock textBlock = stackPanel.Children.OfType<TextBlock>().FirstOrDefault();
+
+                string text = textBlock.Text;
+
+                // Highlight the original item
+                Border border = FindVisualParent<Border>(checkBox);
+                if (border != null)
+                {
+                    border.Background = new SolidColorBrush(Colors.White);
+                }
+                if (stackPanel != null)
+                {
+                    Image image = stackPanel.Children.OfType<Image>().FirstOrDefault();
+                    if (image != null)
+                    {
+                        RotateTransform rotateTransform = image.RenderTransform as RotateTransform;
+                        if (rotateTransform != null)
+                        {
+                            rotateTransform.Angle = 0;
+                        }
+                    }
+                }
+                viewModel.SelectedCategories.Remove(text);
+                viewModel.FilterRequestsByCategories();
+            }
+        }
+
+
+
+
+
+
+
+        private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null)
+                return null;
+            T parent = parentObject as T;
+            if (parent != null)
+            {
+                return parent;
+            }
+            else
+            {
+                return FindVisualParent<T>(parentObject);
+            }
+        }
+
+
 
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)

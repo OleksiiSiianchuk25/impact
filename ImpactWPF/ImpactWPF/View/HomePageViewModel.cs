@@ -7,10 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows;
 
 namespace ImpactWPF.View
 {
@@ -18,48 +14,17 @@ namespace ImpactWPF.View
     {
         private readonly RequestServiceImpl requestService = new RequestServiceImpl(new ImpactDbContext());
         private ObservableCollection<Request> _requests;
-        private int _currentPage = 1;  // Track the current page
-        private int _pageSize = 12;    // Number of requests per page
-        private int _currentRowCount = 3;  // Initial number of rows
-        private int _additionalRowCount = 3;  // Number of additional rows to load
+        private int _currentPage = 1;
+        private int _pageSize = 12;
+        private int _currentRowCount = 3;
+        private int _additionalRowCount = 3;
         private HomePage _homePage;
-/*
-        private ObservableCollection<CategoryViewModel> _categories;
-
-        public ObservableCollection<CategoryViewModel> Categories
-        {
-            get { return _categories; }
-            set
-            {
-                _categories = value;
-                OnPropertyChanged(nameof(Categories));
-            }
-        }*/
 
         public HomePageViewModel(HomePage homePage)
         {
             _homePage = homePage;
             SearchTerm = string.Empty;
-            /*
-                        Categories = new ObservableCollection<CategoryViewModel>
-                        {
-                            new CategoryViewModel { Name = "медикаменти" },
-                            new CategoryViewModel { Name = "одяг" },
-                            new CategoryViewModel { Name = "збір коштів" },
-                            new CategoryViewModel { Name = "продукти харчування" },
-                            new CategoryViewModel { Name = "техніка" },
-                            new CategoryViewModel { Name = "донорство крові" },
-                            new CategoryViewModel { Name = "переклад" },
-                            new CategoryViewModel { Name = "психологічна допомога" },
-                            new CategoryViewModel { Name = "медична допомога" },
-                            new CategoryViewModel { Name = "юридична допомога" },
-                            new CategoryViewModel { Name = "вантажні перевезення" },
-                            new CategoryViewModel { Name = "військові потреби" },
-                            new CategoryViewModel { Name = "допомога тваринам" },
-                            new CategoryViewModel { Name = "житло" },
-                            new CategoryViewModel { Name = "гуманітарна допомога" },
-                            new CategoryViewModel { Name = "інше" }
-                        };*/
+            SelectedCategories = new List<string>();
         }
 
         private string _searchTerm;
@@ -68,7 +33,7 @@ namespace ImpactWPF.View
         {
             get { return _searchTerm; }
             set
-            {   
+            {
                 _searchTerm = value;
                 OnPropertyChanged(nameof(SearchTerm));
                 PerformSearch(_searchTerm);
@@ -79,6 +44,25 @@ namespace ImpactWPF.View
         {
             List<Request> initialRequests = requestService.GetActivePropositions(PageSize);
             Requests = new ObservableCollection<Request>(initialRequests);
+
+            double newMarginTop = 352;
+
+            if (initialRequests.Count < 4)
+            {
+                CurrentRowCount = 1;
+            }
+            else if (initialRequests.Count < 9)
+            {
+                CurrentRowCount = 2;
+                newMarginTop = 754;
+            }
+            else
+            {
+                CurrentRowCount = 3;
+                newMarginTop = 1106;
+            }
+
+            UpdateLoadMoreButtonMargin(newMarginTop);
         }
 
         private void PerformSearch(string searchTerm)
@@ -143,6 +127,8 @@ namespace ImpactWPF.View
 
         public void LoadMoreRequests()
         {
+            _currentPage++;
+
             List<Request> moreRequests = requestService.GetMoreActivePropositions(_currentPage, _pageSize);
 
             if (moreRequests.Any())
@@ -151,30 +137,62 @@ namespace ImpactWPF.View
                 {
                     _requests.Add(request);
                 }
-                _currentPage++;
 
-                if(moreRequests.Count < 4)
+                if (moreRequests.Count < 5)
                 {
                     CurrentRowCount += 1;
                 }
-                else if(moreRequests.Count < 7)
+                else if (moreRequests.Count < 9)
                 {
                     CurrentRowCount += 2;
                 }
                 else
                 {
-                    CurrentRowCount += AdditionalRowCount; 
+                    CurrentRowCount += AdditionalRowCount;
                 }
 
-                double newMarginTop = 133 + (CurrentRowCount) * 360;
+                double newMarginTop = (CurrentRowCount) * 360;
 
                 UpdateLoadMoreButtonMargin(newMarginTop);
             }
         }
 
+        // Додайте нове поле для збереження обраних категорій
+        private List<string> _selectedCategories;
+
+        public List<string> SelectedCategories
+        {
+            get { return _selectedCategories; }
+            set
+            {
+                _selectedCategories = value;
+                OnPropertyChanged(nameof(SelectedCategories));
+
+                // Оновлюємо фільтрацію при зміні обраних категорій
+                FilterRequestsByCategories();
+            }
+        }
+
+        // Оновлюємо метод для фільтрації за категоріями
+        public void FilterRequestsByCategories()
+        {
+            if (SelectedCategories != null && SelectedCategories.Any())
+            {
+                List<Request> filteredRequests = requestService.GetActivePropositionsByCategories(SelectedCategories, PageSize);
+                Requests = new ObservableCollection<Request>(filteredRequests);
+            }
+            else
+            {
+                // Обробляємо випадок, коли категорії не обрані (показуємо всі активні пропозиції)
+                LoadInitialRequests();
+            }
+        }
+
+
+
         public void UpdateLoadMoreButtonMargin(double newMarginTop)
         {
-            _homePage.Button_LoadMore.Margin = new Thickness(0, newMarginTop, 0, 0);
+            _homePage.Button_LoadMore.Margin = new System.Windows.Thickness(0, newMarginTop, 0, 0);
         }
     }
 }
